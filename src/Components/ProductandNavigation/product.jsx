@@ -5,12 +5,13 @@ import './product.css'
 const Product = () => {
   return (
     <div>
-      <div className="prod-category"><h1>Wooden Items</h1></div>
+      <div className="prod-category"><span>Wooden Items</span></div>
       <div className='prod-container'>
         {
           ProductData.map((curElm)=>{
             return(
               <>
+              
               <div className='prod-box'>
                 <div className='content'>
                   <div className='img-box'>

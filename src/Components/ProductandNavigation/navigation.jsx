@@ -13,15 +13,17 @@ const Navigation = () => {
       <img className="nav-logo-img" src={logo} alt="" />
       </div>
 
+      <div className="nav-box">
         <ul>
           <BrowserRouter>
-          <li><Link className="Link" href="#">HOME</Link></li>
-          <li><Link className="Link" href="#">SHOP</Link></li>
-          <li><Link className="Link" href="#">CATEGORY</Link></li>
-          <li><Link className="Link" href="#">ABOUT US</Link></li>
-          <li><Link className="Link" href="#">CONTACT US</Link></li>
+          <li className="nav-list"><Link href="#">HOME</Link></li>
+          <li className="nav-list"><Link href="#">SHOP</Link></li>
+          <li className="nav-list"><Link href="#">CATEGORY</Link></li>
+          <li className="nav-list"><Link href="#">ABOUT US</Link></li>
+          <li className="nav-list"><Link href="#">CONTACT US</Link></li>
           </BrowserRouter>
         </ul>
+        </div>
 
       </div>
     </div>
