@@ -1,8 +1,10 @@
 import React from "react";
 import ProductData from "./productData";
 import './product.css'
+import { useNavigate } from "react-router-dom";
 
 const Product = () => {
+  const navigate = useNavigate();
   return (
     <div>
       <div className="prod-category"><span>Wooden Items</span></div>
@@ -20,9 +22,9 @@ const Product = () => {
                   <div className="prod-main">
                     <div>
                       <h3 className='prod-title'>{curElm.Title}</h3>
-                      <p  className='prod-price'>Rs: {curElm.Price}</p>
+                      <label class='prod-price'>Rs: {curElm.Price}</label>
                     </div>
-                    <button className="prod-button">View</button>
+                    <button className="prod-button" onClick={()=>navigate("/viewproduct")}>View</button>
                   </div>
                 </div>
               </div>
