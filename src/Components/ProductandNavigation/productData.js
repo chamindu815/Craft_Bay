@@ -4,6 +4,12 @@ import img3  from "../Assets/products/Product_03.jpg";
 import img4  from "../Assets/products/Product_04.jpg";
 import img5  from "../Assets/products/Product_05.jpg";
 import img6  from "../Assets/products/Product_06.jpg";
+import img7  from "../Assets/products/Product_07.jpg";
+import img8  from "../Assets/products/Product_08.jpg";
+import img9  from "../Assets/products/Product_09.jpg";
+import img10  from "../Assets/products/Product_10.jpg";
+import img11 from "../Assets/products/Product_11.jpg";
+import img12 from "../Assets/products/Product_12.jpg";
 
 
 const ProductData = [
@@ -57,6 +63,60 @@ const ProductData = [
         Title: 'Fisherman',
         img: img6,
         Price: 2300,
+        Descrip: "Cultural richness captured in every handmade masterpiece.",
+        Category: 'wooden'
+    },
+
+    {
+        id: 7,
+        Title: 'Krishna Status',
+        img: img7,
+        Price: 4300,
+        Descrip: "Cultural richness captured in every handmade masterpiece.",
+        Category: 'wooden'
+    },
+
+    {
+        id: 8,
+        Title: 'Elephant Blue',
+        img: img8,
+        Price: 5100,
+        Descrip: "Cultural richness captured in every handmade masterpiece.",
+        Category: 'wooden'
+    },
+
+    {
+        id: 9,
+        Title: 'Wall art',
+        img: img9,
+        Price: 3650,
+        Descrip: "Cultural richness captured in every handmade masterpiece.",
+        Category: 'wooden'
+    },
+
+    {
+        id: 10,
+        Title: 'Wooden Ship',
+        img: img10,
+        Price: 1400,
+        Descrip: "Cultural richness captured in every handmade masterpiece.",
+        Category: 'wooden'
+    },
+
+    {
+        id: 11,
+        Title: 'Jewellery Box',
+        img: img11,
+        Price: 2100,
+        Descrip: "Cultural richness captured in every handmade masterpiece.",
+        Category: 'wooden'
+    },
+
+    {
+        id: 12,
+        Title: 'Wall Hanger',
+        img: img12,
+        Price: 3900,
         Descrip: "Cultural richness captured in every handmade masterpiece.",
         Category: 'wooden'
     },
