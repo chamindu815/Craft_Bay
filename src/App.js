@@ -5,6 +5,7 @@ import Product from "./Components/Products/product";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navigation from "./Components/Navigation/navigation";
 import ViewProduct from "./Components/ViewSingleProduct/viewproduct";
+import AdminAddProduct from "./Components/AdminAddProduct/adminaddproduct";
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           <Route path="/register" element={<Register />}></Route>
           <Route path="/products" element={<Product />}></Route>
           <Route path="/viewproduct" element={<ViewProduct />}></Route>
+          <Route path="/adminaddproducts" element={<AdminAddProduct />}></Route>
 
         </Route>
       </Routes>
