@@ -1,0 +1,89 @@
+.revenue-report-bg{
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.revenue-report-title-container{
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.revenue-report-title{
+    margin-top: 70px;
+    margin-left: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.revenue-report-btn-container{
+    display: flex;
+    flex-direction: row;
+    text-align: right;
+}
+
+.invent-report-btn{
+    margin-top: 30px;
+    margin-left: 50px;
+    font-size: 15px;
+    font-weight: bold;
+    width: 150px;
+    height: 50px;
+    border-top: 2px solid white;
+    border-left: 2px solid white;
+    border-bottom: 2px solid white;
+    border-right: 1px solid white;
+    background-color: #322b2b;
+    color: white;
+    /* border-color: transparent; */
+    text-align: center;
+}
+
+.invent-report-btn:hover{
+    background-color: blue;
+    color: white;
+    box-shadow: 0 10px 16px 0 rgba(0, 0, 255, 0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+
+
+.revenue-report-btn{
+    margin-top: 30px;
+    margin-left: 0px;
+    font-size: 15px;
+    font-weight: bold;
+    width: 150px;
+    height: 50px;
+    border-top: 2px solid white;
+    border-left: 1px solid white;
+    border-bottom: 2px solid white;
+    border-right: 2px solid white;
+    background-color: #322b2b;
+    color: white;
+    /* border-color: transparent; */
+    text-align: center;
+}
+
+.revenue-report-btn:hover{
+    background-color: blue;
+    color: white;
+    box-shadow: 0 10px 16px 0 rgba(0, 0, 255, 0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+
+.revenue-report-container{
+    width: 1100px;
+    height: 500px;
+    background: white;
+    margin-top: 60px;
+    margin-left: 200px;
+    border: 2px solid black;
+}
+
+.revenue-report-container-title{
+    width: 1100px;
+    height: 100px;
+    
+}

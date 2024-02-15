@@ -1,6 +1,6 @@
-.prod-main-cont{
+.adminupdateproduct-bg{
     width: 1000px;
-    height: 720px;
+    height: 100%;
     background-color: #eaeaea;
     margin-left: 250px;
     margin-right: 250px;
@@ -11,27 +11,28 @@
     
 }
 
-.prod-form-name{
+.prod-update-form-name{
     text-align: center;
     font-weight: bolder;
     font-size: 30px;
-    margin-top: 13px;
+    margin-top: 40px;
     margin-bottom: 13px;
 }    
 
 
 
-.prod-add-container{
-    width: 1000px;
-    height: 860px;
+.prod-update-container{
+    width: 100%;
+    height: 1000px;
     background-color: #eaeaea;
     margin-left: px;
     margin-right:0px;
     margin-top: 0px;
     display: flex;
+    border-radius: 15px;
 }
 
-.prod-add-label{
+.prod-update-label{
     max-width: 100%;
     width: 400px;
     height: 520px;
@@ -40,7 +41,7 @@
     flex-direction: column;
 }
 
-.prod-add-txtbox{
+.prod-update-txtbox{
     margin-left: 20px;
     max-width: 100%;
     width: 580px;
@@ -51,68 +52,60 @@
     
 }
 
-.form-prod-name{
+.form-update-name{
     font-size: 25px;
-    margin-top: 30px;
+    margin-top: 60px;
     margin-left: 120px;
     font-weight: bold;
 }
 
-.form-prod-img{
-    font-size:25px;
-    margin-top: 48px;
-    margin-left: 120px;
-    font-weight: bold;
-
-}
-
-.form-prod-des{
+.form-update-img{
     font-size: 25px;
-    margin-top: 65px;
+    margin-top: 60px;
     margin-left: 120px;
     font-weight: bold;
 
 }
 
-.form-prod-selling-price{
+.form-update-des{
     font-size: 25px;
-    margin-top: 50px;
+    margin-top: 60px;
     margin-left: 120px;
     font-weight: bold;
 
 }
 
-.form-prod-price{
+.form-update-selling-price{
     font-size: 25px;
-    margin-top: 100px;
+    margin-top: 80px;
     margin-left: 120px;
     font-weight: bold;
 
 }
 
-.form-prod-price{
+.form-update-detail{
     font-size: 25px;
-    margin-top: 100px;
+    margin-top: 80px;
     margin-left: 120px;
     font-weight: bold;
 
 }
 
-.form-prod-qnt{
+.form-update-qnt{
     font-size: 25px;
-    margin-top: 50px;
+    margin-top: 120px;
     margin-left: 120px;
     font-weight: bold;
 }
 
-.form-prod-category{
+.form-update-category{
     font-size: 25px;
     margin-top: 58px;
     margin-left: 120px;
     font-weight: bold;
 }
 
-.input-prod-name{
+.input-update-prod-name{
     height: 50px;
     width: 480px;
     background: rgb(255, 255, 255);
@@ -124,11 +117,16 @@
     font-weight: bold;
     margin: 0px 50px;
     padding-left: 30px;
-    margin-top: 20px;
+    margin-top: 50px;
 }
 
+.input-update-prod-img{
+    margin: 0px 50px;
+    margin-left: 50px;
+    margin-top: 50px;
+}
 
-.input-prod-des{
+.input-update-prod-description{
     height: 100px;
     width: 480px;
     background: rgb(255, 255, 255);
@@ -144,88 +142,110 @@
     margin-top: 35px;
 }
 
-.input-prod-price{
+.input-update-prod-quantity{
     height: 50px;
     width: 480px;
     background: rgb(255, 255, 255);
-    border: rgb(0, 0, 0);
+    border: white;
     border-radius: 15px;
-    outline:auto;
+    outline: auto;
     color: #797979;
     font-size: 20px;
     font-weight: bold;
     margin: 0px 50px;
     padding-left: 30px;
-    margin-top: 30px;
+    margin-top: 50px;
 }
 
-.input-prod-buying-price{
+
+.input-update-prod-selling-price{
     height: 50px;
     width: 480px;
     background: rgb(255, 255, 255);
-    border: rgb(0, 0, 0);
+    border: white;
     border-radius: 15px;
-    outline:auto;
+    outline: auto;
     color: #797979;
     font-size: 20px;
     font-weight: bold;
     margin: 0px 50px;
     padding-left: 30px;
-    margin-top: 30px;
+    margin-top: 60px;
 }
 
-.input-prod-selling-price{
-    height: 50px;
-    width: 480px;
-    background: rgb(255, 255, 255);
-    border: rgb(0, 0, 0);
-    border-radius: 15px;
-    outline:auto;
-    color: #797979;
-    font-size: 20px;
-    font-weight: bold;
-    margin: 0px 50px;
-    padding-left: 30px;
-    margin-top: 30px;
-}
 
-.prod-dropdown{
-    font-size: 20px;
-    margin-top: 40px;
+/* Table */
+
+.prod-update-tbl{
     margin-left: 50px;
-    margin-right: 80px;
-    width: 400px;
-    height: 50px;
-    border-radius: 15px;
-    padding-left: 25px;
-    color: #797979;
-    font-weight: bold;
+    width: 580px;
+    margin-top: 60px;
 }
 
-.input-prod-img{
-    margin: 0px 50px;
-    margin-left: 50px;
-    margin-top: 40px;
-}
-
-.add-prod-btn{
-    margin-top: 40px;
-    width: 150px;
-    height: 45px;
-    font-size: 20px;
+.table {
+    display: block;
+    overflow: hidden;
+    table-layout: fixed;
+    border-collapse: collapse;
+    box-shadow: 0px 10px 10px #ccc;
     border-radius: 10px;
-    cursor: pointer;
-    margin-left: 200px;
-    border-width: 0.5px;
-    font-weight: bold;
-    background-color: #3d3028;
-    color: white;
-}
-
-.add-prod-btn:hover {
-    background-color: blue;
-    color: white;
-    box-shadow: 0 10px 16px 0 rgba(0, 0, 255, 0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    white-space: nowrap;
+    width: 150em;
+    max-width: 67.5%;
+    /* margin: auto; */
+    table-layout: auto;
+    overflow-x: auto;
+  }
+  
+  .table thead {
+    background-color: #ccc;
+    color: #222;
+  }
+  
+  .table th,
+  .table td {
+    padding: 1rem;
+  }
+  
+  .table td {
+    border-top: 0.5px solid #ddd;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .table tbody tr:hover {
+    background-color: #eee;
   }
 
+  
+  .label {
+    border-radius: 3px;
+    padding: 0.3rem;
+    color: white;
+  }
+  
+  .label-draft {
+    background-color: #777;
+  }
+  
+  .label-live {
+    background-color: #42a942;
+  }
+  
+  .label-error {
+    background-color: #d9534f;
+  }
+  
+  .actions {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .actions svg {
+    cursor: pointer;
+  }
+  
+  .delete-btn {
+    color: #e10d05;
+  }
 

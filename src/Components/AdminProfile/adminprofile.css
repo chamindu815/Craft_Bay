@@ -1,0 +1,310 @@
+.admin-profile-bg{
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.admin-acc-info-container{
+    width: 650px;
+    height: 600px;
+    background: rgba(255, 255, 255, 0.726);
+    margin-top: 60px;
+    margin-left: 80px;
+}
+
+
+.admin-acc-info-title{
+    position: absolute;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 30px;
+    margin-left: 30px;
+}
+
+
+/*Form Full Name*/
+.admin-acc-info-fname{
+    position: absolute;
+    margin-top: 105px;
+    margin-left: 70px;
+    font-weight: bold;
+}
+
+
+.admin-acc-info-fname-inputs{
+    margin-top: 35px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+  }
+
+  .admin-acc-info-fname-input{
+    display: flex;
+    align-items: center;
+    margin: auto;
+    width: 400px;
+    height: 40px;
+    background: white;
+    border: 1px solid black;
+    margin-left: 180px;
+    margin-top: 60px;
+}
+
+.admin-acc-info-fname-input input{
+    height: 38px;
+    width: 400px;
+    border: none;
+    outline: none;
+    color: #000000;
+    font-size: 15px;
+    margin: 0px 20px;
+}
+
+
+/*Form Address*/
+.admin-acc-info-address{
+    position: absolute;
+    margin-top: 35px;
+    margin-left: 70px;
+    font-weight: bold;
+}
+
+
+.admin-acc-info-address-inputs{
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+  }
+
+  .admin-acc-info-address-input{
+    display: flex;
+    align-items: center;
+    margin: auto;
+    width: 400px;
+    height: 100px;
+    background: white;
+    border: 1px solid black;
+    margin-left: 180px;
+    margin-top: 0px;
+}
+
+.admin-acc-info-address-input input{
+    height: 98px;
+    width: 400px;
+    border: none;
+    outline: none;
+    color: #000000;
+    font-size: 15px;
+    margin: 0px 20px;
+}
+
+
+/*Form Email*/
+.admin-acc-info-email{
+    position: absolute;
+    margin-top: 35px;
+    margin-left: 70px;
+    font-weight: bold;
+}
+
+
+.admin-acc-info-email-inputs{
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+  }
+
+  .admin-acc-info-email-input{
+    display: flex;
+    align-items: center;
+    margin: auto;
+    width: 400px;
+    height: 40px;
+    background: white;
+    border: 1px solid black;
+    margin-left: 180px;
+    margin-top: 00px;
+}
+
+.admin-acc-info-email-input input{
+    height: 38px;
+    width: 400px;
+    border: none;
+    outline: none;
+    color: #000000;
+    font-size: 15px;
+    margin: 0px 20px;
+}
+
+
+/*Form Phone-No*/
+.admin-acc-info-phone{
+    position: absolute;
+    margin-top: 35px;
+    margin-left: 70px;
+    font-weight: bold;
+}
+
+
+.admin-acc-info-phone-inputs{
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+  }
+
+  .admin-acc-info-phone-input{
+    display: flex;
+    align-items: center;
+    margin: auto;
+    width: 400px;
+    height: 40px;
+    background: white;
+    border: 1px solid black;
+    margin-left: 180px;
+    margin-top: 00px;
+}
+
+.admin-acc-info-phone-input input{
+    height: 38px;
+    width: 400px;
+    border: none;
+    outline: none;
+    color: #000000;
+    font-size: 15px;
+    margin: 0px 20px;
+}
+
+/*Form Date-Of-Birth*/
+.admin-acc-info-birth{
+    position: absolute;
+    margin-top: 35px;
+    margin-left: 70px;
+    font-weight: bold;
+}
+
+
+.admin-acc-info-birth-inputs{
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+  }
+
+  .admin-acc-info-birth-input{
+    display: flex;
+    align-items: center;
+    margin: auto;
+    width: 400px;
+    height: 40px;
+    background: white;
+    border: 1px solid black;
+    margin-left: 180px;
+    margin-top: 00px;
+}
+
+.admin-acc-info-birth-input input{
+    height: 38px;
+    width: 400px;
+    border: none;
+    outline: none;
+    color: #000000;
+    font-size: 15px;
+    margin: 0px 20px;
+}
+
+
+/* Acc-Info-Save-btn */
+.admin-acc-info-save-btn-container{
+    text-align: right;
+}
+
+.admin-acc-info-savebtn{
+    margin-top: 40px;
+    margin-right: 80px;
+    font-size: 18px;
+    font-weight: bold;
+    width: 130px;
+    height: 50px;
+    border-radius: 5px;
+    background-color: #322b2b;
+    color: white;
+    border-color: transparent;
+    text-align: center;
+}
+
+.admin-acc-info-savebtn:hover{
+    background-color: blue;
+    color: white;
+    box-shadow: 0 10px 16px 0 rgba(0, 0, 255, 0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+
+/* order-manage-btn */
+.admin-btn-container{
+    width: 600px;
+    height: 300px;
+    background: rgba(255, 255, 255, 0.726);
+    margin-top: 60px;
+    margin-left: 100px;
+}
+
+
+/* Acc-Info-Manage-Order-btn */
+.admin-acc-info-manage-order-btn-container{
+    text-align: right;
+}
+
+.admin-acc-info-manage-order-btn{
+    margin-top: 60px;
+    margin-right: 80px;
+    font-size: 18px;
+    font-weight: bold;
+    width: 430px;
+    height: 70px;
+    border-radius: 5px;
+    background-color: #322b2b;
+    color: white;
+    border-color: transparent;
+    text-align: center;
+}
+
+.admin-acc-info-manage-order-btn:hover{
+    background-color: blue;
+    color: white;
+    box-shadow: 0 10px 16px 0 rgba(0, 0, 255, 0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+
+/* Acc-Info-Manage-report-btn */
+.admin-acc-info-manage-report-btn-container{
+    text-align: right;
+}
+
+.admin-acc-info-manage-report-btn{
+    margin-top: 40px;
+    margin-right: 80px;
+    font-size: 18px;
+    font-weight: bold;
+    width: 430px;
+    height: 70px;
+    border-radius: 5px;
+    background-color: #322b2b;
+    color: white;
+    border-color: transparent;
+    text-align: center;
+}
+
+.admin-acc-info-manage-report-btn:hover{
+    background-color: blue;
+    color: white;
+    box-shadow: 0 10px 16px 0 rgba(0, 0, 255, 0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
