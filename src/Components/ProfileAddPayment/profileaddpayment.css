@@ -1,0 +1,410 @@
+.prof-add-pay-bg{
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.acc-info-container{
+    width: 650px;
+    height: 600px;
+    background: rgba(255, 255, 255, 0.726);
+    margin-top: 60px;
+    margin-left: 80px;
+}
+
+.acc-info-title{
+    position: absolute;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 30px;
+    margin-left: 30px;
+}
+
+
+/*Form Full Name*/
+.acc-info-fname{
+    position: absolute;
+    margin-top: 105px;
+    margin-left: 70px;
+    font-weight: bold;
+}
+
+
+.acc-info-fname-inputs{
+    margin-top: 35px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+  }
+
+  .acc-info-fname-input{
+    display: flex;
+    align-items: center;
+    margin: auto;
+    width: 400px;
+    height: 40px;
+    background: white;
+    border: 1px solid black;
+    margin-left: 180px;
+    margin-top: 60px;
+}
+
+.acc-info-fname-input input{
+    height: 38px;
+    width: 400px;
+    border: none;
+    outline: none;
+    color: #000000;
+    font-size: 15px;
+    margin: 0px 20px;
+}
+
+
+/*Form Address*/
+.acc-info-address{
+    position: absolute;
+    margin-top: 35px;
+    margin-left: 70px;
+    font-weight: bold;
+}
+
+
+.acc-info-address-inputs{
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+  }
+
+  .acc-info-address-input{
+    display: flex;
+    align-items: center;
+    margin: auto;
+    width: 400px;
+    height: 100px;
+    background: white;
+    border: 1px solid black;
+    margin-left: 180px;
+    margin-top: 0px;
+}
+
+.acc-info-address-input input{
+    height: 98px;
+    width: 400px;
+    border: none;
+    outline: none;
+    color: #000000;
+    font-size: 15px;
+    margin: 0px 20px;
+}
+
+
+/*Form Email*/
+.acc-info-email{
+    position: absolute;
+    margin-top: 35px;
+    margin-left: 70px;
+    font-weight: bold;
+}
+
+
+.acc-info-email-inputs{
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+  }
+
+  .acc-info-email-input{
+    display: flex;
+    align-items: center;
+    margin: auto;
+    width: 400px;
+    height: 40px;
+    background: white;
+    border: 1px solid black;
+    margin-left: 180px;
+    margin-top: 00px;
+}
+
+.acc-info-email-input input{
+    height: 38px;
+    width: 400px;
+    border: none;
+    outline: none;
+    color: #000000;
+    font-size: 15px;
+    margin: 0px 20px;
+}
+
+
+/*Form Phone-No*/
+.acc-info-phone{
+    position: absolute;
+    margin-top: 35px;
+    margin-left: 70px;
+    font-weight: bold;
+}
+
+
+.acc-info-phone-inputs{
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+  }
+
+  .acc-info-phone-input{
+    display: flex;
+    align-items: center;
+    margin: auto;
+    width: 400px;
+    height: 40px;
+    background: white;
+    border: 1px solid black;
+    margin-left: 180px;
+    margin-top: 00px;
+}
+
+.acc-info-phone-input input{
+    height: 38px;
+    width: 400px;
+    border: none;
+    outline: none;
+    color: #000000;
+    font-size: 15px;
+    margin: 0px 20px;
+}
+
+/*Form Date-Of-Birth*/
+.acc-info-birth{
+    position: absolute;
+    margin-top: 35px;
+    margin-left: 70px;
+    font-weight: bold;
+}
+
+
+.acc-info-birth-inputs{
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+  }
+
+  .acc-info-birth-input{
+    display: flex;
+    align-items: center;
+    margin: auto;
+    width: 400px;
+    height: 40px;
+    background: white;
+    border: 1px solid black;
+    margin-left: 180px;
+    margin-top: 00px;
+}
+
+.acc-info-birth-input input{
+    height: 38px;
+    width: 400px;
+    border: none;
+    outline: none;
+    color: #000000;
+    font-size: 15px;
+    margin: 0px 20px;
+}
+
+
+/* Acc-Info-Save-btn */
+.acc-info-save-btn-container{
+    text-align: right;
+}
+
+.acc-info-savebtn{
+    margin-top: 40px;
+    margin-right: 80px;
+    font-size: 18px;
+    font-weight: bold;
+    width: 130px;
+    height: 50px;
+    border-radius: 5px;
+    background-color: #322b2b;
+    color: white;
+    border-color: transparent;
+    text-align: center;
+}
+
+.acc-info-savebtn:hover{
+    background-color: blue;
+    color: white;
+    box-shadow: 0 10px 16px 0 rgba(0, 0, 255, 0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+
+/* Card Info */
+.card-info-container{
+    width: 600px;
+    height: 350px;
+    background: rgba(255, 255, 255, 0.726);
+    margin-left: 100px;
+    margin-top: 60px;
+}
+
+.card-info-title{
+    position: absolute;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 30px;
+    margin-left: 30px;
+}
+
+
+/*Form Card No*/
+.card-info-card-no{
+    position: absolute;
+    margin-top: 105px;
+    margin-left: 70px;
+    font-weight: bold;
+}
+
+
+.card-info-card-no-inputs{
+    margin-top: 35px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+  }
+
+  .card-info-card-no-input{
+    display: flex;
+    align-items: center;
+    margin: auto;
+    width: 300px;
+    height: 40px;
+    background: white;
+    border: 1px solid black;
+    margin-left: 180px;
+    margin-top: 60px;
+}
+
+.card-info-card-no-input input{
+    text-align: center;
+    height: 38px;
+    width: 400px;
+    border: none;
+    outline: none;
+    color: #000000;
+    font-size: 15px;
+    margin: 0px 20px;
+}
+
+
+/*Form Expire Date*/
+.card-info-exp-date{
+    position: absolute;
+    margin-top: 30px;
+    margin-left: 70px;
+    font-weight: bold;
+}
+
+
+.card-info-exp-date-inputs{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+  }
+
+  .card-info-exp-date-input{
+    display: flex;
+    align-items: center;
+    margin: auto;
+    width: 90px;
+    height: 40px;
+    background: white;
+    border: 1px solid black;
+    margin-left: 180px;
+}
+
+.card-info-exp-date-input input{
+    text-align: center;
+    height: 38px;
+    width: 50px;
+    border: none;
+    outline: none;
+    color: #000000;
+    font-size: 15px;
+    margin: 0px 20px;
+}
+
+
+/*Form CVV*/
+.card-info-cvv{
+    position: absolute;
+    margin-top: 30px;
+    margin-left: 70px;
+    font-weight: bold;
+}
+
+
+.card-info-cvv-inputs{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+  }
+
+  .card-info-cvv-input{
+    display: flex;
+    align-items: center;
+    margin: auto;
+    width: 90px;
+    height: 40px;
+    background: white;
+    border: 1px solid black;
+    margin-left: 180px;
+}
+
+.card-info-cvv-input input{
+    text-align: center;
+    height: 38px;
+    width: 50px;
+    border: none;
+    outline: none;
+    color: #000000;
+    font-size: 15px;
+    margin: 0px 20px;
+}
+
+/* Card-Info-Save-btn */
+.card-info-save-btn-container{
+    text-align: right;
+}
+
+.card-info-savebtn{
+    margin-top: 40px;
+    margin-right: 80px;
+    font-size: 15px;
+    font-weight: bold;
+    width: 120px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: #322b2b;
+    color: white;
+    border-color: transparent;
+    text-align: center;
+}
+
+.card-info-savebtn:hover{
+    background-color: blue;
+    color: white;
+    box-shadow: 0 10px 16px 0 rgba(0, 0, 255, 0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}

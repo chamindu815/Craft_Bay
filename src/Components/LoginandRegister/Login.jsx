@@ -1,22 +1,72 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Login.css";
-import login from "../Assets/Login.jpg";
+import loginimg from "../Assets/Login.jpg";
 import logo from "../Assets/logo.png"
-
+import { useNavigate } from "react-router-dom";
+import axios from "axios"
 
 export const Login = () => {
   const [action, setAction] = useState("Login");
+  // let navigate = useNavigate();
+
+  useEffect(() => {
+    if (action === "SignUp") {
+      navigate("/register");
+    }
+  }, [action]);
+
+  
+
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  async function login(event) {
+      event.preventDefault();
+      try {
+        await axios.post("http://localhost:8089/craftbay/user/login", {
+          email: email,
+          password: password,
+          }).then((res) => 
+          {
+           console.log(res.data);
+           
+           if (res.data.message == "Email not exits") 
+           {
+             alert("Incorrect Email or Password");
+           } 
+           else if(res.data.message == "Login Success")
+           { 
+              
+              navigate('/home');
+           } 
+            else 
+           { 
+              alert("Incorrect Email or Password");
+           }
+        }, fail => {
+         console.error(fail); // Error!
+});
+      }
+
+       catch (err) {
+        alert(err);
+      }
+    
+    }
+
+
 
   return (
     <div className="main-container">
 
       <div className="logo-container">
-      <img className="logo-img" src={logo} alt="" />
+      {/* <img className="logo-img" src={logo} alt="" /> */}
       </div>
 
 
       <div className="image-container">
-        <img className="login-img-bg" src={login} alt="" />
+        <img className="login-img-bg" src={loginimg} alt="" />
       </div>
 
       <div className="login-form-container">
@@ -27,11 +77,21 @@ export const Login = () => {
 
         <div className="inputs">
           <div className="input">
-            <input type="email" placeholder="Email" />
+            <input type="email" placeholder="Email" id="email"
+              value={email}
+              onChange={(event) => {
+                setEmail(event.target.value);
+              }}
+            />
           </div>
 
           <div className="input">
-            <input type="password" placeholder="Password" />
+            <input type="password" placeholder="Password" id="password"
+              value={password}
+              onChange={(event) => {
+                setPassword(event.target.value);
+              }}
+            />
           </div>
         </div>
 
@@ -40,10 +100,8 @@ export const Login = () => {
         </div>
 
         <div className="submit-container">
-          <div
-            className={action == "Sign Up" ? "submit gray" : "submit"}onClick={() => {setAction("Login");}}>Log In</div>
-          <div
-            className={action == "Login" ? "submit gray" : "submit"}onClick={() => {setAction("Sign Up");}}>Sign Up</div>
+        <button type="submit" className="submit" onClick={login}>Login</button>
+        <button type="submit" className="submit" onClick={() => setAction("SignUp")}>Register</button>
         </div>
       </div>
     </div>

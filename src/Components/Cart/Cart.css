@@ -1,0 +1,356 @@
+.cart-bg{
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.cart-main-container{
+    background: rgba(255, 255, 255, 0.829);
+    width: 800px;
+    height: 700px;
+    margin-top: 30px;
+    margin-left: 30px;
+    display: flex;
+    flex-direction: column;
+    /* border: solid 2px;
+    border-color: black; */
+}
+
+
+.cart-heading{
+    font-size: 30px;
+    margin-left: 20px;
+    margin-top: 20px;
+    font-weight: bold;
+    
+}
+
+.cart-container{
+    background: rgba(255, 255, 255, 0.829);
+    width: 760px;
+    height: 170px;
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    border: 1px solid black;
+}
+
+ .cart-content{
+    align-items: center;
+    /* max-width: 100%; */
+}
+
+.cart-img-box{
+    /* max-width: 100%; */
+    display: flex;
+    width: 150px;
+    height: 150px;
+    margin-left: 20px;
+    border: 1px solid black;
+    position: absolute;
+    margin-top: 10px;
+}
+
+.cart-prod-title{
+    margin: 0px;
+    display: flex;
+    position: absolute;
+    margin-top: 10px;
+    font-size: 20px;
+    margin-left: 200px;
+    /* justify-content: center; */
+}
+
+.cart-price-title{
+    position: absolute;
+    margin-top: 25px;
+    margin-left: 505px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.cart-price{
+    position: absolute;
+    margin-top: 60px;
+    margin-left: 500px;
+    font-weight: bold;
+    /* justify-content: center; */
+}
+
+.cart-qnt-name{
+    position: absolute;
+    margin-top: 25px;
+    margin-left: 10px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.cart-qnt-container{
+    display: flex;   
+    margin-left: 600px;
+}
+
+.cart-qunt-btn {
+    margin-top: 50px;
+    margin-left: 0px;
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid black;
+    transition: border 0.3s ease;
+    width: 100px;
+    height: 35px;
+  }
+  
+  .cart-qunt-btn:hover {
+      border: 1px solid #4097fe;
+    
+  }
+  
+  .cart-increment-btn {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #4097fe;
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .cart-increment-btn:hover {
+      background-color: #0b5daf;
+  }
+  
+  .cart-p {
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-left: 1px solid #F5F8FB;
+    border-right: 1px solid #F5F8FB;
+  }
+
+  .Subtotal{
+    display: flex;
+    flex-direction: column;
+    width: 550px;
+    height: 300px;
+    background: rgba(255, 255, 255, 0.829);
+    margin-top: 30px;
+    margin-left: 70px;
+  }
+
+  .cart-ordersum-title{
+    font-size: 25px;
+    font-weight: bold;
+    margin-left: 30px;
+    margin-top: 30px;
+  }
+
+  .cart-ordersum-subtotal{
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 60px;
+    margin-top: 30px;
+  }
+
+  .cart-ordersum-shipping{
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 60px;
+    margin-top: 30px;
+  }
+
+  .cart-ordersum-total{
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 60px;
+    margin-top: 30px;
+  }
+
+  .billing-address-container{
+    display: flex;
+    flex-direction: column;
+    width: 550px;
+    height: 500px;
+    background: rgba(255, 255, 255, 0.829);
+    margin-top: 50px;
+    margin-left: 70px;
+  }
+
+  .cart-billaddress-title{
+    font-size: 25px;
+    font-weight: bold;
+    margin-left: 30px;
+    margin-top: 30px;
+  }
+
+  .cart-billaddress{
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 60px;
+    margin-top: 70px;
+  }
+
+  .cart-Phone-no{
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 60px;
+    margin-top: 50px;
+  }
+
+  .cart-Email{
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 60px;
+    margin-top: 50px;
+  }
+
+
+  .bill-add-container{
+    display: flex;
+    flex-direction: row;
+  }
+
+  .bill-address-inputs{
+    margin-top: 35px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+  }
+
+  .bill-address-input{
+    display: flex;
+    align-items: center;
+    margin: auto;
+    width: 300px;
+    height: 100px;
+    background: white;
+    margin-left: 80px;
+    /* border-radius: 50px; */
+}
+
+.bill-address-input input{
+    height: 50px;
+    width: 400px;
+    /* background: transparent; */
+    border: none;
+    outline: none;
+    color: #000000;
+    font-size: 15px;
+    /* font-weight: bold; */
+    margin: 0px 20px;
+}
+
+
+
+.bill-phone-container{
+    display: flex;
+    flex-direction: row;
+  }
+
+  .bill-phone-inputs{
+    margin-top: 35px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+  }
+
+  .bill-phone-input{
+    display: flex;
+    align-items: center;
+    margin: auto;
+    width: 300px;
+    height: 50px;
+    background: white;
+    margin-left: 20px;
+    /* border-radius: 50px; */
+}
+
+.bill-phone-input input{
+    height: 50px;
+    width: 400px;
+    /* background: transparent; */
+    border: none;
+    outline: none;
+    color: #000000;
+    font-size: 15px;
+    /* font-weight: bold; */
+    margin: 0px 20px;
+}
+
+
+
+.bill-email-container{
+    display: flex;
+    flex-direction: row;
+  }
+
+  .bill-email-inputs{
+    margin-top: 35px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+  }
+
+  .bill-email-input{
+    display: flex;
+    align-items: center;
+    margin: auto;
+    width: 300px;
+    height: 50px;
+    background: white;
+    margin-left: 110px;
+    /* border-radius: 50px; */
+}
+
+.bill-email-input input{
+    height: 50px;
+    width: 400px;
+    /* background: transparent; */
+    border: none;
+    outline: none;
+    color: #000000;
+    font-size: 15px;
+    /* font-weight: bold; */
+    margin: 0px 20px;
+}
+
+
+.bill-checkbox{
+margin-top: 20px;
+margin-left: 300px;
+}
+
+
+.checkout-btn-container{
+    text-align: center;
+}
+
+.checkoutbtn{
+    margin-top: 30px;
+    font-size: 18px;
+    font-weight: bold;
+    width: 130px;
+    height: 50px;
+    border-radius: 5px;
+    background-color: #322b2b;
+    color: white;
+    border-color: transparent;
+    text-align: center;
+}
+
+.checkoutbtn:hover{
+    background-color: blue;
+    color: white;
+    box-shadow: 0 10px 16px 0 rgba(0, 0, 255, 0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}

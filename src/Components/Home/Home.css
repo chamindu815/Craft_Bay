@@ -1,63 +1,71 @@
-*{
-    /* margin: 0; */
-    padding: 0;
-    font-family: sans-serif;
-    box-sizing: border-box;
+.advertisement-container{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 0%;
+    margin-left: 1%;
+    margin-right: 10%;
+    width: 98%;
+    height: 350px;
+    background: #eaeaea;
+    border-radius: 30px;
 }
 
-.prod-category{
+.home-header{
     text-align: center;
-    margin-top: 40px;
+    margin-top: 30px;
     font-weight: bold;
     font-size: 35px;
 }
 
-.prod-container{
-    width: 100%;
+.home-prod-container{
+    width: 97%;
     display: flex;
-    flex-wrap: wrap;
-    padding: 40px 40px;
+    flex-direction: row;
+    flex-wrap:wrap;
+    margin-left: 40px;
+    margin-top: 20px;
 }
 
-.prod-box{
+.home-prod-box{
     width: 220px;
-    height: 320px;
+    height: 360px;
     overflow: hidden;
     background: #e8e8e8;
-    cursor: pointer;
     padding: 10px 20px;
     align-items: center;
-    margin-left: 15px;
-    /* margin-right: auto; */
+    margin-left: 25px;
     margin-bottom: 20px;
     border-radius: 10px;
 }
 
-.content{
+.home-content{
     align-items: center;
     max-width: 100%;
 }
 
-.img-box{
+.home-prod-img-box{
     max-width: 100%;
 }
 
-.prod-title{
-    margin: 0px;
+.home-prod-title{
     display: flex;
-    margin-top: 10px;
     font-size: 20px;
     justify-content: center;
 }
 
-.prod-price{
-    margin-top: 5px;
+.home-prod-price{
+    margin-top: -18px;
     font-weight: bold;
     text-align: center;
 }
 
-.prod-button{
-    margin-top: 0px;
+.home-prod-button-cont{
+    
+    text-align: center;
+}
+
+.home-prod-button{
+    margin-top: 10px;
     font-size: 15px;
     font-weight: bold;
     width: 100px;
@@ -66,15 +74,16 @@
     background-color: #322b2b;
     color: white;
     border-color: transparent;
+    cursor: pointer;
+
 }
 
-.prod-main{
+.home-prod-main{
     text-align: center;
 }
 
-.prod-button:hover {
+.home-prod-button:hover {
     background-color: blue;
     color: white;
     box-shadow: 0 10px 16px 0 rgba(0, 0, 255, 0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
   }
-

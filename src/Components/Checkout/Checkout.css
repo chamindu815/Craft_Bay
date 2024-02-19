@@ -1,0 +1,294 @@
+.checkout-bg{
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.checkout-main-container{
+    background: rgba(255, 255, 255, 0.829);
+    width: 800px;
+    height: 700px;
+    margin-top: 30px;
+    margin-left: 30px;
+    display: flex;
+    flex-direction: column;
+    /* border: solid 2px;
+    border-color: black; */
+}
+
+
+.checkout-heading{
+    font-size: 30px;
+    margin-left: 20px;
+    margin-top: 20px;
+    font-weight: bold;
+    
+}
+
+.checkout-container{
+    background: rgba(255, 255, 255, 0.829);
+    width: 760px;
+    height: 170px;
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    border: 1px solid black;
+}
+
+ .checkout-content{
+    align-items: center;
+    /* max-width: 100%; */
+}
+
+.checkout-img-box{
+    /* max-width: 100%; */
+    display: flex;
+    width: 150px;
+    height: 150px;
+    margin-left: 20px;
+    border: 1px solid black;
+    position: absolute;
+    margin-top: 10px;
+}
+
+.checkout-prod-title{
+    margin: 0px;
+    display: flex;
+    position: absolute;
+    margin-top: 10px;
+    font-size: 20px;
+    margin-left: 200px;
+    /* justify-content: center; */
+}
+
+.checkout-price-title{
+    position: absolute;
+    margin-top: 25px;
+    margin-left: 505px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.checkout-price{
+    position: absolute;
+    margin-top: 60px;
+    margin-left: 500px;
+    font-weight: bold;
+    /* justify-content: center; */
+}
+
+.checkout-qnt-name{
+    position: absolute;
+    margin-top: 25px;
+    margin-left: 10px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.checkout-qnt-container{
+    display: flex;   
+    margin-left: 600px;
+}
+
+.checkout-qunt-btn {
+    margin-top: 50px;
+    margin-left: 0px;
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid black;
+    transition: border 0.3s ease;
+    width: 100px;
+    height: 35px;
+  }
+  
+  .checkout-qunt-btn:hover {
+      border: 1px solid #4097fe;
+    
+  }
+  
+  .checkout-increment-btn {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #4097fe;
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .checkout-increment-btn:hover {
+      background-color: #0b5daf;
+  }
+  
+
+  /* Card Info */
+.checkout-card-info-container{
+  width: 550px;
+  height: 400px;
+  background: rgba(255, 255, 255, 0.726);
+  margin-left: 100px;
+  margin-top: 60px;
+}
+
+.checkout-card-info-title{
+  position: absolute;
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 30px;
+  margin-left: 30px;
+}
+
+
+/*Form Card No*/
+.checkout-card-info-card-no{
+  position: absolute;
+  margin-top: 105px;
+  margin-left: 70px;
+  font-weight: bold;
+}
+
+
+.checkout-card-info-card-no-inputs{
+  margin-top: 35px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+}
+
+.checkout-card-info-card-no-input{
+  display: flex;
+  align-items: center;
+  margin: auto;
+  width: 300px;
+  height: 40px;
+  background: white;
+  border: 1px solid black;
+  margin-left: 180px;
+  margin-top: 60px;
+}
+
+.checkout-card-info-card-no-input input{
+  text-align: center;
+  height: 38px;
+  width: 400px;
+  border: none;
+  outline: none;
+  color: #000000;
+  font-size: 15px;
+  margin: 0px 20px;
+}
+
+
+/*Form Expire Date*/
+.checkout-card-info-exp-date{
+  position: absolute;
+  margin-top: 30px;
+  margin-left: 70px;
+  font-weight: bold;
+}
+
+
+.checkout-card-info-exp-date-inputs{
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+}
+
+.checkout-card-info-exp-date-input{
+  display: flex;
+  align-items: center;
+  margin: auto;
+  width: 90px;
+  height: 40px;
+  background: white;
+  border: 1px solid black;
+  margin-left: 180px;
+}
+
+.checkout-card-info-exp-date-input input{
+  text-align: center;
+  height: 38px;
+  width: 50px;
+  border: none;
+  outline: none;
+  color: #000000;
+  font-size: 15px;
+  margin: 0px 20px;
+}
+
+
+/*Form CVV*/
+.checkout-card-info-cvv{
+  position: absolute;
+  margin-top: 30px;
+  margin-left: 70px;
+  font-weight: bold;
+}
+
+
+.checkout-card-info-cvv-inputs{
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+}
+
+.checkout-card-info-cvv-input{
+  display: flex;
+  align-items: center;
+  margin: auto;
+  width: 90px;
+  height: 40px;
+  background: white;
+  border: 1px solid black;
+  margin-left: 180px;
+}
+
+.checkout-card-info-cvv-input input{
+  text-align: center;
+  height: 38px;
+  width: 50px;
+  border: none;
+  outline: none;
+  color: #000000;
+  font-size: 15px;
+  margin: 0px 20px;
+}
+
+/* Card-Info-Save-btn */
+.checkout-card-info-save-btn-container{
+  text-align: right;
+}
+
+.checkout-card-info-savebtn{
+  margin-top: 40px;
+  margin-right: 80px;
+  font-size: 15px;
+  font-weight: bold;
+  width: 120px;
+  height: 40px;
+  border-radius: 5px;
+  background-color: #322b2b;
+  color: white;
+  border-color: transparent;
+  text-align: center;
+}
+
+.checkout-card-info-savebtn:hover{
+  background-color: blue;
+  color: white;
+  box-shadow: 0 10px 16px 0 rgba(0, 0, 255, 0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+  
