@@ -2,11 +2,10 @@ import React, { useState, useEffect } from "react";
 import "./adminupdateproduct.css";
 import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs";
 import Modal from "../Popup/Modal/Modal";
-import { useNavigate } from "react-router-dom";
-
+import { useNavigate, useParams } from "react-router-dom";
 
 const AdminUpdateProduct = (props) => {
-  const {product} = props;
+  const { productData } = useParams();
   const [modalOpen, setModalOpen] = useState(false);
   const [rows, setRows] = useState([
     { date: "01/02/2024", price: "Rs.1500", quantity: "10" },
@@ -15,8 +14,13 @@ const AdminUpdateProduct = (props) => {
     { date: "15/02/2024", price: "Rs.4500", quantity: "40" },
   ]);
   const [rowToEdit, setRowToEdit] = useState(null);
-  const navigate = useNavigate()
-  console.log('editedProduct',product);
+  let product;
+  try {
+    product = JSON.parse(decodeURIComponent(productData));
+  } catch (error) {
+    product = "Error";
+  }
+  console.log("editedProduct", product);
   const handleDeleteRow = (targetIndex) => {
     setRows(rows.filter((_, idx) => idx !== targetIndex));
   };
@@ -56,8 +60,12 @@ const AdminUpdateProduct = (props) => {
           <label className="form-update-name"> Product Name:</label>
           <label className="form-update-img">Image:</label>
           <label className="form-update-des">Description:</label>
-          <label className="form-update-qnt">Quantity:</label>
+          <label className="form-update-buying-price">Buying Price:</label>
+          {/* <label className="form-update-selling-price">Buying Date:</label> */}
           <label className="form-update-selling-price">Selling Price:</label>
+          <label className="form-update-qnt">Quantity:</label>
+          <label className="form-update-category">Category:</label>
+          <label className="form-update-bp-tbl">Buying Price Table:</label>
         </div>
 
         <div className="prod-update-txtbox">
@@ -85,9 +93,9 @@ const AdminUpdateProduct = (props) => {
 
           <div>
             <input
-              className="input-update-prod-quantity"
+              className="input-update-prod-buying-price"
               type="text"
-              placeholder="Quantity"
+              placeholder="Buying Price"
             />
           </div>
 
@@ -97,6 +105,29 @@ const AdminUpdateProduct = (props) => {
               type="text"
               placeholder="Selling Price"
             />
+          </div>
+
+          <div>
+            <input
+              className="input-update-prod-quantity"
+              type="text"
+              placeholder="Quantity"
+              value={product?.remainingQuantity}
+            />
+          </div>
+
+          <div>
+            <select
+              className="update-dropdown"
+              // placeholder="Select"
+            >
+              <option value="Select">Select</option>
+              <option value="Wooden">Wooden Crafts</option>
+              <option value="Wall Hanger">Wall Hanger</option>
+              <option value="Textile">Textile</option>
+              <option value="Clay">Clay</option>
+              <option value="Metal">Metal</option>
+            </select>
           </div>
 
           <div className="prod-update-tbl">
@@ -121,9 +152,7 @@ const AdminUpdateProduct = (props) => {
                           className="delete-btn"
                           onClick={() => handleDeleteRow(idx)}
                         />
-                        <BsFillPencilFill
-                          onClick={() => handleEditRow(idx)}
-                        />
+                        <BsFillPencilFill onClick={() => handleEditRow(idx)} />
                       </span>
                     </td>
                   </tr>

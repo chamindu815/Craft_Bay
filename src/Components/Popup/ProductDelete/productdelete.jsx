@@ -3,8 +3,21 @@ import "./productdelete.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 
-const productdelete = ({onCancel}) => {
-    
+const productdelete = ({ onCancel, itemId }) => {
+  const cancelPopup = () => {
+    console.log("cancelPopup");
+  };
+  
+  const onDeleteItem = () => {
+    console.log("onDeleteItem",itemId);
+    onCancel()
+
+    // delete api call -> product Id
+
+    axios.delete(
+      `http://localhost:8089/craftbay/admin/product/delete/${itemId}`
+    )
+  };
   return (
     <div className="productdelete-bg">
       <div className="productdelete-container">
@@ -26,9 +39,14 @@ const productdelete = ({onCancel}) => {
         </div>
 
         <div className="productdelete-btn">
-          <button className="productdelete-dltbtn">Delete</button>
-          
-          <button className="productdelete-cancelbtn" onClick={()=> onCancel()}>Canecl</button>
+          <button className="productdelete-dltbtn" onClick={() => onDeleteItem()} >Delete</button>
+
+          <button
+            className="productdelete-cancelbtn"
+            onClick={() => onCancel()}
+          >
+            Cancel
+          </button>
         </div>
       </div>
     </div>

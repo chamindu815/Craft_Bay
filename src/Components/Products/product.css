@@ -23,7 +23,7 @@
 
 .prod-box{
     width: 220px;
-    height: 320px;
+    height: 360px;
     overflow: hidden;
     background: #e8e8e8;
     cursor: pointer;
@@ -44,18 +44,19 @@
     max-width: 100%;
 }
 
-.prod-title{
-    margin: 0px;
-    display: flex;
-    margin-top: 10px;
-    font-size: 20px;
-    justify-content: center;
+.prod-title-cont{
+    text-align: center;
 }
 
-.prod-price{
-    margin-top: 5px;
-    font-weight: bold;
+.prod-title-head{
+    font-size: 20px;
+}
+
+.prod-sellingprice{
     text-align: center;
+    font-size: 18px;
+    margin-top: -15px;
+
 }
 
 .prod-button{
@@ -68,7 +69,11 @@
     background-color: #322b2b;
     color: white;
     border-color: transparent;
+}
+
+.prod-button-cont{
     text-align: center;
+
 }
 
 .prod-main{

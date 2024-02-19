@@ -150,11 +150,12 @@ const AdminAddProduct = () => {
                 }}
               >
                 <option value="Select">Select</option>
-                <option value="Wooden">Wooden Crafts</option>
-                <option value="Wall Hanger">Wall Hanger</option>
-                <option value="Textile">Textile</option>
-                <option value="Clay">Clay</option>
-                <option value="Metal">Metal</option>
+                <option value="WOODEN">Wooden</option>
+                <option value="TEXTILE">Textile</option>
+                <option value="CLAY">Clay</option>
+                <option value="METAL">Metal</option>
+                <option value="LEATHER">Leather</option>
+
               </select>
             </div>
 

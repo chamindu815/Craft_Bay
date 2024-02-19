@@ -19,8 +19,8 @@ import AboutUs from "./Components/AboutUs/aboutus";
 import AdminUpdateProduct from "./Components/AdminUpdateProduct/adminupdateproduct";
 import Modal from "./Components/Popup/Modal/Modal";
 import AdminViewProduct from "./Components/AdminViewProduct/adminviewproduct";
-import AdminViewProductNew from "./Components/AdminViewProductNew/adminviewproductnew"
 import ProductDelete from "./Components/Popup/ProductDelete/productdelete";
+import Shop from "./Components/Shop/Shop";
 
 
 
@@ -45,11 +45,12 @@ function App() {
           <Route path="/admininventoryreport" element={<AdminInventoryReport/>}></Route>
           <Route path="/adminrevenuereport" element={<AdminRevenueReport/>}></Route>
           <Route path="/aboutus" element={<AboutUs />} />
-          <Route path="/adminupdateproduct" element={<AdminUpdateProduct />} />
+          <Route path="/adminupdateproduct/:productData" element={<AdminUpdateProduct />} />
           <Route path="/modal" element={<Modal />} />
           <Route path="/adminviewproduct" element={<AdminViewProduct/>} />
-          <Route path="/adminviewproductnew" element={<AdminViewProductNew/>} />
           <Route path="/productdelete" element={<ProductDelete />} />
+          <Route path="/shop" element={<Shop />} />
+
 
           
 

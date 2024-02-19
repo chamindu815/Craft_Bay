@@ -14,31 +14,26 @@ import ProductDelete from "../Popup/ProductDelete/productdelete";
 
 const AdminViewProduct = () => {
   const [adminviewproduct, setAdminViewProducts] = useState();
-  const [edit, setEdit] = useState({});
-
   const navigate = useNavigate();
-  const [deleteOpen, setDeleteOpen] = useState(false);
+  const [deleteOpen, setDeleteOpen] = useState(0);
+
   useEffect(() => {
     get();
   }, []);
 
-  const handleButtonClick = () => {
-    setDeleteOpen(false);
+  const handleCancelPopup = () => {
+    setDeleteOpen(0);
   };
 
-  const deleteProduct = (e, id) => {
-    e.preventDefault();
-
-    const thisClicked = e.currentTarget;
-    thisClicked.innerText = "Deleting...";
-
-    axios.delete();
+  const handleItemDelete = (id) => {
+    setDeleteOpen(id)
+    // setAdminViewProducts(adminviewproduct.filter((p) => p.id !== id))
   };
 
   async function get() {
     try {
       const { data } = await axios.get(
-        "http://localhost:8089/craftbay/public/product"
+        "http://localhost:8089/craftbay/admin/product/adminViewProduct"
       );
       console.log(data);
       setAdminViewProducts(data);
@@ -47,21 +42,20 @@ const AdminViewProduct = () => {
     }
   }
 
-  const getRecentCellingPrice = (productSellingPriceDetailsDtos) => {
-    const priceList = productSellingPriceDetailsDtos?.sort((a,b) => new Date(b.date) - new Date(a.date))
-    return priceList.length !== 0 ? priceList[0].price : 0
-  }
+  const getRecentCellingPrice = (adminProductSellingPriceDetailsDtos) => {
+    const priceList = adminProductSellingPriceDetailsDtos?.sort(
+      (a, b) => new Date(b.date) - new Date(a.date)
+    );
+    return priceList.length !== 0 ? priceList[0].price : 0;
+  };
 
   return (
     <div>
-      {Object.keys(edit).length === 0 && (
         <Paper sx={{ width: "90%", marginLeft: "5%", marginTop: "3%" }}>
-          {deleteOpen && (
+          {deleteOpen !== 0 && (
             <ProductDelete
-              closeModal={() => {
-                setDeleteOpen(false);
-              }}
-              onCancel={handleButtonClick}
+              onCancel={handleCancelPopup}
+              itemId={deleteOpen}
             />
           )}
           <TableContainer component={Paper}>
@@ -73,6 +67,15 @@ const AdminViewProduct = () => {
                       fontSize: "1.2em",
                       fontWeight: "bold",
                       height: "3.5em",
+                    }}
+                    align="center"
+                  >
+                    ID
+                  </TableCell>
+                  <TableCell
+                    style={{
+                      fontSize: "1.2em",
+                      fontWeight: "bold",
                     }}
                     align="center"
                   >
@@ -114,6 +117,7 @@ const AdminViewProduct = () => {
                 {adminviewproduct &&
                   adminviewproduct.map((curElm, idx) => (
                     <TableRow key={idx}>
+                      <TableCell align="center">{curElm.id}</TableCell>
                       <TableCell align="center" style={{ width: "100px" }}>
                         <img
                           src={`data:image/jpeg;base64,${curElm.image}`}
@@ -123,21 +127,22 @@ const AdminViewProduct = () => {
                       <TableCell align="center">{curElm.name}</TableCell>
                       <TableCell align="center">{curElm.category}</TableCell>
                       <TableCell align="center">
-                        {"Rs."+ getRecentCellingPrice(curElm.productSellingPriceDetailsDtos)}
+                        {"Rs." +
+                          getRecentCellingPrice(
+                            curElm.adminProductSellingPriceDetailsDtos
+                          )}
                       </TableCell>
                       <TableCell align="center">
                         {curElm.remainingQuantity}
                       </TableCell>
                       <TableCell align="center">
                         <span className="actions">
-                          <BsFillPencilFill onClick={() => navigate('/adminupdateproduct')} />
-                          {/* <BsFillTrashFill style={{ color: 'red', marginLeft: '-100px' }}
-                      onClick={() => setDeleteOpen(true)}
-                    /> */}
-
+                          <BsFillPencilFill
+                            onClick={() => navigate(`/adminupdateproduct/${encodeURIComponent(JSON.stringify(curElm))}`)}
+                          />
                           <BsFillTrashFill
-                            style={{ color: "red", marginLeft: "-100px" }}
-                            onClick={(e) => deleteProduct(e, curElm.id)}
+                            style={{ color: "red", marginLeft: "-40px" }}
+                            onClick={() => handleItemDelete(curElm.id)}
                           />
                         </span>
                       </TableCell>
@@ -147,8 +152,6 @@ const AdminViewProduct = () => {
             </Table>
           </TableContainer>
         </Paper>
-      )}
-      {Object.keys(edit).length !== 0 && <AdminUpdateProduct product={edit} />}
     </div>
   );
 };

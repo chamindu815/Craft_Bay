@@ -6,14 +6,17 @@ import axios from "axios";
 const Product = () => {
   const [products,setProducts] = useState()
   const navigate = useNavigate();
+  const [category, setCategory] = useState("WOODEN");
   useEffect(() => {
     get()
   },[])
 
   async function get() {
+    const formData = new FormData();
+    formData.append("category", "TEXTILE");
     try {
       const {data} = await axios.get(
-        "http://localhost:8089/craftbay/public/product"
+        `http://localhost:8089/craftbay/public/getAllProductsByCategory?category=${category}`,
       );
       // alert("Products Loaded Successfully");
       setProducts(data)
@@ -21,6 +24,13 @@ const Product = () => {
       alert(err);
     }
   }
+
+  // const getRecentCellingPrice = (adminProductSellingPriceDetailsDtos) => {
+  //   const priceList = adminProductSellingPriceDetailsDtos?.sort(
+  //     (a, b) => new Date(b.date) - new Date(a.date)
+  //   );
+  //   return priceList.length !== 0 ? priceList[0].price : 0;
+  // };
 
   return (
     <div>
@@ -37,18 +47,24 @@ const Product = () => {
                     <img src={`data:image/jpeg;base64,${curElm.image}`} alt={curElm.name}></img>
                   </div>
                   <div className="prod-main">
-                    <div>
-                      <h3 className="prod-title">{curElm.name}</h3>
-                      {curElm.productSellingPriceDetailsDtos && curElm.productSellingPriceDetailsDtos.map((curPriceEle, idx) =>(
-                      <label class="prod-sellingprice">Rs: {curPriceEle.price}</label>
-                      ))}
+                    <div className="prod-title-cont">
+                      <div className="prod-title-head">
+                      <h3 >{curElm.name}</h3>
+                      </div>
+
+                      <div class="prod-sellingprice">
+                      <label >{"Rs." + curElm.sellingPrice}</label>
+                      </div>
                     </div>
+
+                    <div className="prod-button-cont">
                     <button
                       className="prod-button"
                       onClick={() => navigate("/viewproduct")}
                     >
                       View
                     </button>
+                    </div>
                   </div>
                 </div>
               </div>
