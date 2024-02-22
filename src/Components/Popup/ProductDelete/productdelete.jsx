@@ -1,9 +1,12 @@
 import React from "react";
 import "./productdelete.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import axios from "axios";
+import { connect } from 'react-redux';
+import { products } from '../../../Actions'; // Import your action creators
 
-const productdelete = ({ onCancel, itemId }) => {
+const {deleteProducts} = products;
+
+const productdelete = ({ onCancel, itemId, deleteProducts }) => {
   const cancelPopup = () => {
     console.log("cancelPopup");
   };
@@ -11,12 +14,13 @@ const productdelete = ({ onCancel, itemId }) => {
   const onDeleteItem = () => {
     console.log("onDeleteItem",itemId);
     onCancel()
+    deleteProducts(itemId)
 
     // delete api call -> product Id
 
-    axios.delete(
-      `http://localhost:8089/craftbay/admin/product/delete/${itemId}`
-    )
+    // axios.delete(
+    //   `http://localhost:8089/craftbay/admin/product/delete/${itemId}`
+    // )
   };
   return (
     <div className="productdelete-bg">
@@ -53,4 +57,15 @@ const productdelete = ({ onCancel, itemId }) => {
   );
 };
 
-export default productdelete;
+const mapStateToProps = (state) => {
+  return {
+    products: state.craftbay.products,
+  };
+};
+
+const mapDispatchToProps = {
+  deleteProducts,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(productdelete);
+

@@ -1,43 +1,41 @@
-import React, { useState } from "react";
+import React, { useState,useRef  } from "react";
 import "./adminaddproduct.css";
-import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Moment from "moment";
+import { connect } from 'react-redux';
+import { products } from '../../Actions'; // Import your action creators
 
-const AdminAddProduct = () => {
-  const [name, setName] = useState("");
-  const [image, setImage] = useState("");
-  const [description, setDescription] = useState("");
-  const [buyingPrice, setBuyingPrice] = useState("");
-  const [sellingPrice, setSellingPrice] = useState("");
-  const [quantity, setQuantity] = useState("");
-  const [date, setDate] = useState(new Date());
-  const [category, setCategory] = useState("");
+const { addProducts } = products;
+const initialValues = {
+  name: '',
+  image: '',
+  description: '',
+  buyingPrice: '',
+  sellingPrice: '',
+  quantity: '',
+  date: new Date(),
+  category: '',
+}
+const AdminAddProduct = ({ addProducts }) => {
+  const [formValues, setFormValues] = useState(initialValues);
+  const fileInputRef = useRef(null);
 
   async function save(event) {
-    const formData = new FormData();
-    formData.append("name", name);
-    formData.append("description", description);
-    formData.append("buyingPrice", buyingPrice);
-    formData.append("sellingPrice", sellingPrice);
-    formData.append("quantity", quantity);
-    formData.append("date", Moment(date).format('YYYY-MM-DD'));
-    formData.append("category", category);
-    formData.append("image", image);
-    console.log("image", image);
-    console.log(date);
+    console.log("formValues", formValues);
     event.preventDefault();
-    try {
-      await axios.post(
-        "http://localhost:8089/craftbay/admin/product/addProduct",
-        formData
-      );
+    const formData = new FormData();
 
-      alert("Product Added Successfully");
-    } catch (err) {
-      alert(err);
+    for (const key in formValues) {
+      if (key === 'date') {
+        formData.append(key, Moment(formValues[key]).format('YYYY-MM-DD'));
+      } else {
+        formData.append(key, formValues[key]);
+      }
     }
+    addProducts(formData)
+    setFormValues(initialValues)
+    fileInputRef.current.value = null;
   }
 
   return (
@@ -63,9 +61,9 @@ const AdminAddProduct = () => {
                 type="name"
                 placeholder="Product Name"
                 id="name"
-                value={name}
+                value={formValues.name}
                 onChange={(event) => {
-                  setName(event.target.value);
+                  setFormValues({ ...formValues, name: event.target.value });
                 }}
               />
             </div>
@@ -75,9 +73,9 @@ const AdminAddProduct = () => {
                 className="input-prod-img"
                 type="file"
                 id="image"
+                ref={fileInputRef}
                 onChange={(event) => {
-                  console.log("formData", event.target.files);
-                  setImage(event.target.files[0]);
+                  setFormValues({ ...formValues, image: event.target.files[0] });
                 }}
               />
             </div>
@@ -88,9 +86,10 @@ const AdminAddProduct = () => {
                 type="productdescription"
                 placeholder="Description"
                 id="description"
-                value={description}
+                value={formValues.description}
                 onChange={(event) => {
-                  setDescription(event.target.value);
+                  setFormValues({ ...formValues, description: event.target.value });
+
                 }}
               />
             </div>
@@ -101,16 +100,16 @@ const AdminAddProduct = () => {
                 type="productprice"
                 placeholder="Buying Price"
                 id="buyingPrice"
-                value={buyingPrice}
+                value={formValues.buyingPrice}
                 onChange={(event) => {
-                  setBuyingPrice(event.target.value);
+                  setFormValues({ ...formValues, buyingPrice: event.target.value });
                 }}
               />
             </div>
 
             <div className="input-prod-buying-price">
-              <DatePicker selected={date} onChange={(date) => setDate(date)}
-              dateFormat="yyyy-MM-dd"
+              <DatePicker selected={formValues.date} onChange={(date) => setFormValues({ ...formValues, date: Moment(date).format('YYYY-MM-DD') })}
+                dateFormat="yyyy-MM-dd"
               />
             </div>
 
@@ -120,9 +119,9 @@ const AdminAddProduct = () => {
                 type="productprice"
                 placeholder="Selling Price"
                 id="sellingPrice"
-                value={sellingPrice}
+                value={formValues.sellingPrice}
                 onChange={(event) => {
-                  setSellingPrice(event.target.value);
+                  setFormValues({ ...formValues, sellingPrice: event.target.value });
                 }}
               />
             </div>
@@ -133,9 +132,9 @@ const AdminAddProduct = () => {
                 type="productqnt"
                 placeholder="Quantity"
                 id="quantity"
-                value={quantity}
+                value={formValues.quantity}
                 onChange={(event) => {
-                  setQuantity(event.target.value);
+                  setFormValues({ ...formValues, quantity: event.target.value });
                 }}
               />
             </div>
@@ -144,9 +143,9 @@ const AdminAddProduct = () => {
               <select
                 className="prod-dropdown"
                 // placeholder="Select"
-                value={category}
+                value={formValues.category}
                 onChange={(event) => {
-                  setCategory(event.target.value);
+                  setFormValues({ ...formValues, category: event.target.value });
                 }}
               >
                 <option value="Select">Select</option>
@@ -169,4 +168,13 @@ const AdminAddProduct = () => {
   );
 };
 
-export default AdminAddProduct;
+const mapStateToProps = (state) => {
+  return {
+  };
+};
+
+const mapDispatchToProps = {
+  addProducts,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AdminAddProduct);

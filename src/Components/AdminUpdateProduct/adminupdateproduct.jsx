@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import "./adminupdateproduct.css";
 import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs";
 import Modal from "../Popup/Modal/Modal";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-const AdminUpdateProduct = (props) => {
-  const { productData } = useParams();
+const AdminUpdateProduct = ({ products }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [rows, setRows] = useState([
     { date: "01/02/2024", price: "Rs.1500", quantity: "10" },
@@ -14,13 +14,13 @@ const AdminUpdateProduct = (props) => {
     { date: "15/02/2024", price: "Rs.4500", quantity: "40" },
   ]);
   const [rowToEdit, setRowToEdit] = useState(null);
-  let product;
-  try {
-    product = JSON.parse(decodeURIComponent(productData));
-  } catch (error) {
-    product = "Error";
-  }
-  console.log("editedProduct", product);
+  const { id } = useParams();
+  const [productItem, setProductItem] = useState({});
+
+  useEffect(() => {
+    setProductItem(products.find((p) => p.id == id))
+  }, [id]);
+
   const handleDeleteRow = (targetIndex) => {
     setRows(rows.filter((_, idx) => idx !== targetIndex));
   };
@@ -34,12 +34,12 @@ const AdminUpdateProduct = (props) => {
     rowToEdit === null
       ? setRows([...rows, newRow])
       : setRows(
-          rows.map((currRow, idx) => {
-            if (idx !== rowToEdit) return currRow;
+        rows.map((currRow, idx) => {
+          if (idx !== rowToEdit) return currRow;
 
-            return newRow;
-          })
-        );
+          return newRow;
+        })
+      );
   };
 
   return (
@@ -74,12 +74,16 @@ const AdminUpdateProduct = (props) => {
               className="input-update-prod-name"
               type="text"
               placeholder="Product Name"
-              value={product?.name}
+              value={productItem?.name}
             />
           </div>
 
           <div>
-            <input className="input-update-prod-img" type="file" />
+            {/* <input className="input-update-prod-img" type="file" /> */}
+            <img
+              src={`data:image/jpeg;base64,${productItem.image}`}
+              alt={productItem.name}
+            ></img>
           </div>
 
           <div>
@@ -87,7 +91,7 @@ const AdminUpdateProduct = (props) => {
               className="input-update-prod-description"
               type="text"
               placeholder="Description"
-              value={product?.description}
+              value={productItem?.description}
             />
           </div>
 
@@ -96,6 +100,7 @@ const AdminUpdateProduct = (props) => {
               className="input-update-prod-buying-price"
               type="text"
               placeholder="Buying Price"
+              value={productItem?.remainingQuantity}
             />
           </div>
 
@@ -112,7 +117,7 @@ const AdminUpdateProduct = (props) => {
               className="input-update-prod-quantity"
               type="text"
               placeholder="Quantity"
-              value={product?.remainingQuantity}
+              value={productItem?.remainingQuantity}
             />
           </div>
 
@@ -170,4 +175,13 @@ const AdminUpdateProduct = (props) => {
   );
 };
 
-export default AdminUpdateProduct;
+const mapStateToProps = (state) => {
+  return {
+    products: state.craftbay.products,
+  };
+};
+
+const mapDispatchToProps = {
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AdminUpdateProduct);

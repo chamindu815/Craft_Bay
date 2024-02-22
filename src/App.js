@@ -21,11 +21,12 @@ import Modal from "./Components/Popup/Modal/Modal";
 import AdminViewProduct from "./Components/AdminViewProduct/adminviewproduct";
 import ProductDelete from "./Components/Popup/ProductDelete/productdelete";
 import Shop from "./Components/Shop/Shop";
-
-
+import store from './store';
+import { Provider } from 'react-redux';
 
 function App() {
   return (
+    <Provider store={store}>
     <BrowserRouter>
       <Navigation />
       <Routes>
@@ -45,19 +46,15 @@ function App() {
           <Route path="/admininventoryreport" element={<AdminInventoryReport/>}></Route>
           <Route path="/adminrevenuereport" element={<AdminRevenueReport/>}></Route>
           <Route path="/aboutus" element={<AboutUs />} />
-          <Route path="/adminupdateproduct/:productData" element={<AdminUpdateProduct />} />
+          <Route path="/adminupdateproduct/:id" element={<AdminUpdateProduct />} />
           <Route path="/modal" element={<Modal />} />
           <Route path="/adminviewproduct" element={<AdminViewProduct/>} />
           <Route path="/productdelete" element={<ProductDelete />} />
           <Route path="/shop" element={<Shop />} />
-
-
-          
-
-
         </Route>
       </Routes>
     </BrowserRouter>
+    </Provider>
   );
 }
 
