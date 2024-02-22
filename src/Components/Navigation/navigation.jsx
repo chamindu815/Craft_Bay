@@ -27,11 +27,11 @@ const Navigation = () => {
           <div class="dropdown">
           <button className="nav-btn-category">CATEGORY</button>
           <div class="dropdown-content">
-            <a href="#">Wooden Crafts</a>
-            <a href="#">Wall Hanger</a>
+            <a href="./products">Wooden</a>
+            <a href="#">Metal</a>
             <a href="#">Textile</a>
             <a href="#">Clay</a>
-            <a href="#">Metal</a>
+            <a href="#">Leather</a>
           </div>
           </div>
 

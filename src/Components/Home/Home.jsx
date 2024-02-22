@@ -3,6 +3,7 @@ import ProductData from "./productData";
 import "./Home.css"
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import homeimg from "../Assets/Home.jpg"
 
 
  const Home = () => {
@@ -26,7 +27,12 @@ import axios from "axios";
 
   return (
     <div>
-      <div className='advertisement-container'>
+      <div >
+        <img src={homeimg} alt="" className='advertisement-container'/>
+      </div>
+
+      <div className="bg-text">
+        <h1>Welcome To CraftBay..</h1>
       </div>
 
       <div className='home-header'>

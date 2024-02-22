@@ -92,7 +92,7 @@
 
 .form-update-qnt {
   font-size: 25px;
-  margin-top: 75px;
+  margin-top: 120px;
   margin-left: 120px;
   font-weight: bold;
 }
@@ -107,6 +107,13 @@
 .form-update-bp-tbl {
   font-size: 25px;
   margin-top: 80px;
+  margin-left: 120px;
+  font-weight: bold;
+}
+
+.form-update-sp-tbl{
+  font-size: 25px;
+  margin-top: 180px;
   margin-left: 120px;
   font-weight: bold;
 }
@@ -215,7 +222,8 @@
 }
 
 .table {
-  display: block;
+  text-align: center;
+  /* display: block; */
   overflow: hidden;
   table-layout: fixed;
   border-collapse: collapse;
@@ -278,4 +286,25 @@
 
 .delete-btn {
   color: #e10d05;
+}
+
+.update-prod-btn{
+  position: absolute;
+  margin-top: 28em;
+  width: 150px;
+  height: 45px;
+  font-size: 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-left: -25em;
+  border-width: 0.5px;
+  font-weight: bold;
+  background-color: #3d3028;
+  color: white;
+}
+
+.update-prod-btn:hover {
+  background-color: blue;
+  color: white;
+  box-shadow: 0 10px 16px 0 rgba(0, 0, 255, 0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }

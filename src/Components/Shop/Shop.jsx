@@ -4,14 +4,12 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import nextimg from "../Assets/arrow_7481528.png";
 
-
 const Shop = () => {
   const [products, setProducts] = useState();
   const [metalProducts, setMetalProducts] = useState();
   const [textileProducts, setTextileProducts] = useState();
   const [clayProducts, setClayProducts] = useState();
   const [leatherProducts, setLeatherProducts] = useState();
-
 
   const navigate = useNavigate();
   const [metalCategory, setMetalCategory] = useState("METAL");
@@ -34,7 +32,6 @@ const Shop = () => {
       alert(err);
     }
 
-    
     try {
       // setCategory("WOODEN");
       const { data } = await axios.get(
@@ -44,7 +41,6 @@ const Shop = () => {
     } catch (err) {
       alert(err);
     }
-
 
     try {
       // setCategory("WOODEN");
@@ -56,7 +52,6 @@ const Shop = () => {
       alert(err);
     }
 
-
     try {
       // setCategory("WOODEN");
       const { data } = await axios.get(
@@ -66,7 +61,6 @@ const Shop = () => {
     } catch (err) {
       alert(err);
     }
-
 
     try {
       // setCategory("WOODEN");
@@ -86,7 +80,9 @@ const Shop = () => {
       </div>
 
       <div className="shop-prod-see-more-btn-cont">
-        <button className="shop-prod-seemore-btn"><img className="next-img" src={nextimg} alt="" /></button>
+        <button className="shop-prod-seemore-btn" onClick={() => navigate("/products")}>
+          <img className="next-img" src={nextimg} alt="" />
+        </button>
       </div>
       <div className="shop-prod-container">
         {products &&
@@ -116,13 +112,17 @@ const Shop = () => {
                   </div>
                 </div>
               </div>
-              
             );
           })}
       </div>
 
       <div className="shop-prod-header">
         <h1>Metal Products</h1>
+      </div>
+      <div className="shop-prod-see-more-btn-cont">
+        <button className="shop-prod-seemore-btn">
+          <img className="next-img" src={nextimg} alt="" />
+        </button>
       </div>
       <div className="shop-prod-container">
         {metalProducts &&
@@ -159,6 +159,12 @@ const Shop = () => {
       <div className="shop-prod-header">
         <h1>Textile Products</h1>
       </div>
+
+      <div className="shop-prod-see-more-btn-cont">
+        <button className="shop-prod-seemore-btn">
+          <img className="next-img" src={nextimg} alt="" />
+        </button>
+      </div>
       <div className="shop-prod-container">
         {textileProducts &&
           textileProducts.map((curElm) => {
@@ -191,9 +197,14 @@ const Shop = () => {
           })}
       </div>
 
-
       <div className="shop-prod-header">
         <h1>Clay Products</h1>
+      </div>
+
+      <div className="shop-prod-see-more-btn-cont">
+        <button className="shop-prod-seemore-btn">
+          <img className="next-img" src={nextimg} alt="" />
+        </button>
       </div>
       <div className="shop-prod-container">
         {clayProducts &&
@@ -227,9 +238,14 @@ const Shop = () => {
           })}
       </div>
 
-
       <div className="shop-prod-header">
         <h1>Leather Products</h1>
+      </div>
+
+      <div className="shop-prod-see-more-btn-cont">
+        <button className="shop-prod-seemore-btn">
+          <img className="next-img" src={nextimg} alt="" />
+        </button>
       </div>
       <div className="shop-prod-container">
         {leatherProducts &&

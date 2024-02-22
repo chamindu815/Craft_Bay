@@ -1,17 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./adminupdateproduct.css";
 import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs";
 import Modal from "../Popup/Modal/Modal";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const AdminUpdateProduct = (props) => {
   const { productData } = useParams();
   const [modalOpen, setModalOpen] = useState(false);
   const [rows, setRows] = useState([
-    { date: "01/02/2024", price: "Rs.1500", quantity: "10" },
-    { date: "05/02/2024", price: "Rs.2500", quantity: "20" },
-    { date: "10/02/2024", price: "Rs.3500", quantity: "30" },
-    { date: "15/02/2024", price: "Rs.4500", quantity: "40" },
+    // { date: "01/02/2024", price: "Rs.1500", quantity: "10" },
   ]);
   const [rowToEdit, setRowToEdit] = useState(null);
   let product;
@@ -55,17 +52,19 @@ const AdminUpdateProduct = (props) => {
         />
       )}
       <label className="prod-update-form-name">Update Product</label>
+
       <div className="prod-update-container">
         <div className="prod-update-label">
           <label className="form-update-name"> Product Name:</label>
           <label className="form-update-img">Image:</label>
           <label className="form-update-des">Description:</label>
-          <label className="form-update-buying-price">Buying Price:</label>
+          {/* <label className="form-update-buying-price">Buying Price:</label> */}
           {/* <label className="form-update-selling-price">Buying Date:</label> */}
-          <label className="form-update-selling-price">Selling Price:</label>
+          {/* <label className="form-update-selling-price">Selling Price:</label> */}
           <label className="form-update-qnt">Quantity:</label>
           <label className="form-update-category">Category:</label>
           <label className="form-update-bp-tbl">Buying Price Table:</label>
+          <label className="form-update-sp-tbl">Selling Price Table:</label>
         </div>
 
         <div className="prod-update-txtbox">
@@ -91,21 +90,21 @@ const AdminUpdateProduct = (props) => {
             />
           </div>
 
-          <div>
+          {/* <div>
             <input
               className="input-update-prod-buying-price"
               type="text"
               placeholder="Buying Price"
             />
-          </div>
+          </div> */}
 
-          <div>
+          {/* <div>
             <input
               className="input-update-prod-selling-price"
               type="text"
               placeholder="Selling Price"
             />
-          </div>
+          </div> */}
 
           <div>
             <input
@@ -128,6 +127,9 @@ const AdminUpdateProduct = (props) => {
               <option value="Clay">Clay</option>
               <option value="Metal">Metal</option>
             </select>
+            <button type="submit" className="update-prod-btn">
+              Submit
+            </button>
           </div>
 
           <div className="prod-update-tbl">
@@ -141,11 +143,44 @@ const AdminUpdateProduct = (props) => {
                 </tr>
               </thead>
               <tbody>
-                {rows.map((row, idx) => (
+                {product.adminProductBuyingPriceDetailsDtos.map((row, idx) => (
                   <tr key={idx}>
                     <td>{row.date}</td>
-                    <td>{row.price}</td>
+                    <td>Rs.{row.price}</td>
                     <td>{row.quantity}</td>
+                    <td>
+                      <span className="actions">
+                        <BsFillTrashFill
+                          className="delete-btn"
+                          onClick={() => handleDeleteRow(idx)}
+                        />
+                        <BsFillPencilFill onClick={() => handleEditRow(idx)} />
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+
+            <button className="btn" onClick={() => setModalOpen(true)}>
+              Add
+            </button>
+          </div>
+
+          <div className="prod-update-tbl">
+            <table className="table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Price</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {product.adminProductSellingPriceDetailsDtos.map((row, idx) => (
+                  <tr key={idx}>
+                    <td>{row.date}</td>
+                    <td>Rs.{row.price}</td>
                     <td>
                       <span className="actions">
                         <BsFillTrashFill
