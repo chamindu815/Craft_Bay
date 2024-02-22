@@ -3,7 +3,10 @@ import "./Shop.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import nextimg from "../Assets/arrow_7481528.png";
+import { connect } from 'react-redux';
+import { products } from '../../Actions'; // Import your action creators
 
+const {getProducts} = products;
 
 const Shop = () => {
   const [products, setProducts] = useState();
