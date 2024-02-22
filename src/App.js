@@ -21,6 +21,7 @@ import Modal from "./Components/Popup/Modal/Modal";
 import AdminViewProduct from "./Components/AdminViewProduct/adminviewproduct";
 import ProductDelete from "./Components/Popup/ProductDelete/productdelete";
 import Shop from "./Components/Shop/Shop";
+import ChatBot from "./Components/ChatBot/ChatBot";
 
 
 
@@ -50,6 +51,7 @@ function App() {
           <Route path="/adminviewproduct" element={<AdminViewProduct/>} />
           <Route path="/productdelete" element={<ProductDelete />} />
           <Route path="/shop" element={<Shop />} />
+          <Route path="chatbot" element ={<ChatBot/>}/>
 
 
           
