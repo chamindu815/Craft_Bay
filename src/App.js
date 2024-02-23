@@ -21,7 +21,8 @@ import Modal from "./Components/Popup/Modal/Modal";
 import AdminViewProduct from "./Components/AdminViewProduct/adminviewproduct";
 import ProductDelete from "./Components/Popup/ProductDelete/productdelete";
 import Shop from "./Components/Shop/Shop";
-import ChatBot from "./Components/ChatBot/ChatBot";
+import ChatBotFloatIcon from "./Components/ChatBotFloatIcon/ChatBotFloatIcon";
+import ChatBot from "./Components/Popup/ChatBot/ChatBot";
 
 
 
@@ -29,6 +30,7 @@ function App() {
   return (
     <BrowserRouter>
       <Navigation />
+      <ChatBotFloatIcon/>
       <Routes>
         <Route>
           <Route index element={<Login />}></Route>
@@ -52,6 +54,8 @@ function App() {
           <Route path="/productdelete" element={<ProductDelete />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="chatbot" element ={<ChatBot/>}/>
+          {/* <Route path="chatbotfloaticon" element ={<ChatBotFloatIcon/>}/> */}
+
 
 
           
