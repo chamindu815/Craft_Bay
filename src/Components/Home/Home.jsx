@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { connect } from 'react-redux';
 import { products } from '../../Actions'; // Import your action creators
 import homeimg from "../Assets/Home.jpg"
+import { NotificationContainer, NotificationManager } from 'react-notifications';
+import 'react-notifications/lib/notifications.css';
 
 const { geNewProducts } = products;
 
@@ -11,7 +13,17 @@ const Home = ({ geNewProducts, newProducts }) => {
   const navigate = useNavigate()
   useEffect(() => {
     geNewProducts()
-  }, [])
+  }, []);
+
+  useEffect(() => {
+    console.log("products",newProducts);
+    if (newProducts.length > 0) {
+      NotificationManager.success('New Arrivals Load Successfully!', 'Success', 3000);
+    }
+    // else {
+      // NotificationManager.error('Error message', 'Error', 5000);
+    // }
+  }, [newProducts]);
 
   return (
     <div>
@@ -67,6 +79,7 @@ const Home = ({ geNewProducts, newProducts }) => {
           );
         })}
       </div>
+      <NotificationContainer />
     </div>
   );
 };
