@@ -17,7 +17,33 @@ export const getProducts = () => {
     return new Promise (async (resolve, reject) => {
         try {
             const { data } = await axios.get(
-                "http://localhost:8089/craftbay/public/product"
+                `http://localhost:8089/craftbay/admin/product/${params}`
+              );
+            resolve(data);
+        } catch (error) {
+            reject(error);
+        }
+    });
+  };
+
+  export const getTopShopProducts = () => {
+    return new Promise (async (resolve, reject) => {
+        try {
+            const { data } = await axios.get(
+                `http://localhost:8089/craftbay/public/shop/products`
+              );
+            resolve(data);
+        } catch (error) {
+            reject(error);
+        }
+    });
+  };
+
+  export const getNewProducts = () => {
+    return new Promise (async (resolve, reject) => {
+        try {
+            const { data } = await axios.get(
+                `http://localhost:8089/craftbay/public/getNewArrival`
               );
             resolve(data);
         } catch (error) {

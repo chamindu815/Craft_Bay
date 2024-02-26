@@ -4,18 +4,20 @@ import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs";
 import Modal from "../Popup/Modal/Modal";
 import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { products } from '../../Actions'; // Import your action creators
 
-const AdminUpdateProduct = ({ products }) => {
+const {getProductsById} = products;
+
+const AdminUpdateProduct = ({ productItem, getProductsById }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [rows, setRows] = useState([
     // { date: "01/02/2024", price: "Rs.1500", quantity: "10" },
   ]);
   const [rowToEdit, setRowToEdit] = useState(null);
   const { id } = useParams();
-  const [productItem, setProductItem] = useState({});
 
   useEffect(() => {
-    setProductItem(products.find((p) => p.id == id))
+    getProductsById(id)
   }, [id]);
 
   const handleDeleteRow = (targetIndex) => {
@@ -39,6 +41,11 @@ const AdminUpdateProduct = ({ products }) => {
       );
   };
 
+  const getRecentPrice = (productPriceDetailsDtos) => {
+    const priceList = productPriceDetailsDtos?.sort((a, b) => new Date(b.date) - new Date(a.date))
+    return priceList && priceList.length != 0 ? priceList[0].price : 0
+  }
+
   return (
     <div className="adminupdateproduct-bg">
       {modalOpen && (
@@ -52,6 +59,7 @@ const AdminUpdateProduct = ({ products }) => {
         />
       )}
       <label className="prod-update-form-name">Update Product</label>
+
       <div className="prod-update-container">
         <div className="prod-update-label">
           <label className="form-update-name"> Product Name:</label>
@@ -80,7 +88,7 @@ const AdminUpdateProduct = ({ products }) => {
             {/* <input className="input-update-prod-img" type="file" /> */}
             <img className="input-update-prod-img"
               src={`data:image/jpeg;base64,${productItem.image}`}
-              alt={productItem.name}
+              alt={productItem?.name}
             ></img>
           </div>
 
@@ -98,7 +106,7 @@ const AdminUpdateProduct = ({ products }) => {
               className="input-update-prod-buying-price"
               type="text"
               placeholder="Buying Price"
-              value={productItem?.remainingQuantity}
+              value={getRecentPrice(productItem.adminProductBuyingPriceDetailsDtos)}
             />
           </div>
 
@@ -107,6 +115,7 @@ const AdminUpdateProduct = ({ products }) => {
               className="input-update-prod-selling-price"
               type="text"
               placeholder="Selling Price"
+              value={getRecentPrice(productItem.adminProductSellingPriceDetailsDtos)}
             />
           </div> */}
 
@@ -147,7 +156,7 @@ const AdminUpdateProduct = ({ products }) => {
                 </tr>
               </thead>
               <tbody>
-              {productItem && productItem.adminProductBuyingPriceDetailsDtos && productItem.adminProductBuyingPriceDetailsDtos.map((row, idx) => (
+              {productItem && productItem.adminProductBuyingPriceDetailsDtos && productItem?.adminProductBuyingPriceDetailsDtos.map((row, idx) => (
                   <tr key={idx}>
                     <td>{row.date}</td>
                     <td>Rs.{row.price}</td>
@@ -165,7 +174,7 @@ const AdminUpdateProduct = ({ products }) => {
                 ))}
               </tbody>
             </table>
-
+            
             <button className="btn" onClick={() => setModalOpen(true)}>
               Add
             </button>
@@ -186,7 +195,7 @@ const AdminUpdateProduct = ({ products }) => {
                   <tr key={idx}>
                     <td>{row.date}</td>
                     <td>Rs.{row.price}</td>
-                    
+
                     <td>
                       <span className="actions">
                         <BsFillTrashFill
@@ -205,7 +214,7 @@ const AdminUpdateProduct = ({ products }) => {
               Add
             </button>
           </div>
-          
+
         </div>
       </div>
     </div>
@@ -214,11 +223,12 @@ const AdminUpdateProduct = ({ products }) => {
 
 const mapStateToProps = (state) => {
   return {
-    products: state.craftbay.products,
+    productItem: state.craftbay.productToBeEdit,
   };
 };
 
 const mapDispatchToProps = {
+  getProductsById
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdminUpdateProduct);

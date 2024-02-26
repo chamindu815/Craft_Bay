@@ -47,4 +47,28 @@ export const products = {
         type: "GET_PRODUCTS_FAIL_BY_ID",
         payload: {}
     }),
+    getTopShopProducts: () => ({
+        type: "GET_TOP_SHOP_PRODUCTS",
+        payload: {}
+    }),
+    getTopShopProductsSuccess: (data) => ({
+        type: "GET_TOP_SHOP_PRODUCTS_SUCCESS",
+        payload: data
+    }),
+    getTopShopProductsFail: (error) => ({
+        type: "GET_TOP_SHOP_PRODUCTS_FAIL",
+        payload: {}
+    }),
+    geNewProducts: () => ({
+        type: "GET_NEW_PRODUCTS",
+        payload: {}
+    }),
+    getNewProductsSuccess: (data) => ({
+        type: "GET_NEW_PRODUCTS_SUCCESS",
+        payload: data
+    }),
+    getNewProductsFail: (error) => ({
+        type: "GET_NEW_PRODUCTS_FAIL",
+        payload: {}
+    }),
 }

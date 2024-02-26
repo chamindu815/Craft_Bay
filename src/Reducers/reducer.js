@@ -1,6 +1,8 @@
 const initialState = {
     products: [],
-    productToBeEdit: {}
+    productToBeEdit: {},
+    topShopProducts: {},
+    newProducts: {}
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -49,6 +51,30 @@ export default (state = initialState, { type, payload }) => {
         case 'GET_PRODUCTS_FAIL_BY_ID':
             return Object.assign({}, state, {
                 productToBeEdit: {},
+            });
+        case 'GET_TOP_SHOP_PRODUCTS':
+            return Object.assign({}, state, {
+                topShopProducts: {},
+            });
+        case 'GET_TOP_SHOP_PRODUCTS_SUCCESS':
+            return Object.assign({}, state, {
+                topShopProducts: payload,
+            });
+        case 'GET_TOP_SHOP_PRODUCTS_FAIL':
+            return Object.assign({}, state, {
+                topShopProducts: {},
+            });
+        case 'GET_NEW_PRODUCTS':
+            return Object.assign({}, state, {
+                newProducts: {},
+            });
+        case 'GET_NEW_PRODUCTS_SUCCESS':
+            return Object.assign({}, state, {
+                newProducts: payload,
+            });
+        case 'GET_NEW_PRODUCTS_FAIL':
+            return Object.assign({}, state, {
+                newProducts: {},
             });
         default:
             return state;

@@ -6,12 +6,12 @@
 .shop-prod-see-more-btn-cont{
     position: absolute;
     margin-left: 84em;
-    margin-top: 8em;
+    margin-top: 9em;
 }
 
 .shop-prod-seemore-btn{
-    width: 100px;
-    height: 100px;
+    width: 60px;
+    height: 60px;
     border: solid 1px black;
     border-radius: 100%;
     cursor: pointer;
@@ -21,8 +21,8 @@
 .next-img{
 /* width: 80px;
 height: 10px; */
-max-width: 60px;
-margin-left: 10px;
+max-width: 30px;
+margin-left: 5px;
 }
 
 .shop-prod-container{

@@ -1,72 +1,66 @@
-import React, { useEffect, useState } from "react";
-import ProductData from "./productData";
+import React, { useEffect } from "react";
 import "./Home.css"
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import { connect } from 'react-redux';
+import { products } from '../../Actions'; // Import your action creators
+import homeimg from "../Assets/Home.jpg"
 
+const { geNewProducts } = products;
 
- const Home = () => {
+const Home = ({ geNewProducts, newProducts }) => {
   const navigate = useNavigate()
   useEffect(() => {
-    get()
-  },[])
-  const [products,setProducts] = useState()
-
-  async function get() {
-    try {
-      const {data} = await axios.get(
-        "http://localhost:8089/craftbay/public/getNewArrival"
-      );
-      // alert("Products Loaded Successfully");
-      setProducts(data)
-    } catch (err) {
-      alert(err);
-    }
-  }
+    geNewProducts()
+  }, [])
 
   return (
     <div>
-      <div className='advertisement-container'>
+      <div >
+        <img src={homeimg} alt="" className='advertisement-container'/>
+      </div>
+
+      <div className="bg-text">
+        <h1>Welcome To CraftBay..</h1>
       </div>
 
       <div className='home-header'>
         <span> New Arrivals </span>
       </div>
-      
+
       <div className="home-prod-container">
-        {products && products.map((curElm) => {
+        {Array.isArray(newProducts) && newProducts.map((curElm) => {
           return (
             <>
               <div className="home-prod-box">
                 <div className="home-content">
                   <div className="home-prod-img-box">
-                  <img src={`data:image/jpeg;base64,${curElm.image}`} alt={curElm.name}></img>
+                    <img src={`data:image/jpeg;base64,${curElm.image}`} alt={curElm.name}></img>
                   </div>
                   <div className="home-prod-main">
                     <div>
                       <div className="home-prod-title">
-                      <h3 >{curElm.name}</h3>
+                        <h3 >{curElm.name}</h3>
                       </div>
 
 
                       <div className="home-prod-price">
-                      <label class="">Rs.{curElm.sellingPrice}
-                      </label>
+                        <label class="">Rs.{curElm.sellingPrice}
+                        </label>
                       </div>
                     </div>
 
                     <div className="home-prod-button-cont">
-                    <button className="home-prod-button"
-                      
-                      onClick={() => navigate("/viewproduct")}
-                    >
-                      View
-                    </button>
+                      <button className="home-prod-button"
+
+                        onClick={() => navigate("/viewproduct")}
+                      >
+                        View
+                      </button>
                     </div>
                   </div>
                 </div>
                 <div className="btn-box">
-              </div>
+                </div>
               </div>
 
             </>
@@ -77,4 +71,14 @@ import axios from "axios";
   );
 };
 
-export default Home;
+const mapStateToProps = (state) => {
+  return {
+    newProducts: state.craftbay.newProducts,
+  };
+};
+
+const mapDispatchToProps = {
+  geNewProducts
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
