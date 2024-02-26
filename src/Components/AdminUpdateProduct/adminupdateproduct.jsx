@@ -148,7 +148,7 @@ const AdminUpdateProduct = ({ products }) => {
                 </tr>
               </thead>
               <tbody>
-              {productItem && productItem.adminProductBuyingPriceDetailsDtos && productItem.adminProductBuyingPriceDetailsDtos.map((row, idx) => (
+              {productItem && productItem.adminProductBuyingPriceDetailsDtos && productItem?.adminProductBuyingPriceDetailsDtos.map((row, idx) => (
                   <tr key={idx}>
                     <td>{row.date}</td>
                     <td>Rs.{row.price}</td>
@@ -166,41 +166,7 @@ const AdminUpdateProduct = ({ products }) => {
                 ))}
               </tbody>
             </table>
-{/*             test */}
-
-            <button className="btn" onClick={() => setModalOpen(true)}>
-              Add
-            </button>
-          </div>
-
-          <div className="prod-update-tbl">
-            <table className="table">
-              <thead>
-                <tr>
-                  <th>Date</th>
-                  <th>Price</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {product.adminProductSellingPriceDetailsDtos.map((row, idx) => (
-                  <tr key={idx}>
-                    <td>{row.date}</td>
-                    <td>Rs.{row.price}</td>
-                    <td>
-                      <span className="actions">
-                        <BsFillTrashFill
-                          className="delete-btn"
-                          onClick={() => handleDeleteRow(idx)}
-                        />
-                        <BsFillPencilFill onClick={() => handleEditRow(idx)} />
-                      </span>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-
+            
             <button className="btn" onClick={() => setModalOpen(true)}>
               Add
             </button>
