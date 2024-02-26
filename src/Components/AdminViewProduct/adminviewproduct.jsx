@@ -11,8 +11,11 @@ import { useNavigate } from "react-router-dom";
 import ProductDelete from "../Popup/ProductDelete/productdelete";
 import { connect } from 'react-redux';
 import { products } from '../../Actions'; // Import your action creators
+import { NotificationContainer, NotificationManager } from 'react-notifications';
+import 'react-notifications/lib/notifications.css';
 
-const {getProducts} = products;
+
+const { getProducts } = products;
 const AdminViewProduct = ({ getProducts, products }) => {
   const navigate = useNavigate();
   const [deleteOpen, setDeleteOpen] = useState(0);
@@ -20,6 +23,16 @@ const AdminViewProduct = ({ getProducts, products }) => {
   useEffect(() => {
     getProducts()
   }, []);
+
+  useEffect(() => {
+    console.log("products",products);
+    if (products.length > 0) {
+      NotificationManager.success('Products Load Successfully!', 'Success', 3000);
+    } 
+    // else {
+      // NotificationManager.error('Error message', 'Error', 5000);
+    // }
+  }, [products]);
 
   const handleCancelPopup = () => {
     setDeleteOpen(0);
@@ -126,6 +139,7 @@ const AdminViewProduct = ({ getProducts, products }) => {
           </Table>
         </TableContainer>
       </Paper>
+      <NotificationContainer />
     </div>
   );
 };
