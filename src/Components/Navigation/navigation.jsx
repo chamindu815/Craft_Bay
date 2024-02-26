@@ -11,36 +11,36 @@ const Navigation = () => {
     <div>
       <div className="navheader">
         <div className="logo-container">
-          <a href="./home">
+          <a href="/home">
             <img className="nav-logo-img" src={logo} alt="" />
           </a>
         </div>
 
         <div className="nav-box">
           <button className="nav-btn-home">
-            <a href="./home">HOME</a>
+            <a href="/home">HOME</a>
           </button>
           <button className="nav-btn-shop">
-            <a href="./shop">SHOP</a>
+            <a href="/shop">SHOP</a>
           </button>
 
           <div class="dropdown">
           <button className="nav-btn-category">CATEGORY</button>
           <div class="dropdown-content">
-            <a href="./products">Wooden</a>
-            <a href="./products">Metal</a>
-            <a href="./products">Textile</a>
-            <a href="./products">Clay</a>
-            <a href="./products">Leather</a>
+            <a href="/products/WOODEN">Wooden</a>
+            <a href="/products/METAL">Metal</a>
+            <a href="/products/TEXTILE">Textile</a>
+            <a href="/products/CLAY">Clay</a>
+            <a href="/products/LEATHER">Leather</a>
           </div>
           </div>
 
 
           <button className="nav-btn-aboutus">
-            <a href="./aboutus">ABOUT US</a>
+            <a href="/aboutus">ABOUT US</a>
           </button>
           <button className="nav-btn-contactus">
-            <a href="./contactus">CONTACT US</a>
+            <a href="/contactus">CONTACT US</a>
           </button>
         </div>
 

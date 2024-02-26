@@ -45,6 +45,7 @@ const Shop = ({ getTopShopProducts, topShopProducts }) => {
         return ""
     }
   }
+
   return (
     <div className="shop-bg">
       {Object.keys(topShopProducts).map((category) => (
@@ -53,7 +54,7 @@ const Shop = ({ getTopShopProducts, topShopProducts }) => {
             <h1>{getCategoryName(category)} Products</h1>
           </div>
           <div className="shop-prod-see-more-btn-cont">
-            <button className="shop-prod-seemore-btn" onClick={() => navigate("/products")}><img className="next-img" src={nextimg} alt="" /></button>
+            <button className="shop-prod-seemore-btn" onClick={() => navigate(`/products/${getCategoryName(category).toUpperCase()}`)}><img className="next-img" src={nextimg} alt="" /></button>
           </div>
           <div className="shop-prod-container">
             {topShopProducts[category].map((product) => (
