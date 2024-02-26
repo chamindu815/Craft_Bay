@@ -21,17 +21,17 @@ const Navigation = () => {
             <a href="./home">HOME</a>
           </button>
           <button className="nav-btn-shop">
-            <a href="#">SHOP</a>
+            <a href="./shop">SHOP</a>
           </button>
 
           <div class="dropdown">
           <button className="nav-btn-category">CATEGORY</button>
           <div class="dropdown-content">
             <a href="./products">Wooden</a>
-            <a href="#">Metal</a>
-            <a href="#">Textile</a>
-            <a href="#">Clay</a>
-            <a href="#">Leather</a>
+            <a href="./products">Metal</a>
+            <a href="./products">Textile</a>
+            <a href="./products">Clay</a>
+            <a href="./products">Leather</a>
           </div>
           </div>
 

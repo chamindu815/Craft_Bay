@@ -1,12 +1,13 @@
 import React from "react";
 import "./aboutus.css";
+import aboutusimg from "../Assets/About US.jpg"
 
 const aboutus = () => {
   return (
     <div className="aboutus-bg">
       <div>
         <div className="aboutus-title">
-          <span>Welcome to CraftBay</span>
+          <span>WHO ARE WE?</span>
         </div>
         <div>
           <div className="aboutus-description-container">
@@ -20,13 +21,7 @@ const aboutus = () => {
                 globe. Our mission is to connect talented creators with
                 passionate customers, fostering a community built on
                 appreciation for the artistry, dedication, and creativity that
-                goes into each handmade piece.
-              </span>
-              </div>
-
-              <div className="p1">
-              <span>
-              &emsp; CraftBay is more than just a marketplace where it's a vibrant
+                goes into each handmade piece. CraftBay is more than just a marketplace where it's a vibrant
                 hub where artisans can share their stories, cultures, and
                 traditions through their craft. From intricate textiles woven
                 with generations of expertise to delicate ceramics molded with
@@ -62,7 +57,9 @@ const aboutus = () => {
         </div>
       </div>
       <div>
-        <div className="aboutus-img-container"></div>
+        <div className="aboutus-img-container">
+        <img className="aboutus-img-bg" src={aboutusimg} alt="" />
+        </div>
       </div>
     </div>
   );

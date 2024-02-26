@@ -65,13 +65,10 @@ const AdminUpdateProduct = ({ productItem, getProductsById }) => {
           <label className="form-update-name"> Product Name:</label>
           <label className="form-update-img">Image:</label>
           <label className="form-update-des">Description:</label>
-          {/* <label className="form-update-buying-price">Buying Price:</label> */}
-          {/* <label className="form-update-selling-price">Buying Date:</label> */}
-          {/* <label className="form-update-selling-price">Selling Price:</label> */}
           <label className="form-update-qnt">Quantity:</label>
           <label className="form-update-category">Category:</label>
-          <label className="form-update-bp-tbl">Buying Price Table:</label>
-          <label className="form-update-sp-tbl">Selling Price Table:</label>
+          <label className="form-update-bp-tbl">Buying Prices:</label>
+          <label className="form-update-sp-tbl">Selling Prices:</label>
         </div>
 
         <div className="prod-update-txtbox">
