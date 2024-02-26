@@ -4,6 +4,8 @@ import nextimg from "../Assets/arrow_7481528.png";
 import { connect } from 'react-redux';
 import { products } from '../../Actions'; // Import your action creators;
 import { useNavigate } from "react-router-dom";
+import { NotificationContainer, NotificationManager } from 'react-notifications';
+import 'react-notifications/lib/notifications.css';
 
 const { getTopShopProducts } = products;
 
@@ -14,6 +16,18 @@ const Shop = ({ getTopShopProducts, topShopProducts }) => {
   useEffect(() => {
     getTopShopProducts()
   }, []);
+
+  
+
+  useEffect(() => {
+    console.log("topShopProducts",topShopProducts);
+    if (Object.keys(topShopProducts).length > 0) {
+      NotificationManager.success('Products Load Successfully!', 'Success', 3000);
+    }
+    // else {
+      // NotificationManager.error('Error message', 'Error', 5000);
+    // }
+  }, [topShopProducts]);
 
   const getCategoryName = (category) => {
     switch (category) {
@@ -71,6 +85,7 @@ const Shop = ({ getTopShopProducts, topShopProducts }) => {
           </div>
         </div>
       ))}
+      <NotificationContainer />
     </div>
   );
 };
