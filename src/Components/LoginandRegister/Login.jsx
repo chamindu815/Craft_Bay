@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from "react";
 import "./Login.css";
 import loginimg from "../Assets/Login.jpg";
-import logo from "../Assets/logo.png"
 import { useNavigate } from "react-router-dom";
-import axios from "axios"
+import { connect } from 'react-redux';
+import { products } from '../../Actions';
 
-export const Login = () => {
+const { userLogin } = products;
+
+const Login = ({ userLogin, loginData }) => {
   const [action, setAction] = useState("Login");
-  // let navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (action === "SignUp") {
@@ -15,53 +19,37 @@ export const Login = () => {
     }
   }, [action]);
 
-  
-
-
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const navigate = useNavigate();
-  async function login(event) {
-      event.preventDefault();
-      try {
-        await axios.post("http://localhost:8089/craftbay/user/login", {
-          email: email,
-          password: password,
-          }).then((res) => 
-          {
-           console.log(res.data);
-           
-           if (res.data.message == "Email not exits") 
-           {
-             alert("Incorrect Email or Password");
-           } 
-           else if(res.data.message == "Login Success")
-           { 
-              
-              navigate('/home');
-           } 
-            else 
-           { 
-              alert("Incorrect Email or Password");
-           }
-        }, fail => {
-         console.error(fail); // Error!
-});
+  useEffect(() => {
+    if (loginData) {
+      if (loginData?.status == 400 || loginData?.status == 401) {
+        alert("Unauthorised User Details");
       }
-
-       catch (err) {
-        alert(err);
+      else if (loginData?.status == 200) {
+        alert("User login successfully!");
+        console.log("login data",loginData);
+        console.log(loginData.userId);
+        localStorage.setItem("token", loginData?.token);
+        localStorage.setItem("userId", loginData?.userId);
+        navigate('/home');
       }
-    
+      // else {
+      //   alert("Incorrect Email or Password");
+      // }
     }
+  }, [loginData]);
 
-
-
+  const submitUserDetails = (event) => {
+    event.preventDefault();
+    userLogin({
+      email: email,
+      password: password
+    })
+  }
   return (
     <div className="main-container">
 
       <div className="logo-container">
-      {/* <img className="logo-img" src={logo} alt="" /> */}
+        {/* <img className="logo-img" src={logo} alt="" /> */}
       </div>
 
 
@@ -100,10 +88,22 @@ export const Login = () => {
         </div>
 
         <div className="submit-container">
-        <button type="submit" className="submit" onClick={login}>Login</button>
-        <button type="submit" className="submit" onClick={() => setAction("SignUp")}>Register</button>
+          <button type="submit" className="submit" onClick={(e) => submitUserDetails(e)}>Login</button>
+          <button type="submit" className="submit" onClick={() => setAction("SignUp")}>Register</button>
         </div>
       </div>
     </div>
   );
 };
+
+const mapStateToProps = (state) => {
+  return {
+    loginData: state.craftbay.loginData,
+  };
+};
+
+const mapDispatchToProps = {
+  userLogin,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

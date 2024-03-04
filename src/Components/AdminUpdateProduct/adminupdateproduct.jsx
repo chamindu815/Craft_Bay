@@ -4,7 +4,7 @@ import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs";
 import Modal from "../Popup/Modal/Modal";
 import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { products } from '../../Actions'; // Import your action creators
+import { products } from '../../Actions';
 
 const {getProductsById} = products;
 
@@ -15,10 +15,18 @@ const AdminUpdateProduct = ({ productItem, getProductsById }) => {
   ]);
   const [rowToEdit, setRowToEdit] = useState(null);
   const { id } = useParams();
+  const [formValues, setFormValues] = useState({});
+  const [selectedValue, setSelectedValue] = useState({});
 
   useEffect(() => {
     getProductsById(id)
   }, [id]);
+
+  useEffect(() => {
+    if(productItem){
+      setSelectedValue(productItem.category)
+    }
+  }, [productItem]);
 
   const handleDeleteRow = (targetIndex) => {
     setRows(rows.filter((_, idx) => idx !== targetIndex));
@@ -44,6 +52,18 @@ const AdminUpdateProduct = ({ productItem, getProductsById }) => {
   const getRecentPrice = (productPriceDetailsDtos) => {
     const priceList = productPriceDetailsDtos?.sort((a, b) => new Date(b.date) - new Date(a.date))
     return priceList && priceList.length != 0 ? priceList[0].price : 0
+  }
+
+
+  const handleSelectChange = (event) => {
+  console.log('xxxxx handleSelectChange',event.target.value);
+
+    setSelectedValue(event.target.value);
+  };
+  console.log('xxxxx productItem',selectedValue);
+
+  const handleSave = (e) => {
+  console.log('xxxxx handleSave',e);
   }
 
   return (
@@ -78,6 +98,9 @@ const AdminUpdateProduct = ({ productItem, getProductsById }) => {
               type="text"
               placeholder="Product Name"
               value={productItem?.name}
+              onChange={(event) => {
+                setFormValues({ ...formValues, name: event.target.value });
+              }}
             />
           </div>
 
@@ -128,16 +151,18 @@ const AdminUpdateProduct = ({ productItem, getProductsById }) => {
           <div>
             <select
               className="update-dropdown"
-              // placeholder="Select"
+              value={selectedValue} 
+              onChange={handleSelectChange}
+            // placeholder="Select"
             >
-              <option value="Select">Select</option>
+              <option value="" disabled>Select</option>
               <option value="Wooden">Wooden Crafts</option>
               <option value="Wall Hanger">Wall Hanger</option>
               <option value="Textile">Textile</option>
               <option value="Clay">Clay</option>
               <option value="Metal">Metal</option>
             </select>
-            <button type="submit" className="update-prod-btn">
+            <button type="submit" className="update-prod-btn" onClick={(e) => handleSave(e)} >
               Submit
             </button>
           </div>

@@ -2,11 +2,25 @@ const initialState = {
     products: [],
     productToBeEdit: {},
     topShopProducts: {},
-    newProducts: {}
+    newProducts: {},
+    loginData: {},
+    productById:{}
 };
 
 export default (state = initialState, { type, payload }) => {
     switch (type) {
+        case 'USER_LOGIN':
+            return Object.assign({}, state, {
+                loginData: {}
+            });
+        case 'USER_LOGIN_SUCCESS':
+            return Object.assign({}, state, {
+                loginData: payload
+            });
+        case 'USER_LOGIN_FAIL':
+            return Object.assign({}, state, {
+                loginData: {}
+            });
         case 'ADD_PRODUCTS':
             return Object.assign({}, state, {
             });
@@ -14,6 +28,16 @@ export default (state = initialState, { type, payload }) => {
             return Object.assign({}, state, {
             });
         case 'ADD_PRODUCTS_FAIL':
+            return Object.assign({}, state, {
+            });
+        case 'UPDATE_PRODUCT':
+            return Object.assign({}, state, {
+            });
+        case 'UPDATE_PRODUCT_SUCCESS':
+            return Object.assign({}, state, {
+                // update products arra
+            });
+        case 'UPDATE_PRODUCT_FAIL':
             return Object.assign({}, state, {
             });
         case 'GET_PRODUCTS':
@@ -76,6 +100,22 @@ export default (state = initialState, { type, payload }) => {
             return Object.assign({}, state, {
                 newProducts: {},
             });
+
+
+    //GET_PRODUCT_BY_ID
+        case 'GET_PRODUCT_BY_ID':
+            return Object.assign({}, state, {
+                productById: {},
+            });
+        case 'GET_PRODUCT_BY_ID_SUCCESS':
+            return Object.assign({}, state, {
+                productById: payload,
+            });
+        case 'GET_PRODUCT_BY_ID_FAIL':
+            return Object.assign({}, state, {
+                productById: {},
+            });
+            
         default:
             return state;
     }

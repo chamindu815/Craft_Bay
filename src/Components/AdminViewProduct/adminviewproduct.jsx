@@ -10,7 +10,7 @@ import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import ProductDelete from "../Popup/ProductDelete/productdelete";
 import { connect } from 'react-redux';
-import { products } from '../../Actions'; // Import your action creators
+import { products } from '../../Actions';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
 
