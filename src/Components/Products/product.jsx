@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./product.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useParams } from "react-router-dom";
 import axios from "axios";
 
 const Product = () => {
@@ -9,14 +9,17 @@ const Product = () => {
   const [category, setCategory] = useState("WOODEN");
   useEffect(() => {
     get()
-  },[])
+  },[]);
+
+  
+  const { type } = useParams();
 
   async function get() {
     const formData = new FormData();
     formData.append("category", "TEXTILE");
     try {
       const {data} = await axios.get(
-        `http://localhost:8089/craftbay/public/getAllProductsByCategory?category=${category}`,
+        `http://localhost:8089/craftbay/public/getAllProductsByCategory?category=${type}`,
       );
       // alert("Products Loaded Successfully");
       setProducts(data)
@@ -35,7 +38,7 @@ const Product = () => {
   return (
     <div>
       <div className="prod-category">
-        <span>Wooden Items</span>
+        <span>{type.charAt(0).toUpperCase() + type.slice(1).toLowerCase()} Items</span>
       </div>
       <div className="prod-container">
         {products && products.map((curElm) => {

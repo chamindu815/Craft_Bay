@@ -10,6 +10,7 @@
   text-decoration: underline;
   font-weight: bold;
   font-size: 25px;
+  color: rgb(24, 24, 24);
 }
 
 .aboutus-description-container {
@@ -43,4 +44,15 @@
 
   display: flex;
   flex-direction: column;
+}
+
+.aboutus-img-bg{
+  width: 520px;
+  height: 520px;
+  border: 5px solid white;
+  border-radius: 20px;
+  /* padding-left: 36px;
+  padding-top: 30px; */
+  /* margin-left: 22px;
+  margin-top: 18px; */
 }
