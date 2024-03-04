@@ -95,4 +95,18 @@ export const products = {
         type: "GET_NEW_PRODUCTS_FAIL",
         payload: {}
     }),
+
+    //GET_PRODUCT_BY_ID
+    getProductById: (data) => ({
+        type: "GET_PRODUCT_BY_ID",
+        payload: data
+    }),
+    getProductByIdSuccess: (data) => ({
+        type: "GET_PRODUCT_BY_ID_SUCCESS",
+        payload: data
+    }),
+    getProductByIdFail: (error) => ({
+        type: "GET_PRODUCT_BY_ID_FAIL",
+        payload: {}
+    }),
 }

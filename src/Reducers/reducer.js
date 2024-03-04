@@ -3,7 +3,8 @@ const initialState = {
     productToBeEdit: {},
     topShopProducts: {},
     newProducts: {},
-    loginData: {}
+    loginData: {},
+    productById:{}
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -99,6 +100,22 @@ export default (state = initialState, { type, payload }) => {
             return Object.assign({}, state, {
                 newProducts: {},
             });
+
+
+    //GET_PRODUCT_BY_ID
+        case 'GET_PRODUCT_BY_ID':
+            return Object.assign({}, state, {
+                productById: {},
+            });
+        case 'GET_PRODUCT_BY_ID_SUCCESS':
+            return Object.assign({}, state, {
+                productById: payload,
+            });
+        case 'GET_PRODUCT_BY_ID_FAIL':
+            return Object.assign({}, state, {
+                productById: {},
+            });
+            
         default:
             return state;
     }

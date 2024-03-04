@@ -1,10 +1,10 @@
-import { userLogin, getProducts, addProducts, deleteProducts, getProductsById, getTopShopProducts, getNewProducts, updateProduct } from '../Services/Products'
+import { userLogin, getProducts, addProducts, deleteProducts, getProductsById, getTopShopProducts, getNewProducts, updateProduct, getProductById } from '../Services/Products'
 import { put, call, takeLatest } from "redux-saga/effects";
 import { products } from "../Actions";
 
 const { getProductsSuccess, getProductsFail, addProductsSuccess, addProductsFail, deleteProductsSuccess, deleteProductsFail,
   getProductsSuccessById, getProductsFailById, getTopShopProductsSuccess, getTopShopProductsFail, getNewProductsSuccess, getNewProductsFail,
-  userLoginSuccess, userLoginFail } = products;
+  userLoginSuccess, userLoginFail, getProductByIdSuccess, getProductByIdFail } = products;
 const ProductSagas = {
   userLoginSaga: function* (action) {
     const params = action?.payload ?? {};
@@ -76,6 +76,17 @@ const ProductSagas = {
       yield put(getNewProductsFail(error));
     }
   },
+
+//GET_PRODUCT_BY_ID
+  getProductByIdSaga: function* (action) {
+    const params = action?.payload ?? {};
+    try {
+      const articleList = yield call(getProductById, params);
+      yield put(getProductByIdSuccess(articleList));
+    } catch (error) {
+      yield put(getProductByIdFail(error));
+    }
+  },
 }
 
 export default [
@@ -87,4 +98,5 @@ export default [
   takeLatest('GET_PRODUCTS_BY_ID', ProductSagas.getProductsByIdSaga),
   takeLatest('GET_TOP_SHOP_PRODUCTS', ProductSagas.getTopShopProductsSaga),
   takeLatest('USER_LOGIN', ProductSagas.userLoginSaga),
+  takeLatest('GET_PRODUCT_BY_ID', ProductSagas.getProductByIdSaga),
 ];

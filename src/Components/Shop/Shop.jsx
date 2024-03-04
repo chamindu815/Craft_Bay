@@ -76,7 +76,7 @@ const Shop = ({ getTopShopProducts, topShopProducts }) => {
                     </div>
 
                     <div className="shop-prod-btn-container">
-                      <button className="shop-prod-button">View</button>
+                      <button className="shop-prod-button" onClick={() => navigate(`/viewproduct/${product.id}`)}>View</button>
                     </div>
                   </div>
                 </div>

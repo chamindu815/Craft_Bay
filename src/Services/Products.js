@@ -113,3 +113,16 @@ export const updateProduct = (params) => {
     }
   });
 };
+
+export const getProductById = (params) => {
+  return new Promise (async (resolve, reject) => {
+      try {
+          const { data } = await axios.get(
+              `http://localhost:8089/craftbay/public/products/${params}`
+            );
+          resolve(data);
+      } catch (error) {
+          reject(error);
+      }
+  });
+};
