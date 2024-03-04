@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import prod1 from "../Assets/products/Product_01.jpg";
 import "./viewproduct.css";
 
-const ViewProduct = ({ minValue = 0, maxValue = 100 }) => {
+const ViewProduct = ({ minValue = 1, maxValue = 100 }) => {
   const [count, setCount] = useState(minValue);
 
   const handleIncrementCounter = () => {
@@ -11,6 +11,7 @@ const ViewProduct = ({ minValue = 0, maxValue = 100 }) => {
     }
   };
 
+  console.log("count",count);
   const handleDecrementCounter = () => {
     if (count > minValue) {
       setCount((prevState) => prevState - 1);

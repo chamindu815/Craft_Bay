@@ -1,10 +1,21 @@
-import { getProducts, addProducts, deleteProducts, getProductsById, getTopShopProducts, getNewProducts } from '../Services/Products'
+import { userLogin, getProducts, addProducts, deleteProducts, getProductsById, getTopShopProducts, getNewProducts, updateProduct } from '../Services/Products'
 import { put, call, takeLatest } from "redux-saga/effects";
 import { products } from "../Actions";
 
 const { getProductsSuccess, getProductsFail, addProductsSuccess, addProductsFail, deleteProductsSuccess, deleteProductsFail,
-  getProductsSuccessById, getProductsFailById, getTopShopProductsSuccess, getTopShopProductsFail, getNewProductsSuccess, getNewProductsFail } = products;
+  getProductsSuccessById, getProductsFailById, getTopShopProductsSuccess, getTopShopProductsFail, getNewProductsSuccess, getNewProductsFail,
+  userLoginSuccess, userLoginFail } = products;
 const ProductSagas = {
+  userLoginSaga: function* (action) {
+    const params = action?.payload ?? {};
+    try {
+      const articleList = yield call(userLogin, params);
+      console.log("articleList",articleList);
+      yield put(userLoginSuccess(articleList));
+    } catch (error) {
+      yield put(userLoginFail(error));
+    }
+  },
   addProductsSaga: function* (action) {
     const params = action?.payload ?? {};
     try {
@@ -12,6 +23,15 @@ const ProductSagas = {
       yield put(addProductsSuccess(articleList));
     } catch (error) {
       yield put(addProductsFail(error));
+    }
+  },
+  updateProductSaga: function* (action) {
+    const params = action?.payload ?? {};
+    try {
+      const articleList = yield call(updateProduct, params);
+      // yield put(addProductsSuccess(articleList));
+    } catch (error) {
+      // yield put(addProductsFail(error));
     }
   },
   getProductsSaga: function* (action) {
@@ -59,10 +79,12 @@ const ProductSagas = {
 }
 
 export default [
+  takeLatest('GET_NEW_PRODUCTS', ProductSagas.getNewProductsSaga),
   takeLatest('GET_PRODUCTS', ProductSagas.getProductsSaga),
   takeLatest('ADD_PRODUCTS', ProductSagas.addProductsSaga),
+  takeLatest('UPDATE_PRODUCT', ProductSagas.updateProductSaga),
   takeLatest('DELETE_PRODUCTS', ProductSagas.deletProductsSaga),
   takeLatest('GET_PRODUCTS_BY_ID', ProductSagas.getProductsByIdSaga),
   takeLatest('GET_TOP_SHOP_PRODUCTS', ProductSagas.getTopShopProductsSaga),
-  takeLatest('GET_NEW_PRODUCTS', ProductSagas.getNewProductsSaga),
+  takeLatest('USER_LOGIN', ProductSagas.userLoginSaga),
 ];

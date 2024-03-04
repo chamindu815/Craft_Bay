@@ -1,4 +1,16 @@
 export const products = {
+    userLogin: (data) => ({
+        type: "USER_LOGIN",
+        payload: data
+    }),
+    userLoginSuccess: (data) => ({
+        type: "USER_LOGIN_SUCCESS",
+        payload: data
+    }),
+    userLoginFail: (error) => ({
+        type: "USER_LOGIN_FAIL",
+        payload: {}
+    }),
     addProducts: (data) => ({
         type: "ADD_PRODUCTS",
         payload: data
@@ -9,6 +21,18 @@ export const products = {
     }),
     addProductsFail: (error) => ({
         type: "ADD_PRODUCTS_FAIL",
+        payload: {}
+    }),
+    updateProduct: (data) => ({
+        type: "UPDATE_PRODUCT",
+        payload: data
+    }),
+    updateProductSuccess: (data) => ({
+        type: "UPDATE_PRODUCT_SUCCESS",
+        payload: data
+    }),
+    updateProductFail: (error) => ({
+        type: "UPDATE_PRODUCT_FAIL",
         payload: {}
     }),
     getProducts: () => ({
@@ -59,7 +83,7 @@ export const products = {
         type: "GET_TOP_SHOP_PRODUCTS_FAIL",
         payload: {}
     }),
-    geNewProducts: () => ({
+    getNewProducts: () => ({
         type: "GET_NEW_PRODUCTS",
         payload: {}
     }),

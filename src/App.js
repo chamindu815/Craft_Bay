@@ -1,6 +1,6 @@
 import "./App.css";
 import React from 'react';
-import { Login } from "./Components/LoginandRegister/Login";
+import Login from "./Components/LoginandRegister/Login";
 import { Register } from "./Components/LoginandRegister/Register";
 import Product from "./Components/Products/product";
 import { BrowserRouter, Routes, Route } from "react-router-dom";

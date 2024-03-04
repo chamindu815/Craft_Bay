@@ -7,12 +7,13 @@ import homeimg from "../Assets/Home.jpg"
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
 
-const { geNewProducts } = products;
+const { getNewProducts } = products;
 
-const Home = ({ geNewProducts, newProducts }) => {
+const Home = ({ getNewProducts, newProducts }) => {
+
   const navigate = useNavigate()
   useEffect(() => {
-    geNewProducts()
+    getNewProducts()
   }, []);
 
   useEffect(() => {
@@ -91,7 +92,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-  geNewProducts
+  getNewProducts
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

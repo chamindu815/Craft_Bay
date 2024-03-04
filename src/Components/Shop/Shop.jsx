@@ -11,7 +11,6 @@ const { getTopShopProducts } = products;
 
 const Shop = ({ getTopShopProducts, topShopProducts }) => {
 
-  
   const navigate = useNavigate();
   useEffect(() => {
     getTopShopProducts()
@@ -61,7 +60,7 @@ const Shop = ({ getTopShopProducts, topShopProducts }) => {
               <div className="shop-prod-box">
                 <div className="shop-prod-content">
                   <div className="shop-prod-img-box">
-                  <img
+                    <img
                       src={`data:image/jpeg;base64,${product.image}`}
                       alt={product.name}
                     ></img>

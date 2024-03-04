@@ -4,7 +4,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Moment from "moment";
 import { connect } from 'react-redux';
-import { products } from '../../Actions'; // Import your action creators
+import { products } from '../../Actions';
 
 const { addProducts } = products;
 const initialValues = {
