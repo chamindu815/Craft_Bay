@@ -1,9 +1,32 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Cart.css";
 import CartData from "./cartData";
+import { connect } from "react-redux";
+import { products } from "../../Actions";
+import { useParams } from "react-router-dom";
+import { BsFillTrashFill } from "react-icons/bs";
 
-const Cart = ({ minValue = 1, maxValue = 100 }) => {
+const { viewCart } = products;
+
+const Cart = ({ viewCart, cartDetails }) => {
+  const minValue = 1;
+  const maxValue = 100;
   const [count, setCount] = useState(minValue);
+  // const { id } = useParams();
+  const { userId } = localStorage.getItem("userId");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    viewCart(localStorage.getItem("userId"));
+  }, []);
+
+  useEffect(() => {
+    console.log("products", cartDetails);
+    if (cartDetails.length > 0) {
+    }
+  }, [cartDetails]);
+  console.log("cartDetails:", cartDetails);
 
   const handleIncrementCounter = () => {
     if (count < maxValue) {
@@ -20,45 +43,59 @@ const Cart = ({ minValue = 1, maxValue = 100 }) => {
     <div className="cart-bg">
       <div className="cart-main-container">
         <span className="cart-heading">Added Items</span>
-        {CartData.map((curElm) => {
-          return (
-            <div className="cart-container">
-              <div className="cart-content">
-                <div className="cart-img-box">
-                  <img src={curElm.img} alt={curElm.Title}></img>
-                </div>
-                <div className="cart-main">
-                  <div>
-                    <span className="cart-price-title">Price</span>
-                    <h3 className="cart-prod-title">{curElm.Title}</h3>
-                    <label class="cart-price">Rs: {curElm.Price}</label>
+
+        {Array.isArray(cartDetails?.cartItems) &&
+          cartDetails.cartItems.map((curElm) => {
+            console.log("curElm: ", curElm);
+            return (
+              <div className="cart-container">
+                <div className="cart-content">
+                  <div className="cart-img-box">
+                    <img
+                      src={`data:image/jpeg;base64,${curElm.product.image}`}
+                      alt={curElm.product.name}
+                    ></img>
                   </div>
+                  <div className="cart-main">
+                    <div>
+                      <h3 className="cart-prod-title">{curElm.product.name}</h3>
+                      <span className="cart-price-title">Price</span>
 
-                  <div className="cart-qnt-container">
-                    <span className="cart-qnt-name">Quantity</span>
-                    <div className="cart-qunt-btn">
-                      <button
-                        className="cart-increment-btn"
-                        onClick={handleDecrementCounter}
-                      >
-                        <span className="cart-min-btn">-</span>
-                      </button>
+                      <label class="cart-price">
+                        Rs: {curElm.product.sellingPrice}
+                      </label>
+                    </div>
 
-                      <p className="cart-p">{count}</p>
+                    <div className="cart-qnt-container">
+                      <span className="cart-qnt-name">Quantity</span>
+                      <div className="cart-qunt-btn">
+                        <button
+                          className="cart-increment-btn"
+                          onClick={handleDecrementCounter}
+                        >
+                          <span className="cart-min-btn">-</span>
+                        </button>
 
-                      <button
-                        className="cart-increment-btn"
-                        onClick={handleIncrementCounter}
-                      >
-                        <span className="cart-add-btn">+</span>
-                      </button>
+                        <p className="cart-p">{curElm.quantity}</p>
+
+                        <button
+                          className="cart-increment-btn"
+                          onClick={handleIncrementCounter}
+                        >
+                          <span className="cart-add-btn">+</span>
+                        </button>
+
+                        
+                      </div>
+                      <div className="cart-item-dlt-btn-container">
+                      <button><BsFillTrashFill className="delete-cart-item"/></button>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
       </div>
 
       <div>
@@ -101,12 +138,21 @@ const Cart = ({ minValue = 1, maxValue = 100 }) => {
           </div>
 
           <div className="checkbox-container">
-            <input type="checkbox" className="bill-checkbox" />
-            Set as Default Address
+            <div className="bill-checkbox">
+              <input type="checkbox" />
+            </div>
+            <div className="bill-checkbox-text">
+              <label>Set as Default Address</label>
+            </div>
           </div>
 
           <div className="checkout-btn-container">
-            <button className="checkoutbtn">Checkout</button>
+            <button
+              className="checkoutbtn"
+              onClick={() => navigate(`/checkout`)}
+            >
+              Checkout
+            </button>
           </div>
         </div>
       </div>
@@ -114,4 +160,14 @@ const Cart = ({ minValue = 1, maxValue = 100 }) => {
   );
 };
 
-export default Cart;
+const mapStateToProps = (state) => {
+  return {
+    cartDetails: state.craftbay.cartDetails,
+  };
+};
+
+const mapDispatchToProps = {
+  viewCart,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);

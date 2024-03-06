@@ -70,6 +70,10 @@
     font-size: 20px;
 }
 
+.checkout-p{
+  /* margin-left: px; */
+}
+
 .checkout-price{
     position: absolute;
     margin-top: 60px;
@@ -93,7 +97,7 @@
 
 .checkout-qunt-btn {
     margin-top: 50px;
-    margin-left: 0px;
+    margin-left: 25px;
     display: flex;
     align-items: center;
     background-color: #fff;
@@ -101,7 +105,7 @@
     overflow: hidden;
     border: 1px solid black;
     transition: border 0.3s ease;
-    width: 100px;
+    width: 50px;
     height: 35px;
   }
   

@@ -45,13 +45,13 @@ const Navigation = () => {
         </div>
 
         <div className="nav-cart-img">
-        <a href="./cart">
+        <a href="/cart">
           <img className="nav-cart-imgs" src={cart} alt="" />
         </a>
         </div>
 
         <div className="nav-profile-img">
-        <a href="./profileaddpayment">
+        <a href="./profile">
           <img className="nav-profile-imgs" src={profile} alt="" />
         </a>
         </div>

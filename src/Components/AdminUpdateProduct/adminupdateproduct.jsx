@@ -121,24 +121,6 @@ const AdminUpdateProduct = ({ productItem, getProductsById }) => {
             />
           </div>
 
-          {/* <div>
-            <input
-              className="input-update-prod-buying-price"
-              type="text"
-              placeholder="Buying Price"
-              value={getRecentPrice(productItem.adminProductBuyingPriceDetailsDtos)}
-            />
-          </div>
-
-          <div>
-            <input
-              className="input-update-prod-selling-price"
-              type="text"
-              placeholder="Selling Price"
-              value={getRecentPrice(productItem.adminProductSellingPriceDetailsDtos)}
-            />
-          </div> */}
-
           <div>
             <input
               className="input-update-prod-quantity"

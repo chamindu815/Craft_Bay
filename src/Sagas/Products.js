@@ -1,16 +1,53 @@
-import { userLogin, getProducts, addProducts, deleteProducts, getProductsById, getTopShopProducts, getNewProducts, updateProduct, getProductById } from '../Services/Products'
+import {
+  userLogin,
+  getProducts,
+  addProducts,
+  deleteProducts,
+  getProductsById,
+  getTopShopProducts,
+  getNewProducts,
+  updateProduct,
+  getProductById,
+  postAddToCart,
+  viewCart,
+  getUserById,
+  checkoutCart,
+} from "../Services/Products";
 import { put, call, takeLatest } from "redux-saga/effects";
 import { products } from "../Actions";
 
-const { getProductsSuccess, getProductsFail, addProductsSuccess, addProductsFail, deleteProductsSuccess, deleteProductsFail,
-  getProductsSuccessById, getProductsFailById, getTopShopProductsSuccess, getTopShopProductsFail, getNewProductsSuccess, getNewProductsFail,
-  userLoginSuccess, userLoginFail, getProductByIdSuccess, getProductByIdFail } = products;
+const {
+  getProductsSuccess,
+  getProductsFail,
+  addProductsSuccess,
+  addProductsFail,
+  deleteProductsSuccess,
+  deleteProductsFail,
+  getProductsSuccessById,
+  getProductsFailById,
+  getTopShopProductsSuccess,
+  getTopShopProductsFail,
+  getNewProductsSuccess,
+  getNewProductsFail,
+  userLoginSuccess,
+  userLoginFail,
+  getProductByIdSuccess,
+  getProductByIdFail,
+  postAddToCartSuccess,
+  postAddToCartFail,
+  viewCartSuccess,
+  viewCartFail,
+  getUserByIdSuccess,
+  getUserByIdFail,
+  checkoutCartSuccess,
+  checkoutCartFail,
+} = products;
 const ProductSagas = {
   userLoginSaga: function* (action) {
     const params = action?.payload ?? {};
     try {
       const articleList = yield call(userLogin, params);
-      console.log("articleList",articleList);
+      console.log("articleList", articleList);
       yield put(userLoginSuccess(articleList));
     } catch (error) {
       yield put(userLoginFail(error));
@@ -77,7 +114,7 @@ const ProductSagas = {
     }
   },
 
-//GET_PRODUCT_BY_ID
+  //GET_PRODUCT_BY_ID
   getProductByIdSaga: function* (action) {
     const params = action?.payload ?? {};
     try {
@@ -87,16 +124,74 @@ const ProductSagas = {
       yield put(getProductByIdFail(error));
     }
   },
-}
+
+  //ADD_TO_CART
+  postAddToCartSaga: function* (action) {
+    const params = action?.payload ?? {};
+    try {
+      const articleList = yield call(postAddToCart, params);
+      console.log("articleList", articleList);
+      yield put(postAddToCartSuccess(articleList));
+    } catch (error) {
+      yield put(postAddToCartFail(error));
+    }
+  },
+
+
+  //VIEW_CART
+  viewCartSaga: function* (action) {
+    const params = action?.payload ?? {};
+    try {
+      const articleList = yield call(viewCart, params);
+      console.log("articleList", articleList);
+      yield put(viewCartSuccess(articleList));
+    } catch (error) {
+      yield put(viewCartFail(error));
+    }
+  },
+
+
+  //GET_USER_BY_ID
+  getUserByIdSaga: function* (action) {
+    const params = action?.payload ?? {};
+    try {
+      const articleList = yield call(getUserById, params);
+      console.log("articleList", articleList);
+      yield put(getUserByIdSuccess(articleList));
+    } catch (error) {
+      yield put(getUserByIdFail(error));
+    }
+  },
+
+
+  //CART_CHECKOUT
+  checkoutCartSaga: function* (action) {
+    const params = action?.payload ?? {};
+    try {
+      const articleList = yield call(checkoutCart, params);
+      console.log("articleList", articleList);
+      yield put(checkoutCartSuccess(articleList));
+    } catch (error) {
+      yield put(checkoutCartFail(error));
+    }
+  },
+};
 
 export default [
-  takeLatest('GET_NEW_PRODUCTS', ProductSagas.getNewProductsSaga),
-  takeLatest('GET_PRODUCTS', ProductSagas.getProductsSaga),
-  takeLatest('ADD_PRODUCTS', ProductSagas.addProductsSaga),
-  takeLatest('UPDATE_PRODUCT', ProductSagas.updateProductSaga),
-  takeLatest('DELETE_PRODUCTS', ProductSagas.deletProductsSaga),
-  takeLatest('GET_PRODUCTS_BY_ID', ProductSagas.getProductsByIdSaga),
-  takeLatest('GET_TOP_SHOP_PRODUCTS', ProductSagas.getTopShopProductsSaga),
-  takeLatest('USER_LOGIN', ProductSagas.userLoginSaga),
-  takeLatest('GET_PRODUCT_BY_ID', ProductSagas.getProductByIdSaga),
+  takeLatest("GET_NEW_PRODUCTS", ProductSagas.getNewProductsSaga),
+  takeLatest("GET_PRODUCTS", ProductSagas.getProductsSaga),
+  takeLatest("ADD_PRODUCTS", ProductSagas.addProductsSaga),
+  takeLatest("UPDATE_PRODUCT", ProductSagas.updateProductSaga),
+  takeLatest("DELETE_PRODUCTS", ProductSagas.deletProductsSaga),
+  takeLatest("GET_PRODUCTS_BY_ID", ProductSagas.getProductsByIdSaga),
+  takeLatest("GET_TOP_SHOP_PRODUCTS", ProductSagas.getTopShopProductsSaga),
+  takeLatest("USER_LOGIN", ProductSagas.userLoginSaga),
+  takeLatest("GET_PRODUCT_BY_ID", ProductSagas.getProductByIdSaga),
+  takeLatest("POST_ADD_TO_CART", ProductSagas.postAddToCartSaga),
+  takeLatest("VIEW_CART", ProductSagas.viewCartSaga),
+  takeLatest("GET_USER_BY_ID", ProductSagas.getUserByIdSaga),
+  takeLatest("CART_CHECKOUT", ProductSagas.checkoutCartSaga),
+
+
+  
 ];
