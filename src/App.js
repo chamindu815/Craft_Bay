@@ -10,7 +10,7 @@ import AdminAddProduct from "./Components/AdminAddProduct/adminaddproduct";
 import Home  from "./Components/Home/Home";
 import Cart from "./Components/Cart/Cart";
 import ContactUs from"./Components/ContactUs/contactus";
-import ProfileAddPayment from"./Components/ProfileAddPayment/profileaddpayment";
+import Profile from"./Components/Profile/profile";
 import Checkout from "./Components/Checkout/Checkout";
 import AdminProfile from "./Components/AdminProfile/adminprofile";
 import AdminInventoryReport from "./Components/AdminInventoryReport/admininventoryreport";
@@ -23,6 +23,8 @@ import ProductDelete from "./Components/Popup/ProductDelete/productdelete";
 import Shop from "./Components/Shop/Shop";
 import store from './store';
 import { Provider } from 'react-redux';
+import AdminDashboard from "./Components/AdminDashboard/admindashboard"
+
 
 function App() {
   return (
@@ -41,7 +43,7 @@ function App() {
           <Route path="/cart" element={<Cart />}></Route>
           <Route path="/checkout" element={<Checkout />}></Route>
           <Route path="/contactus" element={<ContactUs/>}></Route>
-          <Route path="/profileaddpayment" element={<ProfileAddPayment/>}></Route>
+          <Route path="/profile" element={<Profile/>}></Route>
           <Route path="/adminprofile" element={<AdminProfile/>}></Route>
           <Route path="/admininventoryreport" element={<AdminInventoryReport/>}></Route>
           <Route path="/adminrevenuereport" element={<AdminRevenueReport/>}></Route>
@@ -51,6 +53,7 @@ function App() {
           <Route path="/adminviewproduct" element={<AdminViewProduct/>} />
           <Route path="/productdelete" element={<ProductDelete />} />
           <Route path="/shop" element={<Shop />} />
+          <Route path="/admindashboard" element={<AdminDashboard />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -1,0 +1,403 @@
+.prof-add-pay-bg {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.acc-info-container {
+  width: 650px;
+  height: fit-content;
+  background: rgba(255, 255, 255, 0.726);
+  margin-top: 60px;
+  padding-bottom: 10px;
+  margin-left: 80px;
+}
+
+.acc-info-title {
+  position: absolute;
+  font-size: 25px;
+  font-weight: bold;
+  margin-top: 4em;
+  margin-left: 12em;
+}
+
+/*Form Full Name*/
+.acc-info-fname {
+  position: absolute;
+  margin-top: 105px;
+  margin-left: 70px;
+  font-weight: bold;
+}
+
+/*Form Last Name*/
+.acc-info-lname {
+  position: absolute;
+  margin-top: 10.5rem;
+  margin-left: 70px;
+  font-weight: bold;
+}
+
+/*Form Address*/
+.acc-info-house-no {
+  position: absolute;
+  margin-top: 14.5rem;
+  margin-left: 70px;
+  font-weight: bold;
+}
+
+.acc-info-street-name {
+  position: absolute;
+  margin-top: 18.8rem;
+  margin-left: 70px;
+  font-weight: bold;
+}
+
+.acc-info-city {
+  position: absolute;
+  margin-top: 22.8rem;
+  margin-left: 70px;
+  font-weight: bold;
+}
+
+.acc-info-country {
+  position: absolute;
+  margin-top: 27rem;
+  margin-left: 70px;
+  font-weight: bold;
+}
+
+/*Form Email*/
+.acc-info-email {
+  position: absolute;
+  margin-top: 31rem;
+  margin-left: 70px;
+  font-weight: bold;
+}
+
+/*Form Phone-No*/
+.acc-info-phone {
+  position: absolute;
+  margin-top: 35rem;
+  margin-left: 70px;
+  font-weight: bold;
+}
+
+/*Form Date-Of-Birth*/
+.acc-info-birth {
+  position: absolute;
+  margin-top: 39rem;
+  margin-left: 70px;
+  font-weight: bold;
+}
+
+/* TXT Boxes */
+.acc-info-txtbox-fname {
+  height: 40px;
+  width: 400px;
+  background: rgb(255, 255, 255);
+  border: white;
+  border-radius: 10px;
+  outline: auto;
+  color: #000000;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0px 10em;
+  padding-left: 30px;
+  margin-top: 4.7em;
+}
+
+.acc-info-txtbox-lname {
+  height: 40px;
+  width: 400px;
+  background: rgb(255, 255, 255);
+  border: white;
+  border-radius: 10px;
+  outline: auto;
+  color: #000000;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0px 10em;
+  padding-left: 30px;
+  margin-top: 25px;
+}
+
+.acc-info-txtbox-house {
+  height: 40px;
+  width: 300px;
+  background: rgb(255, 255, 255);
+  border: white;
+  border-radius: 10px;
+  outline: auto;
+  color: #000000;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0px 10em;
+  padding-left: 30px;
+  margin-top: 25px;
+}
+
+.acc-info-txtbox-street {
+  height: 40px;
+  width: 300px;
+  background: rgb(255, 255, 255);
+  border: white;
+  border-radius: 10px;
+  outline: auto;
+  color: #000000;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0px 10em;
+  padding-left: 30px;
+  margin-top: 25px;
+}
+
+.acc-info-txtbox-city {
+  height: 40px;
+  width: 300px;
+  background: rgb(255, 255, 255);
+  border: white;
+  border-radius: 10px;
+  outline: auto;
+  color: #000000;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0px 10em;
+  padding-left: 30px;
+  margin-top: 25px;
+}
+
+.acc-info-txtbox-country {
+  height: 40px;
+  width: 300px;
+  background: rgb(255, 255, 255);
+  border: white;
+  border-radius: 10px;
+  outline: auto;
+  color: #000000;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0px 10em;
+  padding-left: 30px;
+  margin-top: 25px;
+}
+
+.acc-info-txtbox-email {
+  height: 40px;
+  width: 350px;
+  background: rgb(255, 255, 255);
+  border: white;
+  border-radius: 10px;
+  outline: auto;
+  color: #000000;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0px 10em;
+  padding-left: 30px;
+  margin-top: 25px;
+}
+
+.acc-info-txtbox-phone {
+  height: 40px;
+  width: 200px;
+  background: rgb(255, 255, 255);
+  border: white;
+  border-radius: 10px;
+  outline: auto;
+  color: #000000;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0px 10em;
+  padding-left: 30px;
+  margin-top: 25px;
+}
+
+.acc-info-txtbox-dob {
+  height: 40px;
+  width: 170px;
+  background: rgb(255, 255, 255);
+  border: white;
+  border-radius: 10px;
+  outline: auto;
+  color: #000000;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0px 10em;
+  padding-left: 25px;
+  margin-top: 25px;
+}
+
+.acc-info-savebtn {
+  background: #3d3028;
+  width: 150px;
+  height: 45px;
+  font-size: 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  border-width: 0.5px;
+  font-weight: bold;
+  color: white;
+  margin-top: 30px;
+  margin-left: 38%;
+}
+
+.acc-info-savebtn:hover {
+  background-color: blue;
+  color: white;
+  box-shadow: 0 10px 16px 0 rgba(0, 0, 255, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+/* Card Info */
+.card-info-container {
+  width: 600px;
+  height: 350px;
+  background: rgba(255, 255, 255, 0.726);
+  margin-left: 100px;
+  margin-top: 60px;
+}
+
+.card-info-title {
+  position: absolute;
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 30px;
+  margin-left: 30px;
+}
+
+/*Form Card No*/
+.card-info-card-no {
+  position: absolute;
+  margin-top: 105px;
+  margin-left: 70px;
+  font-weight: bold;
+}
+
+.card-info-card-no-inputs {
+  margin-top: 35px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card-info-card-no-input {
+  display: flex;
+  align-items: center;
+  margin: auto;
+  width: 300px;
+  height: 40px;
+  background: white;
+  border: 1px solid black;
+  margin-left: 180px;
+  margin-top: 60px;
+}
+
+.card-info-card-no-input input {
+  text-align: center;
+  height: 38px;
+  width: 400px;
+  border: none;
+  outline: none;
+  color: #000000;
+  font-size: 15px;
+  margin: 0px 20px;
+}
+
+/*Form Expire Date*/
+.card-info-exp-date {
+  position: absolute;
+  margin-top: 30px;
+  margin-left: 70px;
+  font-weight: bold;
+}
+
+.card-info-exp-date-inputs {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card-info-exp-date-input {
+  display: flex;
+  align-items: center;
+  margin: auto;
+  width: 90px;
+  height: 40px;
+  background: white;
+  border: 1px solid black;
+  margin-left: 180px;
+}
+
+.card-info-exp-date-input input {
+  text-align: center;
+  height: 38px;
+  width: 50px;
+  border: none;
+  outline: none;
+  color: #000000;
+  font-size: 15px;
+  margin: 0px 20px;
+}
+
+/*Form CVV*/
+.card-info-cvv {
+  position: absolute;
+  margin-top: 30px;
+  margin-left: 70px;
+  font-weight: bold;
+}
+
+.card-info-cvv-inputs {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card-info-cvv-input {
+  display: flex;
+  align-items: center;
+  margin: auto;
+  width: 90px;
+  height: 40px;
+  background: white;
+  border: 1px solid black;
+  margin-left: 180px;
+}
+
+.card-info-cvv-input input {
+  text-align: center;
+  height: 38px;
+  width: 50px;
+  border: none;
+  outline: none;
+  color: #000000;
+  font-size: 15px;
+  margin: 0px 20px;
+}
+
+/* Card-Info-Save-btn */
+.card-info-save-btn-container {
+  text-align: right;
+}
+
+.card-info-savebtn {
+  margin-top: 40px;
+  margin-right: 80px;
+  font-size: 15px;
+  font-weight: bold;
+  width: 120px;
+  height: 40px;
+  border-radius: 5px;
+  background-color: #322b2b;
+  color: white;
+  border-color: transparent;
+  text-align: center;
+}
+
+.card-info-savebtn:hover {
+  background-color: blue;
+  color: white;
+  box-shadow: 0 10px 16px 0 rgba(0, 0, 255, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}

@@ -1,9 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Checkout.css";
 import CheckoutData from "./checkoutData";
+import { connect } from "react-redux";
+import { products } from "../../Actions";
 
-const Checkout = ({ minValue = 1, maxValue = 100 }) => {
+const { checkoutCart } = products;
+
+const Checkout = ({ checkoutCart, checkoutDetails }) => {
+  const minValue = 1;
+  const maxValue = 100;
   const [count, setCount] = useState(minValue);
+  const {userId} = localStorage.getItem("userId");
+
+  useEffect(() => {
+    checkoutCart(localStorage.getItem("userId"));
+  }, []);
+
+  useEffect(() => {
+    if (checkoutDetails.length > 0) {
+      
+    }
+  }, [checkoutDetails]);
 
   const handleIncrementCounter = () => {
     if (count < maxValue) {
@@ -37,21 +54,21 @@ const Checkout = ({ minValue = 1, maxValue = 100 }) => {
                   <div className="checkout-qnt-container">
                     <span className="checkout-qnt-name">Quantity</span>
                     <div className="checkout-qunt-btn">
-                      <button
+                      {/* <button
                         className="checkout-increment-btn"
                         onClick={handleDecrementCounter}
                       >
                         <span className="checkout-min-btn">-</span>
-                      </button>
+                      </button> */}
 
                       <p className="checkout-p">{count}</p>
 
-                      <button
+                      {/* <button
                         className="checkout-increment-btn"
                         onClick={handleIncrementCounter}
                       >
                         <span className="checkout-add-btn">+</span>
-                      </button>
+                      </button> */}
                     </div>
                   </div>
                 </div>
@@ -91,11 +108,10 @@ const Checkout = ({ minValue = 1, maxValue = 100 }) => {
           </div>
         </div>
 
-
         <div className="checkbox-container">
-            <input type="checkbox" className="bill-checkbox" />
-            Save Card Details
-          </div>
+          <input type="checkbox" className="bill-checkbox" />
+          Save Card Details
+        </div>
 
         <div className="checkout-card-info-save-btn-container">
           <button className="checkout-card-info-savebtn">Save Details</button>
@@ -105,4 +121,14 @@ const Checkout = ({ minValue = 1, maxValue = 100 }) => {
   );
 };
 
-export default Checkout;
+const mapStateToProps = (state) => {
+  return {
+    checkoutDetails: state.craftbay.checkoutDetails,
+  };
+};
+
+const mapDispatchToProps = {
+  checkoutCart,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Checkout);
