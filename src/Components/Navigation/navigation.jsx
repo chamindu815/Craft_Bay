@@ -51,13 +51,13 @@ const Navigation = () => {
         </div>
 
         <div className="nav-profile-img">
-        <a href="./profile">
+        <a href="/profile">
           <img className="nav-profile-imgs" src={profile} alt="" />
         </a>
         </div>
 
         <div className="nav-order-img">
-        <a href="./order">
+        <a href="/userorders">
           <img className="nav-order-imgs" src={order} alt="" />
         </a>
         </div>
@@ -70,7 +70,7 @@ const Navigation = () => {
         </div>
 
         <div className="nav-signout-img">
-        <a href="./login">
+        <a href="/login">
           <img className="nav-signout-imgs" src={signout} alt="" />
         </a>
         </div>

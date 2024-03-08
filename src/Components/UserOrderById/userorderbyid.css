@@ -1,0 +1,75 @@
+.user-by-id-order-bg {
+    width: 100%;
+    height: 100%;
+    display: flex;
+  }
+  
+  .user-by-id-order-container {
+    background-color: rgba(255, 255, 255, 0.829);
+    margin-top: 5%;
+    margin-left: 15%;
+    width: 70%;
+    height: fit-content;
+    border-radius: 15px;
+  }
+  
+  .user-by-id-order-title {
+    text-align: left;
+    margin-left: 50px;
+    font-weight: bold;
+    text-decoration: underline;
+    font-size: 25px;
+  }
+
+  .user-by-id-order-by-order-container {
+    display: flex;
+    background-color: white;
+    margin-top: 3%;
+    margin-left: 5%;
+    margin-bottom: 30px;
+    width: 90%;
+    height: 180px;
+    border: 1px solid black;
+  }
+
+  .user-by-id-order-by-order-img {
+    width: 140px;
+    height: 140px;
+    border: 1px solid black;
+    margin-top: 2%;
+    margin-left: 2%;
+  }
+
+  .user-by-id-order-by-order-prodname {
+    margin-left: 3%;
+    margin-top: 3.5%;
+  }
+  
+  .user-by-id-order-by-order-prodname-lbl {
+    margin-left: 2%;
+    margin-top: 3.8%;
+  }
+  
+  .user-by-id-order-by-order-qty {
+    position: absolute;
+    margin-top: 4.6%;
+    margin-left: 12.3%;
+  }
+  
+  .user-by-id-order-by-order-qty-lbl {
+    position: absolute;
+    margin-top: 4.9%;
+    margin-left: 22.5%;
+  }
+  
+  .user-by-id-order-by-order-price {
+    position: absolute;
+    margin-top: 7%;
+    margin-left: 12.3%;
+  }
+  
+  .user-by-id-order-by-order-price-lbl {
+    position: absolute;
+    margin-top: 7.2%;
+    margin-left: 22.5%;
+  }

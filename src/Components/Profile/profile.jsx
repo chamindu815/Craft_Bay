@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 import "./profile.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -10,6 +12,8 @@ const { getUserById } = products;
 const Profile = ({ getUserById, userById }) => {
   const [startDate, setStartDate] = useState(new Date());
   const userId = localStorage.getItem("userId");
+  const navigate = useNavigate();
+
   
 
   useEffect(() => {
@@ -146,6 +150,10 @@ const Profile = ({ getUserById, userById }) => {
         <div className="card-info-save-btn-container">
           <button className="card-info-savebtn">Save Details</button>
         </div>
+        <div className="admin-dashboard-btn-container">
+      <button className="admin-dashboard-btn" onClick={() => navigate(`/admindashboard`)}>Admin Dashboard</button>
+      </div>
+
       </div>
     </div>
   );

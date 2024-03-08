@@ -6,13 +6,13 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import "./admininventoryreport.css";
+import "./adminsalesreport.css";
 
 const createData = (name, calories, fat, carbs) => {
   return { name, calories, fat, carbs };
 };
 
-const Admininventoryreport = () => {
+const AdminSalesReport = () => {
   const rows = [
     createData("Frozen", 159, 6.0, 24),
     createData("Ice ", 237, 9.0, 37),
@@ -22,9 +22,9 @@ const Admininventoryreport = () => {
   ];
 
   return (
-    <div className="admin-inventory-report-bg">
+    <div className="admin-sales-report-bg">
       <div>
-      <h2 className="admin-invent-report-title">Inventory Report</h2>
+        <h2 className="admin-sales-report-title">Sales Report</h2>
         <Paper sx={{ width: "80em", marginLeft: "5%", marginTop: "2%", marginBottom:"3%" }}>
           <TableContainer component={Paper}>
             <Table style={{ border: "solid" }} aria-label="simple table">
@@ -89,11 +89,11 @@ const Admininventoryreport = () => {
           </TableContainer>
         </Paper>
       </div>
-      <div className="admin-invent-report-download-btn-container">
-        <button className="admin-invent-report-download-btn">Download</button>
+      <div className="admin-sales-report-download-btn-container">
+        <button className="admin-sales-report-download-btn">Download</button>
       </div>
     </div>
   );
 };
 
-export default Admininventoryreport;
+export default AdminSalesReport;

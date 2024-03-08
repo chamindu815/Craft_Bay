@@ -1,0 +1,131 @@
+.admin-by-id-order-bg {
+    width: 100%;
+    height: 100%;
+    display: flex;
+  }
+  
+  .admin-by-id-order-container {
+    background-color: rgba(255, 255, 255, 0.829);
+    margin-top: 5%;
+    margin-left: 15%;
+    width: 70%;
+    height: fit-content;
+    border-radius: 15px;
+  }
+  
+  .admin-by-id-order-title {
+    text-align: left;
+    margin-left: 50px;
+    font-weight: bold;
+    text-decoration: underline;
+    font-size: 25px;
+  }
+
+  .admin-by-id-order-by-order-container {
+    display: flex;
+    background-color: white;
+    margin-top: 3%;
+    margin-left: 5%;
+    margin-bottom: 30px;
+    width: 90%;
+    height: 180px;
+    border: 1px solid black;
+  }
+
+  .admin-by-id-order-by-order-img {
+    width: 140px;
+    height: 140px;
+    border: 1px solid black;
+    margin-top: 2%;
+    margin-left: 2%;
+  }
+
+  .admin-by-id-order-by-order-prodname {
+    margin-left: 3%;
+    margin-top: 3.5%;
+  }
+  
+  .admin-by-id-order-by-order-prodname-lbl {
+    margin-left: 2%;
+    margin-top: 3.8%;
+  }
+  
+  .admin-by-id-order-by-order-qty {
+    position: absolute;
+    margin-top: 4.6%;
+    margin-left: 12.3%;
+  }
+  
+  .admin-by-id-order-by-order-qty-lbl {
+    position: absolute;
+    margin-top: 4.9%;
+    margin-left: 22.5%;
+  }
+  
+  .admin-by-id-order-by-order-price {
+    position: absolute;
+    margin-top: 7%;
+    margin-left: 12.3%;
+  }
+  
+  .admin-by-id-order-by-order-price-lbl {
+    position: absolute;
+    margin-top: 7.2%;
+    margin-left: 22.5%;
+  }
+
+  .admin-by-id-order-by-order-status-lbl{
+    position: absolute;
+    margin-top: 4.5%;
+    margin-left: 50%;
+    border: 2px solid black;
+    padding: 10px 20px 8px 20px;
+    border-radius: 10px;
+    font-weight: bold;
+  }
+
+  .admin-by-id-order-status-selector-container {
+    text-align: right;
+    margin-right: 7em;
+  }
+  
+  .admin-by-id-order-apply-btn-container {
+    position: absolute;
+    margin-left: 56em;
+  }
+
+  .admin-by-id-order-apply-btn {
+    height: 40px;
+    width: 120px;
+    margin-right: 30px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 25px;
+    background: #3d3028;
+    color: white;
+    border-radius: 5px;
+    border: none;
+  }
+
+  .admin-by-id-order-apply-btn:hover {
+    background-color: blue;
+    color: white;
+    box-shadow: 0 10px 16px 0 rgba(0, 0, 255, 0.24),
+      0 17px 50px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  .admin-by-id-order-status-selector {
+    font-size: 20px;
+    margin-top: 20px;
+    margin-left: 50px;
+    margin-right: 0px;
+    width: 200px;
+    height: 50px;
+    border-radius: 5px;
+    padding-left: 25px;
+    color: #444444;
+    font-weight: bold;
+    border: 1px solid #444444;
+    padding-left: 40px;
+  }

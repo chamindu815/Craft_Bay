@@ -18,7 +18,10 @@
 
 .prod-single-title{
     margin-top: 5px;
-    margin-left: 20px;
+    /* margin-left: 20px; */
+    color: rgb(75, 75, 75);
+    text-align: center;
+    text-decoration: underline;
 }
 
 .prod-img-bg{

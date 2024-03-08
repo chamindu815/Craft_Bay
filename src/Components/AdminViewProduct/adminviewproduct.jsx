@@ -13,6 +13,7 @@ import { connect } from 'react-redux';
 import { products } from '../../Actions';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
+import "./adminviewproduct.css"
 
 
 const { getProducts } = products;
@@ -48,8 +49,8 @@ const AdminViewProduct = ({ getProducts, products }) => {
   }
 
   return (
-    <div>
-      <Paper sx={{ width: "90%", marginLeft: "5%", marginTop: "3%" }}>
+    <div className="admin-view-product-bg">
+      <Paper sx={{ width: "95%", marginLeft: "2.5%", marginTop: "2.5%" }}>
         {deleteOpen !== 0 && (
           <ProductDelete
             onCancel={handleCancelPopup}
