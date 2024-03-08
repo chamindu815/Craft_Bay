@@ -47,7 +47,7 @@ function App() {
           <Route path="/adminaddproduct" element={<AdminAddProduct />}></Route>
           <Route path="/home" element={<Home />}></Route>
           <Route path="/cart" element={<Cart />}></Route>
-          <Route path="/checkout" element={<Checkout />}></Route>
+          <Route path="/checkout/:id" element={<Checkout />}></Route>
           <Route path="/contactus" element={<ContactUs/>}></Route>
           <Route path="/profile" element={<Profile/>}></Route>
           <Route path="/adminprofile" element={<AdminProfile/>}></Route>
@@ -63,7 +63,7 @@ function App() {
           <Route path="/adminorders" element={<AdminOrder />} />
           <Route path="/userorders" element={<UserOrder />} />
           <Route path="/adminordersbyid" element={<AdminOrderById />} />
-          <Route path="/userordersbyid" element={<UserOrderById />} />
+          <Route path="/userordersbyid/:id" element={<UserOrderById />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -9,6 +9,9 @@ const initialState = {
   cartDetails:{},
   userById: {},
   checkoutDetails:{},
+  placeOrders:{},
+  orderByUserId:{},
+  orderByOrderId:{},
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -173,6 +176,51 @@ export default (state = initialState, { type, payload }) => {
     case "CART_CHECKOUT_FAIL":
       return Object.assign({}, state, {
         checkoutDetails: {},
+      });
+
+
+      //USER_PLACE_ORDERS
+    case "USER_PLACE_ORDERS":
+      return Object.assign({}, state, {
+        placeOrders: {},
+      });
+    case "USER_PLACE_ORDERS_SUCCESS":
+      return Object.assign({}, state, {
+        placeOrders: payload,
+      });
+    case "USER_PLACE_ORDERS_FAIL":
+      return Object.assign({}, state, {
+        placeOrders: {},
+      });
+
+
+      //USER_PLACE_ORDERS
+    case "USER_VIEW_ORDERS":
+      return Object.assign({}, state, {
+        orderByUserId: {},
+      });
+    case "USER_VIEW_ORDERS_SUCCESS":
+      return Object.assign({}, state, {
+        orderByUserId: payload,
+      });
+    case "USER_VIEW_ORDERS_FAIL":
+      return Object.assign({}, state, {
+        orderByUserId: {},
+      });
+
+
+       //USER_VIEW_ORDERS_BY_ORDERID
+    case "USER_VIEW_ORDERS_BY_ORDERID":
+      return Object.assign({}, state, {
+        orderByOrderId: {},
+      });
+    case "USER_VIEW_ORDERS_BY_ORDERID_SUCCESS":
+      return Object.assign({}, state, {
+        orderByOrderId: payload,
+      });
+    case "USER_VIEW_ORDERS_BY_ORDERID_FAIL":
+      return Object.assign({}, state, {
+        orderByOrderId: {},
       });
 
 

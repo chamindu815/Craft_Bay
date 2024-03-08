@@ -168,4 +168,49 @@ export const products = {
     type: "CART_CHECKOUT_FAIL",
     payload: {},
   }),
+
+
+    //USER_PLACE_ORDERS
+    postUserPlaceOrders: (data) => ({
+      type: "USER_PLACE_ORDERS",
+      payload: data,
+    }),
+    postUserPlaceOrdersSuccess: (data) => ({
+      type: "USER_PLACE_ORDERS_SUCCESS",
+      payload: data,
+    }),
+    postUserPlaceOrdersFail: (error) => ({
+      type: "USER_PLACE_ORDERS_FAIL",
+      payload: {},
+    }),
+
+
+    //USER_VIEW_ORDERS
+    getOrderByUserId: (data) => ({
+      type: "USER_VIEW_ORDERS",
+      payload: data,
+    }),
+    getOrderByUserIdSuccess: (data) => ({
+      type: "USER_VIEW_ORDERS_SUCCESS",
+      payload: data,
+    }),
+    getOrderByUserIdFail: (error) => ({
+      type: "USER_VIEW_ORDERS_FAIL",
+      payload: {},
+    }),
+
+    
+     //USER_VIEW_ORDERS_BY_ORDERID
+     userGetOrderByOrderId: (data) => ({
+      type: "USER_VIEW_ORDERS_BY_ORDERID",
+      payload: data,
+    }),
+    userGetOrderByOrderIdSuccess: (data) => ({
+      type: "USER_VIEW_ORDERS_BY_ORDERID_SUCCESS",
+      payload: data,
+    }),
+    userGetOrderByOrderIdFail: (error) => ({
+      type: "USER_VIEW_ORDERS_BY_ORDERID_FAIL",
+      payload: {},
+    }),
 };

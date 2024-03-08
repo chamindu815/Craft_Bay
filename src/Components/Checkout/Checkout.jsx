@@ -3,36 +3,47 @@ import "./Checkout.css";
 import CheckoutData from "./checkoutData";
 import { connect } from "react-redux";
 import { products } from "../../Actions";
+import { useParams } from 'react-router-dom';
 
-const { checkoutCart } = products;
 
-const Checkout = ({ checkoutCart, checkoutDetails }) => {
+const { postUserPlaceOrders } = products;
+
+const Checkout = ({ postUserPlaceOrders, placeOrders }) => {
   const minValue = 1;
   const maxValue = 100;
   const [count, setCount] = useState(minValue);
-  const {userId} = localStorage.getItem("userId");
+  const userId = localStorage.getItem("userId");
+  const {id} = useParams();
 
   useEffect(() => {
-    checkoutCart(localStorage.getItem("userId"));
+    postUserPlaceOrders(userId);
   }, []);
 
   useEffect(() => {
-    if (checkoutDetails.length > 0) {
-      
-    }
-  }, [checkoutDetails]);
+    postUserPlaceOrders(id);
+  }, [id]);
 
-  const handleIncrementCounter = () => {
-    if (count < maxValue) {
-      setCount((prevState) => prevState + 1);
+  useEffect(() => {
+    if (placeOrders.length > 0) {
     }
-  };
+  }, [placeOrders]);
 
-  const handleDecrementCounter = () => {
-    if (count > minValue) {
-      setCount((prevState) => prevState - 1);
-    }
-  };
+  // const handleIncrementCounter = () => {
+  //   if (count < maxValue) {
+  //     setCount((prevState) => prevState + 1);
+  //   }
+  // };
+
+  // const handleDecrementCounter = () => {
+  //   if (count > minValue) {
+  //     setCount((prevState) => prevState - 1);
+  //   }
+  // };
+
+  console.log("userIdchk", userId);
+  console.log("cartIdchk", id);
+
+
   return (
     <div className="checkout-bg">
       <div className="checkout-main-container">
@@ -116,6 +127,9 @@ const Checkout = ({ checkoutCart, checkoutDetails }) => {
         <div className="checkout-card-info-save-btn-container">
           <button className="checkout-card-info-savebtn">Save Details</button>
         </div>
+        <div className="place-order-btn-container">
+          <button className="place-order-btn">PLACE ORDER</button>
+        </div>
       </div>
     </div>
   );
@@ -123,12 +137,12 @@ const Checkout = ({ checkoutCart, checkoutDetails }) => {
 
 const mapStateToProps = (state) => {
   return {
-    checkoutDetails: state.craftbay.checkoutDetails,
+    placeOrders: state.craftbay.placeOrders,
   };
 };
 
 const mapDispatchToProps = {
-  checkoutCart,
+  postUserPlaceOrders,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Checkout);

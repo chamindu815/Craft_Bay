@@ -204,5 +204,53 @@ export const checkoutCart = (params) => {
   });
 };
 
+//NEED TO ASK ABOUT UI
+//USER_PLACE_ORDERS
+export const postUserPlaceOrders = (params) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const data = await axios.post(
+        `http://localhost:8089/craftbay/user/${params}/cart/${params}/place-order`,
+        params
+      );
+      resolve(data);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
+
+//USER_VIEW_ORDERS
+export const getOrderByUserId = (params) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const data = await axios.get(
+        `http://localhost:8089/craftbay/user/${params}/my-orders`,
+        params
+      );
+      resolve(data);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
+
+//USER_VIEW_ORDERS_BY_ORDERID
+export const userGetOrderByOrderId = (params) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const data = await axios.get(
+        `http://localhost:8089/craftbay/user/${params}/orders/${params}`,
+        params
+      );
+      resolve(data);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
 
 

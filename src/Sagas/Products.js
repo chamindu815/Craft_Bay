@@ -12,6 +12,9 @@ import {
   viewCart,
   getUserById,
   checkoutCart,
+  postUserPlaceOrders,
+  getOrderByUserId,
+  userGetOrderByOrderId,
 } from "../Services/Products";
 import { put, call, takeLatest } from "redux-saga/effects";
 import { products } from "../Actions";
@@ -41,6 +44,12 @@ const {
   getUserByIdFail,
   checkoutCartSuccess,
   checkoutCartFail,
+  postUserPlaceOrdersSuccess,
+  postUserPlaceOrdersFail,
+  getOrderByUserIdSuccess,
+  getOrderByUserIdFail,
+  userGetOrderByOrderIdSuccess,
+  userGetOrderByOrderIdFail
 } = products;
 const ProductSagas = {
   userLoginSaga: function* (action) {
@@ -175,6 +184,45 @@ const ProductSagas = {
       yield put(checkoutCartFail(error));
     }
   },
+
+
+    //USER_PLACE_ORDERS
+    postUserPlaceOrdersSaga: function* (action) {
+      const params = action?.payload ?? {};
+      try {
+        const articleList = yield call(postUserPlaceOrders, params);
+        console.log("articleList", articleList);
+        yield put(postUserPlaceOrdersSuccess(articleList));
+      } catch (error) {
+        yield put(postUserPlaceOrdersFail(error));
+      }
+    },
+
+
+    //USER_VIEW_ORDERS
+    getOrderByUserIdSaga: function* (action) {
+      const params = action?.payload ?? {};
+      try {
+        const articleList = yield call(getOrderByUserId, params);
+        console.log("articleList", articleList);
+        yield put(getOrderByUserIdSuccess(articleList));
+      } catch (error) {
+        yield put(getOrderByUserIdFail(error));
+      }
+    },
+
+
+    //USER_VIEW_ORDERS_BY_ORDERID
+    userGetOrderByOrderIdSaga: function* (action) {
+      const params = action?.payload ?? {};
+      try {
+        const articleList = yield call(userGetOrderByOrderId, params);
+        console.log("articleList", articleList);
+        yield put(userGetOrderByOrderIdSuccess(articleList));
+      } catch (error) {
+        yield put(userGetOrderByOrderIdFail(error));
+      }
+    },
 };
 
 export default [
@@ -191,6 +239,9 @@ export default [
   takeLatest("VIEW_CART", ProductSagas.viewCartSaga),
   takeLatest("GET_USER_BY_ID", ProductSagas.getUserByIdSaga),
   takeLatest("CART_CHECKOUT", ProductSagas.checkoutCartSaga),
+  takeLatest("USER_PLACE_ORDERS", ProductSagas.postUserPlaceOrdersSaga),
+  takeLatest("USER_VIEW_ORDERS", ProductSagas.getOrderByUserIdSaga),
+  takeLatest("USER_VIEW_ORDERS_BY_ORDERID", ProductSagas.userGetOrderByOrderIdSaga),
 
 
   

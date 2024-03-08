@@ -13,12 +13,11 @@ const Cart = ({ viewCart, cartDetails }) => {
   const minValue = 1;
   const maxValue = 100;
   const [count, setCount] = useState(minValue);
-  // const { id } = useParams();
-  const { userId } = localStorage.getItem("userId");
+  const userId  = localStorage.getItem("userId");
   const navigate = useNavigate();
 
   useEffect(() => {
-    viewCart(localStorage.getItem("userId"));
+    viewCart(userId);
   }, []);
 
   useEffect(() => {
@@ -39,6 +38,8 @@ const Cart = ({ viewCart, cartDetails }) => {
       setCount((prevState) => prevState - 1);
     }
   };
+
+  console.log("userIdcrt", userId);
   return (
     <div className="cart-bg">
       <div className="cart-main-container">
@@ -93,6 +94,14 @@ const Cart = ({ viewCart, cartDetails }) => {
                     </div>
                   </div>
                 </div>
+                <div className="checkout-btn-container">
+            <button
+              className="checkoutbtn"
+              onClick={() => navigate(`/checkout/${curElm.id}`)}
+            >
+              Checkout
+            </button>
+          </div>
               </div>
             );
           })}
@@ -175,14 +184,14 @@ const Cart = ({ viewCart, cartDetails }) => {
             </div>
           </div>
 
-          <div className="checkout-btn-container">
+          {/* <div className="checkout-btn-container">
             <button
               className="checkoutbtn"
-              onClick={() => navigate(`/checkout`)}
+              onClick={() => navigate(`/checkout/${curElm.id}`)}
             >
               Checkout
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
