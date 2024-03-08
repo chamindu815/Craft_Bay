@@ -84,11 +84,11 @@ const Cart = ({ viewCart, cartDetails }) => {
                         >
                           <span className="cart-add-btn">+</span>
                         </button>
-
-                        
                       </div>
                       <div className="cart-item-dlt-btn-container">
-                      <button><BsFillTrashFill className="delete-cart-item"/></button>
+                        <button>
+                          <BsFillTrashFill className="delete-cart-item" />
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -111,30 +111,59 @@ const Cart = ({ viewCart, cartDetails }) => {
           <span className="cart-billaddress-title">Billing Address</span>
 
           <div className="bill-add-container">
-            <span className="cart-billaddress">Address</span>
-            <div className="bill-address-inputs">
-              <div className="bill-address-input">
-                <input type="bill-address" placeholder="" />
-              </div>
-            </div>
-          </div>
-
-          <div className="bill-phone-container">
+            <span className="cart-houseno">House No</span>
+            <span className="cart-street">Street</span>
+            <span className="cart-city">City</span>
+            <span className="cart-country">Country</span>
             <span className="cart-Phone-no">Phone Number</span>
-            <div className="bill-phone-inputs">
-              <div className="bill-phone-input">
-                <input type="bill-phone" placeholder="" />
-              </div>
-            </div>
+            <span className="cart-Email">Email</span>
+          </div>
+          <div>
+            <input
+              className="cart-txtbox-house"
+              type="text"
+              placeholder="House No"
+            />
           </div>
 
-          <div className="bill-email-container">
-            <span className="cart-Email">Email</span>
-            <div className="bill-email-inputs">
-              <div className="bill-email-input">
-                <input type="bill-email" placeholder="" />
-              </div>
-            </div>
+          <div>
+            <input
+              className="cart-txtbox-street"
+              type="text"
+              placeholder="Street"
+            />
+          </div>
+
+          <div>
+            <input
+              className="cart-txtbox-city"
+              type="text"
+              placeholder="City"
+            />
+          </div>
+
+          <div>
+            <input
+              className="cart-txtbox-country"
+              type="text"
+              placeholder="Country"
+            />
+          </div>
+
+          <div>
+            <input
+              className="cart-txtbox-country"
+              type="text"
+              placeholder="Phone No"
+            />
+          </div>
+
+          <div>
+            <input
+              className="cart-txtbox-country"
+              type="text"
+              placeholder="Email"
+            />
           </div>
 
           <div className="checkbox-container">

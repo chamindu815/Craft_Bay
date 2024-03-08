@@ -1,4 +1,4 @@
-.admin-inventory-report-bg{
+.admin-sales-report-bg{
     width: 98%;
     margin-left: 1%;
     margin-top: 3%;
@@ -9,16 +9,16 @@
     border-radius: 15px;
 }
 
-.admin-invent-report-title{
+.admin-sales-report-title{
     text-align: center;
     margin-left: 200px;
 }
 
-.admin-invent-report-download-btn-container{
+.admin-sales-report-download-btn-container{
     text-align: right;
 }
 
-.admin-invent-report-download-btn {
+.admin-sales-report-download-btn {
   height: 40px;
   width: 120px;
   font-size: 15px;
@@ -30,10 +30,9 @@
   border-radius: 5px;
   border: none;
   margin-left: 5.7em;
-  
 }
 
-.admin-invent-report-download-btn:hover {
+.admin-sales-report-download-btn:hover {
   background-color: blue;
   color: white;
   box-shadow: 0 10px 16px 0 rgba(0, 0, 255, 0.24),

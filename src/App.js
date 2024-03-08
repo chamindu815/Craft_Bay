@@ -14,16 +14,22 @@ import Profile from"./Components/Profile/profile";
 import Checkout from "./Components/Checkout/Checkout";
 import AdminProfile from "./Components/AdminProfile/adminprofile";
 import AdminInventoryReport from "./Components/AdminInventoryReport/admininventoryreport";
-import AdminRevenueReport from "./Components/AdminRevenueReport/adminrevenuereport";
 import AboutUs from "./Components/AboutUs/aboutus";
 import AdminUpdateProduct from "./Components/AdminUpdateProduct/adminupdateproduct";
 import Modal from "./Components/Popup/Modal/Modal";
 import AdminViewProduct from "./Components/AdminViewProduct/adminviewproduct";
 import ProductDelete from "./Components/Popup/ProductDelete/productdelete";
 import Shop from "./Components/Shop/Shop";
+import AdminDashboard from "./Components/AdminDashboard/admindashboard";
+import AdminOrder from "./Components/AdminOrder/adminorder";
+import UserOrder from "./Components/UserOrder/userorder";
+import AdminOrderById from "./Components/AdminOrderById/adminorderbyid";
+import UserOrderById from "./Components/UserOrderById/userorderbyid";
 import store from './store';
 import { Provider } from 'react-redux';
-import AdminDashboard from "./Components/AdminDashboard/admindashboard"
+import AdminSalesReport from "./Components/AdminSalesReport/adminsalesreport";
+
+
 
 
 function App() {
@@ -46,7 +52,7 @@ function App() {
           <Route path="/profile" element={<Profile/>}></Route>
           <Route path="/adminprofile" element={<AdminProfile/>}></Route>
           <Route path="/admininventoryreport" element={<AdminInventoryReport/>}></Route>
-          <Route path="/adminrevenuereport" element={<AdminRevenueReport/>}></Route>
+          <Route path="/adminsalesreport" element={<AdminSalesReport/>}></Route>
           <Route path="/aboutus" element={<AboutUs />} />
           <Route path="/adminupdateproduct/:id" element={<AdminUpdateProduct />} />
           <Route path="/modal" element={<Modal />} />
@@ -54,6 +60,10 @@ function App() {
           <Route path="/productdelete" element={<ProductDelete />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/admindashboard" element={<AdminDashboard />} />
+          <Route path="/adminorders" element={<AdminOrder />} />
+          <Route path="/userorders" element={<UserOrder />} />
+          <Route path="/adminordersbyid" element={<AdminOrderById />} />
+          <Route path="/userordersbyid" element={<UserOrderById />} />
         </Route>
       </Routes>
     </BrowserRouter>

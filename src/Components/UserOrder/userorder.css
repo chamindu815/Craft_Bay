@@ -1,0 +1,101 @@
+.user-order-bg {
+    width: 100%;
+    height: 100%;
+    display: flex;
+  }
+  
+  .user-order-container {
+    background-color: rgba(255, 255, 255, 0.829);
+    margin-top: 5%;
+    margin-left: 5%;
+    width: 90%;
+    height: fit-content;
+    border-radius: 15px;
+  }
+  
+  .user-order-title {
+    text-align: center;
+    font-weight: bold;
+    text-decoration: underline;
+    font-size: 25px;
+  }
+
+  .user-order-by-order-container {
+    display: flex;
+    background-color: white;
+    margin-top: 3%;
+    margin-left: 5%;
+    margin-bottom: 30px;
+    width: 90%;
+    height: 180px;
+    border: 1px solid black;
+  }
+
+  .user-order-by-order-id {
+    position: absolute;
+    margin-left: 1%;
+    margin-top: 10px;
+  }
+
+  .user-order-by-order-img {
+    width: 120px;
+    height: 120px;
+    border: 1px solid black;
+    margin-top: 3.5%;
+    margin-left: 2%;
+  }
+
+  .user-order-by-order-fname {
+    margin-left: 3%;
+    margin-top: 3.5%;
+  }
+  
+  .user-order-by-order-fname-lbl {
+    margin-left: 2%;
+    margin-top: 3.8%;
+  }
+  
+  .user-order-by-order-address {
+    position: absolute;
+    margin-top: 5%;
+    margin-left: 11.8%;
+  }
+  
+  .user-order-by-order-address-lbl {
+    position: absolute;
+    margin-top: 5.2%;
+    margin-left: 20%;
+  }
+  
+  .user-order-by-order-total {
+    position: absolute;
+    margin-top: 7%;
+    margin-left: 11.8%;
+  }
+  
+  .user-order-by-order-total-lbl {
+    position: absolute;
+    margin-top: 7.3%;
+    margin-left: 20%;
+  }
+
+  .user-order-by-order-status-lbl{
+    position: absolute;
+    margin-top: 4.5%;
+    margin-left: 60%;
+    border: 2px solid black;
+    padding: 10px 20px 8px 20px;
+    border-radius: 10px;
+    font-weight: bold;
+  }
+
+  .user-order-by-order-more-btn{
+    margin-left: 50%;
+    margin-top: 5.1%;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+}

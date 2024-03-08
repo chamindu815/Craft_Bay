@@ -2,3 +2,15 @@
     font-size: large;
     font-weight: bold;
 }
+
+.admin-view-product-bg{
+    background: rgba(255, 255, 255, 0.829);
+    width: 98%;
+    margin-left: 1%;
+    margin-top: 3%;
+    height: fit-content;
+    display: flex;
+    border-radius: 15px;
+    padding-bottom: 30px;
+
+}

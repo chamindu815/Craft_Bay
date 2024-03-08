@@ -141,6 +141,7 @@
   background: rgba(255, 255, 255, 0.829);
   margin-top: 30px;
   margin-left: 70px;
+  border-radius: 15px;
 }
 
 .cart-ordersum-title {
@@ -175,10 +176,13 @@
   display: flex;
   flex-direction: column;
   width: 550px;
-  height: 500px;
+  height: fit-content;
   background: rgba(255, 255, 255, 0.829);
   margin-top: 50px;
   margin-left: 70px;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
+  border-radius: 15px;
 }
 
 .cart-billaddress-title {
@@ -188,25 +192,112 @@
   margin-top: 30px;
 }
 
-.cart-billaddress {
+.cart-houseno {
+  position: absolute;
   font-size: 20px;
   font-weight: bold;
   margin-left: 60px;
-  margin-top: 70px;
+  margin-top: 35px;
+}
+
+.cart-street {
+  position: absolute;
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 60px;
+  margin-top: 5em;
+}
+
+.cart-city {
+  position: absolute;
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 60px;
+  margin-top: 8em;
+}
+
+.cart-country {
+  position: absolute;
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 60px;
+  margin-top: 11.5em;
+}
+
+.cart-txtbox-house {
+  height: 40px;
+  width: 300px;
+  background: rgb(255, 255, 255);
+  border: white;
+  border-radius: 10px;
+  outline: auto;
+  color: #000000;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0px 11em;
+  padding-left: 30px;
+  margin-top: 25px;
+}
+
+.cart-txtbox-street {
+  height: 40px;
+  width: 300px;
+  background: rgb(255, 255, 255);
+  border: white;
+  border-radius: 10px;
+  outline: auto;
+  color: #000000;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0px 11em;
+  padding-left: 30px;
+  margin-top: 25px;
+}
+
+.cart-txtbox-city {
+  height: 40px;
+  width: 300px;
+  background: rgb(255, 255, 255);
+  border: white;
+  border-radius: 10px;
+  outline: auto;
+  color: #000000;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0px 11em;
+  padding-left: 30px;
+  margin-top: 25px;
+}
+
+.cart-txtbox-country {
+  height: 40px;
+  width: 300px;
+  background: rgb(255, 255, 255);
+  border: white;
+  border-radius: 10px;
+  outline: auto;
+  color: #000000;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0px 11em;
+  padding-left: 30px;
+  margin-top: 25px;
 }
 
 .cart-Phone-no {
+  position: absolute;
   font-size: 20px;
   font-weight: bold;
   margin-left: 60px;
-  margin-top: 50px;
+  margin-top: 14.7em;
 }
 
 .cart-Email {
+  position: absolute;
   font-size: 20px;
   font-weight: bold;
   margin-left: 60px;
-  margin-top: 50px;
+  margin-top: 18em;
 }
 
 .cart-item-dlt-btn-container {
@@ -241,7 +332,7 @@
   align-items: center;
   margin: auto;
   width: 300px;
-  height: 100px;
+  height: 50px;
   background: white;
   margin-left: 80px;
   /* border-radius: 50px; */
@@ -357,6 +448,7 @@
   color: white;
   border-color: transparent;
   text-align: center;
+  cursor: pointer;
 }
 
 .checkoutbtn:hover {
