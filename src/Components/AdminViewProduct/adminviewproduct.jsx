@@ -26,7 +26,6 @@ const AdminViewProduct = ({ getProducts, products }) => {
   }, []);
 
   useEffect(() => {
-    console.log("products",products);
     if (products.length > 0) {
       NotificationManager.success('Products Load Successfully!', 'Success', 3000);
     } 

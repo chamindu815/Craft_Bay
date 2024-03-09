@@ -8,11 +8,9 @@ const {deleteProducts} = products;
 
 const productdelete = ({ onCancel, itemId, deleteProducts }) => {
   const cancelPopup = () => {
-    console.log("cancelPopup");
   };
   
   const onDeleteItem = () => {
-    console.log("onDeleteItem",itemId);
     onCancel()
     deleteProducts(itemId)
 

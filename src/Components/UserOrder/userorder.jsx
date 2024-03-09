@@ -23,8 +23,8 @@ const UserOrder = ({ getOrderByUserId, orderByUserId }) => {
     <div className="user-order-bg">
       <div className="user-order-container">
         <h2 className="user-order-title">My Orders</h2>
-        {Array.isArray(orderByUserId) && orderByUserId.map((curElm) => {
-          return (
+        {/* {Array.isArray(orderByUserId) && orderByUserId.map((curElm) => {
+          return ( */}
           <div className="user-order-by-order-container">
             <h3 className="user-order-by-order-id">Order No : #</h3>
             <div className="user-order-by-order-img">
@@ -32,6 +32,7 @@ const UserOrder = ({ getOrderByUserId, orderByUserId }) => {
             </div>
             <h3 className="user-order-by-order-fname">Full Name :</h3>
             <label className="user-order-by-order-fname-lbl">
+            Chamindu Anjana De Alwis
             </label>
 
             <h3 className="user-order-by-order-address">Address :</h3>
@@ -44,17 +45,19 @@ const UserOrder = ({ getOrderByUserId, orderByUserId }) => {
 
             <label className="user-order-by-order-status-lbl"> STATUS </label>
 
+            <button className="cancel-order"> Cancel Order</button>
+
             <button className="user-order-by-order-more-btn">
               <img
                 className="next-img"
                 src={nextimg}
                 alt=""
-                onClick={() => navigate(`/userordersbyid/${curElm.id}`)}
+                // onClick={() => navigate(`/userordersbyid/${curElm.id}`)}
               />
             </button>
           </div>
-        );
-      })}
+        {/* );
+      })} */}
       </div>
     </div>
   );

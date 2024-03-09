@@ -62,7 +62,7 @@ function App() {
           <Route path="/admindashboard" element={<AdminDashboard />} />
           <Route path="/adminorders" element={<AdminOrder />} />
           <Route path="/userorders" element={<UserOrder />} />
-          <Route path="/adminordersbyid" element={<AdminOrderById />} />
+          <Route path="/adminordersbyid/:id" element={<AdminOrderById />} />
           <Route path="/userordersbyid/:id" element={<UserOrderById />} />
         </Route>
       </Routes>

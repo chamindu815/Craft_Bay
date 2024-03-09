@@ -19,7 +19,6 @@ const Shop = ({ getTopShopProducts, topShopProducts }) => {
   
 
   useEffect(() => {
-    console.log("topShopProducts",topShopProducts);
     if (Object.keys(topShopProducts).length > 0) {
       NotificationManager.success('Products Load Successfully!', 'Success', 3000);
     }

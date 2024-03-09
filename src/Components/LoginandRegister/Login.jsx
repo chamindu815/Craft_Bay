@@ -26,8 +26,6 @@ const Login = ({ userLogin, loginData }) => {
       }
       else if (loginData?.status == 200) {
         alert("User login successfully!");
-        console.log("login data",loginData);
-        console.log(loginData.userId);
         localStorage.setItem("token", loginData?.token);
         localStorage.setItem("userId", loginData?.userId);
         navigate('/home');

@@ -13,7 +13,7 @@ const Cart = ({ viewCart, cartDetails }) => {
   const minValue = 1;
   const maxValue = 100;
   const [count, setCount] = useState(minValue);
-  const userId  = localStorage.getItem("userId");
+  const userId = localStorage.getItem("userId");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -21,11 +21,9 @@ const Cart = ({ viewCart, cartDetails }) => {
   }, []);
 
   useEffect(() => {
-    console.log("products", cartDetails);
     if (cartDetails.length > 0) {
     }
   }, [cartDetails]);
-  console.log("cartDetails:", cartDetails);
 
   const handleIncrementCounter = () => {
     if (count < maxValue) {
@@ -39,7 +37,6 @@ const Cart = ({ viewCart, cartDetails }) => {
     }
   };
 
-  console.log("userIdcrt", userId);
   return (
     <div className="cart-bg">
       <div className="cart-main-container">
@@ -47,7 +44,6 @@ const Cart = ({ viewCart, cartDetails }) => {
 
         {Array.isArray(cartDetails?.cartItems) &&
           cartDetails.cartItems.map((curElm) => {
-            console.log("curElm: ", curElm);
             return (
               <div className="cart-container">
                 <div className="cart-content">
@@ -95,13 +91,13 @@ const Cart = ({ viewCart, cartDetails }) => {
                   </div>
                 </div>
                 <div className="checkout-btn-container">
-            <button
-              className="checkoutbtn"
-              onClick={() => navigate(`/checkout/${curElm.id}`)}
-            >
-              Checkout
-            </button>
-          </div>
+                  <button
+                    className="checkoutbtn"
+                    onClick={() => navigate(`/checkout/${curElm.id}`)}
+                  >
+                    Checkout
+                  </button>
+                </div>
               </div>
             );
           })}
@@ -182,6 +178,8 @@ const Cart = ({ viewCart, cartDetails }) => {
             <div className="bill-checkbox-text">
               <label>Set as Default Address</label>
             </div>
+
+            <button className="save-address-btn">Save Address Details</button>
           </div>
 
           {/* <div className="checkout-btn-container">

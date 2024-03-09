@@ -252,5 +252,52 @@ export const userGetOrderByOrderId = (params) => {
   });
 };
 
+//USER_CANCEL_ORDERS
+export const cancelUserPlaceOrders = (params) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const data = await axios.post(
+        `http://localhost:8089/craftbay/user/${params}/order/${params}/cancel-order`,
+        params
+      );
+      resolve(data);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
+
+//ADMIN_VIEW_ORDERS
+export const adminGetOrders = (params) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const data = await axios.get(
+        `http://localhost:8089/craftbay/admin/orders`,
+        params
+      );
+      resolve(data);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
+
+//ADMIN_VIEW_ORDERS_BY_ORDERID
+export const adminGetOrderByOrderId = (params) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const data = await axios.get(
+        `http://localhost:8089/craftbay/admin/orders/${params}`,
+        params
+      );
+      resolve(data);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
 
 

@@ -194,7 +194,7 @@ export default (state = initialState, { type, payload }) => {
       });
 
 
-      //USER_PLACE_ORDERS
+      //USER_VIEW_ORDERS
     case "USER_VIEW_ORDERS":
       return Object.assign({}, state, {
         orderByUserId: {},
@@ -223,6 +223,50 @@ export default (state = initialState, { type, payload }) => {
         orderByOrderId: {},
       });
 
+
+      //USER_CANCEL_ORDERS
+    case "USER_CANCEL_ORDERS":
+      return Object.assign({}, state, {
+        cancelOrders: {},
+      });
+    case "USER_CANCEL_ORDERS_SUCCESS":
+      return Object.assign({}, state, {
+        cancelOrders: payload,
+      });
+    case "USER_CANCEL_ORDERS_FAIL":
+      return Object.assign({}, state, {
+        cancelOrders: {},
+      });
+
+
+       //ADMIN_VIEW_ORDERS
+    case "ADMIN_VIEW_ORDERS":
+      return Object.assign({}, state, {
+        adminGetOrderDetails: {},
+      });
+    case "ADMIN_VIEW_ORDERS_SUCCESS":
+      return Object.assign({}, state, {
+        adminGetOrderDetails: payload,
+      });
+    case "ADMIN_VIEW_ORDERS_FAIL":
+      return Object.assign({}, state, {
+        adminGetOrderDetails: {},
+      });
+
+
+       //ADMIN_VIEW_ORDERS_BY_ORDERID
+    case "USER_VIEW_ORDERS_BY_ORDERID":
+      return Object.assign({}, state, {
+        adminOrderByOrderId: {},
+      });
+    case "ADMIN_VIEW_ORDERS_BY_ORDERID_SUCCESS":
+      return Object.assign({}, state, {
+        adminOrderByOrderId: payload,
+      });
+    case "ADMIN_VIEW_ORDERS_BY_ORDERID_FAIL":
+      return Object.assign({}, state, {
+        adminOrderByOrderId: {},
+      });
 
     default:
       return state;

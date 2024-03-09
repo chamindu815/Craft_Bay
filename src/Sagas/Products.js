@@ -15,6 +15,9 @@ import {
   postUserPlaceOrders,
   getOrderByUserId,
   userGetOrderByOrderId,
+  adminGetOrders,
+  adminGetOrderByOrderId,
+  cancelUserPlaceOrders,
 } from "../Services/Products";
 import { put, call, takeLatest } from "redux-saga/effects";
 import { products } from "../Actions";
@@ -49,7 +52,13 @@ const {
   getOrderByUserIdSuccess,
   getOrderByUserIdFail,
   userGetOrderByOrderIdSuccess,
-  userGetOrderByOrderIdFail
+  userGetOrderByOrderIdFail,
+  adminGetOrdersSuccess,
+  adminGetOrdersFail,
+  adminGetOrderByOrderIdSuccess,
+  adminGetOrderByOrderIdFail,
+  cancelUserPlaceOrdersSuccess,
+  cancelUserPlaceOrdersFail,
 } = products;
 const ProductSagas = {
   userLoginSaga: function* (action) {
@@ -223,6 +232,44 @@ const ProductSagas = {
         yield put(userGetOrderByOrderIdFail(error));
       }
     },
+
+
+    //USER_CANCEL_ORDERS
+    cancelUserPlaceOrdersSaga: function* (action) {
+      const params = action?.payload ?? {};
+      try {
+        const articleList = yield call(cancelUserPlaceOrders, params);
+        console.log("articleList", articleList);
+        yield put(cancelUserPlaceOrdersSuccess(articleList));
+      } catch (error) {
+        yield put(cancelUserPlaceOrdersFail(error));
+      }
+    },
+
+    //ADMIN_VIEW_ORDERS
+    adminGetOrdersSaga: function* (action) {
+      const params = action?.payload ?? {};
+      try {
+        const articleList = yield call(adminGetOrders, params);
+        console.log("articleList", articleList);
+        yield put(adminGetOrdersSuccess(articleList));
+      } catch (error) {
+        yield put(adminGetOrdersFail(error));
+      }
+    },
+
+
+    //admin_VIEW_ORDERS_BY_ORDERID
+    adminGetOrderByOrderIdSaga: function* (action) {
+      const params = action?.payload ?? {};
+      try {
+        const articleList = yield call(adminGetOrderByOrderId, params);
+        console.log("articleList", articleList);
+        yield put(adminGetOrderByOrderIdSuccess(articleList));
+      } catch (error) {
+        yield put(adminGetOrderByOrderIdFail(error));
+      }
+    },
 };
 
 export default [
@@ -242,6 +289,11 @@ export default [
   takeLatest("USER_PLACE_ORDERS", ProductSagas.postUserPlaceOrdersSaga),
   takeLatest("USER_VIEW_ORDERS", ProductSagas.getOrderByUserIdSaga),
   takeLatest("USER_VIEW_ORDERS_BY_ORDERID", ProductSagas.userGetOrderByOrderIdSaga),
+  takeLatest("ADMIN_VIEW_ORDERS", ProductSagas.adminGetOrdersSaga),
+  takeLatest("USER_VIEW_ORDERS_BY_ORDERID", ProductSagas.adminGetOrderByOrderIdSaga),
+  takeLatest("USER_CANCEL_ORDERS", ProductSagas.cancelUserPlaceOrdersSaga),
+
+
 
 
   

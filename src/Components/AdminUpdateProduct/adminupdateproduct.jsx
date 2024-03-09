@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import "./adminupdateproduct.css";
 import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs";
 import Modal from "../Popup/Modal/Modal";
-import { useParams } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { products } from '../../Actions';
+import { useParams } from "react-router-dom";
+import { connect } from "react-redux";
+import { products } from "../../Actions";
 
-const {getProductsById} = products;
+const { getProductsById } = products;
 
 const AdminUpdateProduct = ({ productItem, getProductsById }) => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -19,12 +19,12 @@ const AdminUpdateProduct = ({ productItem, getProductsById }) => {
   const [selectedValue, setSelectedValue] = useState({});
 
   useEffect(() => {
-    getProductsById(id)
+    getProductsById(id);
   }, [id]);
 
   useEffect(() => {
-    if(productItem){
-      setSelectedValue(productItem.category)
+    if (productItem) {
+      setSelectedValue(productItem.category);
     }
   }, [productItem]);
 
@@ -41,30 +41,26 @@ const AdminUpdateProduct = ({ productItem, getProductsById }) => {
     rowToEdit === null
       ? setRows([...rows, newRow])
       : setRows(
-        rows.map((currRow, idx) => {
-          if (idx !== rowToEdit) return currRow;
+          rows.map((currRow, idx) => {
+            if (idx !== rowToEdit) return currRow;
 
-          return newRow;
-        })
-      );
+            return newRow;
+          })
+        );
   };
 
   const getRecentPrice = (productPriceDetailsDtos) => {
-    const priceList = productPriceDetailsDtos?.sort((a, b) => new Date(b.date) - new Date(a.date))
-    return priceList && priceList.length != 0 ? priceList[0].price : 0
-  }
-
+    const priceList = productPriceDetailsDtos?.sort(
+      (a, b) => new Date(b.date) - new Date(a.date)
+    );
+    return priceList && priceList.length != 0 ? priceList[0].price : 0;
+  };
 
   const handleSelectChange = (event) => {
-  console.log('xxxxx handleSelectChange',event.target.value);
-
     setSelectedValue(event.target.value);
   };
-  console.log('xxxxx productItem',selectedValue);
 
-  const handleSave = (e) => {
-  console.log('xxxxx handleSave',e);
-  }
+  const handleSave = (e) => {};
 
   return (
     <div className="adminupdateproduct-bg">
@@ -106,7 +102,8 @@ const AdminUpdateProduct = ({ productItem, getProductsById }) => {
 
           <div>
             {/* <input className="input-update-prod-img" type="file" /> */}
-            <img className="input-update-prod-img"
+            <img
+              className="input-update-prod-img"
               src={`data:image/jpeg;base64,${productItem.image}`}
               alt={productItem?.name}
             ></img>
@@ -133,18 +130,24 @@ const AdminUpdateProduct = ({ productItem, getProductsById }) => {
           <div>
             <select
               className="update-dropdown"
-              value={selectedValue} 
+              value={selectedValue}
               onChange={handleSelectChange}
-            // placeholder="Select"
+              // placeholder="Select"
             >
-              <option value="" disabled>Select</option>
+              <option value="" disabled>
+                Select
+              </option>
               <option value="Wooden">Wooden Crafts</option>
               <option value="Wall Hanger">Wall Hanger</option>
               <option value="Textile">Textile</option>
               <option value="Clay">Clay</option>
               <option value="Metal">Metal</option>
             </select>
-            <button type="submit" className="update-prod-btn" onClick={(e) => handleSave(e)} >
+            <button
+              type="submit"
+              className="update-prod-btn"
+              onClick={(e) => handleSave(e)}
+            >
               Submit
             </button>
           </div>
@@ -160,30 +163,35 @@ const AdminUpdateProduct = ({ productItem, getProductsById }) => {
                 </tr>
               </thead>
               <tbody>
-              {productItem && productItem.adminProductBuyingPriceDetailsDtos && productItem?.adminProductBuyingPriceDetailsDtos.map((row, idx) => (
-                  <tr key={idx}>
-                    <td>{row.date}</td>
-                    <td>Rs.{row.price}</td>
-                    <td>{row.quantity}</td>
-                    <td>
-                      <span className="actions">
-                        <BsFillTrashFill
-                          className="delete-btn"
-                          onClick={() => handleDeleteRow(idx)}
-                        />
-                        <BsFillPencilFill onClick={() => handleEditRow(idx)} />
-                      </span>
-                    </td>
-                  </tr>
-                ))}
+                {productItem &&
+                  productItem.adminProductBuyingPriceDetailsDtos &&
+                  productItem?.adminProductBuyingPriceDetailsDtos.map(
+                    (row, idx) => (
+                      <tr key={idx}>
+                        <td>{row.date}</td>
+                        <td>Rs.{row.price}</td>
+                        <td>{row.quantity}</td>
+                        <td>
+                          <span className="actions">
+                            <BsFillTrashFill
+                              className="delete-btn"
+                              onClick={() => handleDeleteRow(idx)}
+                            />
+                            <BsFillPencilFill
+                              onClick={() => handleEditRow(idx)}
+                            />
+                          </span>
+                        </td>
+                      </tr>
+                    )
+                  )}
               </tbody>
             </table>
-            
+
             <button className="btn" onClick={() => setModalOpen(true)}>
               Add
             </button>
           </div>
-
 
           <div className="prod-update-tbl">
             <table className="table">
@@ -195,22 +203,28 @@ const AdminUpdateProduct = ({ productItem, getProductsById }) => {
                 </tr>
               </thead>
               <tbody>
-              {productItem && productItem.adminProductSellingPriceDetailsDtos && productItem.adminProductSellingPriceDetailsDtos.map((row, idx) => (
-                  <tr key={idx}>
-                    <td>{row.date}</td>
-                    <td>Rs.{row.price}</td>
+                {productItem &&
+                  productItem.adminProductSellingPriceDetailsDtos &&
+                  productItem.adminProductSellingPriceDetailsDtos.map(
+                    (row, idx) => (
+                      <tr key={idx}>
+                        <td>{row.date}</td>
+                        <td>Rs.{row.price}</td>
 
-                    <td>
-                      <span className="actions">
-                        <BsFillTrashFill
-                          className="delete-btn"
-                          onClick={() => handleDeleteRow(idx)}
-                        />
-                        <BsFillPencilFill onClick={() => handleEditRow(idx)} />
-                      </span>
-                    </td>
-                  </tr>
-                ))}
+                        <td>
+                          <span className="actions">
+                            <BsFillTrashFill
+                              className="delete-btn"
+                              onClick={() => handleDeleteRow(idx)}
+                            />
+                            <BsFillPencilFill
+                              onClick={() => handleEditRow(idx)}
+                            />
+                          </span>
+                        </td>
+                      </tr>
+                    )
+                  )}
               </tbody>
             </table>
 
@@ -218,7 +232,6 @@ const AdminUpdateProduct = ({ productItem, getProductsById }) => {
               Add
             </button>
           </div>
-
         </div>
       </div>
     </div>
@@ -232,7 +245,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-  getProductsById
+  getProductsById,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdminUpdateProduct);

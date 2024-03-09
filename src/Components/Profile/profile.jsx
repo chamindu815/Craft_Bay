@@ -136,14 +136,14 @@ const Profile = ({ getUserById, userById }) => {
         <label className="card-info-exp-date">Exp Date</label>
         <div className="card-info-exp-date-inputs">
           <div className="card-info-exp-date-input">
-            <input type="card-info-exp-date" placeholder="XX/XX" />
+            <input type="card-info-exp-date" placeholder="MM/YY" />
           </div>
         </div>
 
         <label className="card-info-cvv">CVV</label>
         <div className="card-info-cvv-inputs">
           <div className="card-info-cvv-input">
-            <input type="card-info-cvv" placeholder="XXX" />
+            <input type="card-info-cvv" placeholder="CVV" />
           </div>
         </div>
 

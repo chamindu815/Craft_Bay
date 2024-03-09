@@ -1,7 +1,25 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import "./adminorderbyid.css";
+import { connect } from "react-redux";
+import { products } from "../../Actions";
+import { useParams } from 'react-router-dom';
 
-const AdminOrderById = () => {
+
+const {adminGetOrderByOrderId} = products;
+const AdminOrderById = ({adminGetOrderByOrderId, adminOrderByOrderId}) => {
+const {id} = useParams();
+
+
+  useEffect(() => {
+    adminGetOrderByOrderId();
+  }, []);
+
+  useEffect(() => {
+    adminGetOrderByOrderId(id);
+  }, [id]);
+
+  useEffect(() => {}, [adminOrderByOrderId]);
+
   return (
     <div className="admin-by-id-order-bg">
       <div className="admin-by-id-order-container">
@@ -52,4 +70,14 @@ const AdminOrderById = () => {
   )
 }
 
-export default AdminOrderById
+const mapStateToProps = (state) => {
+  return {
+    adminOrderByOrderId: state.craftbay.adminOrderByOrderId,
+  };
+};
+
+const mapDispatchToProps = {
+  adminGetOrderByOrderId,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AdminOrderById);
