@@ -11,6 +11,21 @@ export const products = {
     type: "USER_LOGIN_FAIL",
     payload: {},
   }),
+
+  //USER_REGISTER
+  userRegister: (data) => ({
+    type: "USER_REGISTER",
+    payload: data,
+  }),
+  userRegisterSuccess: (data) => ({
+    type: "USER_REGISTER_SUCCESS",
+    payload: data,
+  }),
+  userRegisterFail: (error) => ({
+    type: "USER_REGISTER_FAIL",
+    payload: {},
+  }),
+
   addProducts: (data) => ({
     type: "ADD_PRODUCTS",
     payload: data,
@@ -124,7 +139,6 @@ export const products = {
     payload: {},
   }),
 
-
   //VIEW_CART
   viewCart: (data) => ({
     type: "VIEW_CART",
@@ -138,7 +152,6 @@ export const products = {
     type: "VIEW_CART_FAIL",
     payload: {},
   }),
-
 
   //GET_USER_BY_ID
   getUserById: (data) => ({
@@ -154,7 +167,6 @@ export const products = {
     payload: {},
   }),
 
-
   //CART_CHECKOUT
   checkoutCart: (data) => ({
     type: "CART_CHECKOUT",
@@ -169,92 +181,87 @@ export const products = {
     payload: {},
   }),
 
+  //USER_PLACE_ORDERS
+  postUserPlaceOrders: (data) => ({
+    type: "USER_PLACE_ORDERS",
+    payload: data,
+  }),
+  postUserPlaceOrdersSuccess: (data) => ({
+    type: "USER_PLACE_ORDERS_SUCCESS",
+    payload: data,
+  }),
+  postUserPlaceOrdersFail: (error) => ({
+    type: "USER_PLACE_ORDERS_FAIL",
+    payload: {},
+  }),
 
-    //USER_PLACE_ORDERS
-    postUserPlaceOrders: (data) => ({
-      type: "USER_PLACE_ORDERS",
-      payload: data,
-    }),
-    postUserPlaceOrdersSuccess: (data) => ({
-      type: "USER_PLACE_ORDERS_SUCCESS",
-      payload: data,
-    }),
-    postUserPlaceOrdersFail: (error) => ({
-      type: "USER_PLACE_ORDERS_FAIL",
-      payload: {},
-    }),
+  //USER_VIEW_ORDERS
+  getOrderByUserId: (data) => ({
+    type: "USER_VIEW_ORDERS",
+    payload: data,
+  }),
+  getOrderByUserIdSuccess: (data) => ({
+    type: "USER_VIEW_ORDERS_SUCCESS",
+    payload: data,
+  }),
+  getOrderByUserIdFail: (error) => ({
+    type: "USER_VIEW_ORDERS_FAIL",
+    payload: {},
+  }),
 
+  //USER_VIEW_ORDERS_BY_ORDERID
+  userGetOrderByOrderId: (data) => ({
+    type: "USER_VIEW_ORDERS_BY_ORDERID",
+    payload: data,
+  }),
+  userGetOrderByOrderIdSuccess: (data) => ({
+    type: "USER_VIEW_ORDERS_BY_ORDERID_SUCCESS",
+    payload: data,
+  }),
+  userGetOrderByOrderIdFail: (error) => ({
+    type: "USER_VIEW_ORDERS_BY_ORDERID_FAIL",
+    payload: {},
+  }),
 
-    //USER_VIEW_ORDERS
-    getOrderByUserId: (data) => ({
-      type: "USER_VIEW_ORDERS",
-      payload: data,
-    }),
-    getOrderByUserIdSuccess: (data) => ({
-      type: "USER_VIEW_ORDERS_SUCCESS",
-      payload: data,
-    }),
-    getOrderByUserIdFail: (error) => ({
-      type: "USER_VIEW_ORDERS_FAIL",
-      payload: {},
-    }),
+  //USER_CANCEL_ORDERS
+  cancelUserPlaceOrders: (data) => ({
+    type: "USER_CANCEL_ORDERS",
+    payload: data,
+  }),
+  cancelUserPlaceOrdersSuccess: (data) => ({
+    type: "USER_CANCEL_ORDERS_SUCCESS",
+    payload: data,
+  }),
+  cancelUserPlaceOrdersFail: (error) => ({
+    type: "USER_CANCEL_ORDERS_FAIL",
+    payload: {},
+  }),
 
+  //ADMIN_VIEW_ORDERS
+  adminGetOrders: (data) => ({
+    type: "ADMIN_VIEW_ORDERS",
+    payload: data,
+  }),
+  adminGetOrdersSuccess: (data) => ({
+    type: "ADMIN_VIEW_ORDERS_SUCCESS",
+    payload: data,
+  }),
+  adminGetOrdersFail: (error) => ({
+    type: "ADMIN_VIEW_ORDERS_FAIL",
+    payload: {},
+  }),
 
-     //USER_VIEW_ORDERS_BY_ORDERID
-     userGetOrderByOrderId: (data) => ({
-      type: "USER_VIEW_ORDERS_BY_ORDERID",
-      payload: data,
-    }),
-    userGetOrderByOrderIdSuccess: (data) => ({
-      type: "USER_VIEW_ORDERS_BY_ORDERID_SUCCESS",
-      payload: data,
-    }),
-    userGetOrderByOrderIdFail: (error) => ({
-      type: "USER_VIEW_ORDERS_BY_ORDERID_FAIL",
-      payload: {},
-    }),
-
-    //USER_CANCEL_ORDERS
-    cancelUserPlaceOrders: (data) => ({
-      type: "USER_CANCEL_ORDERS",
-      payload: data,
-    }),
-    cancelUserPlaceOrdersSuccess: (data) => ({
-      type: "USER_CANCEL_ORDERS_SUCCESS",
-      payload: data,
-    }),
-    cancelUserPlaceOrdersFail: (error) => ({
-      type: "USER_CANCEL_ORDERS_FAIL",
-      payload: {},
-    }),
-
-
-    //ADMIN_VIEW_ORDERS
-    adminGetOrders: (data) => ({
-      type: "ADMIN_VIEW_ORDERS",
-      payload: data,
-    }),
-    adminGetOrdersSuccess: (data) => ({
-      type: "ADMIN_VIEW_ORDERS_SUCCESS",
-      payload: data,
-    }),
-    adminGetOrdersFail: (error) => ({
-      type: "ADMIN_VIEW_ORDERS_FAIL",
-      payload: {},
-    }),
-
-
-    //ADMIN_VIEW_ORDERS_BY_ORDERID
-    adminGetOrderByOrderId: (data) => ({
-      type: "ADMIN_VIEW_ORDERS_BY_ORDERID",
-      payload: data,
-    }),
-    adminGetOrderByOrderIdSuccess: (data) => ({
-      type: "ADMIN_VIEW_ORDERS_BY_ORDERID_SUCCESS",
-      payload: data,
-    }),
-    adminGetOrderByOrderIdFail: (error) => ({
-      type: "ADMIN_VIEW_ORDERS_BY_ORDERID_FAIL",
-      payload: {},
-    }),
+  //ADMIN_VIEW_ORDERS_BY_ORDERID
+  adminGetOrderByOrderId: (data) => ({
+    type: "ADMIN_VIEW_ORDERS_BY_ORDERID",
+    payload: data,
+  }),
+  adminGetOrderByOrderIdSuccess: (data) => ({
+    type: "ADMIN_VIEW_ORDERS_BY_ORDERID_SUCCESS",
+    payload: data,
+  }),
+  adminGetOrderByOrderIdFail: (error) => ({
+    type: "ADMIN_VIEW_ORDERS_BY_ORDERID_FAIL",
+    payload: {},
+  }),
 };

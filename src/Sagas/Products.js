@@ -1,5 +1,6 @@
 import {
   userLogin,
+  userRegister,
   getProducts,
   addProducts,
   deleteProducts,
@@ -37,6 +38,8 @@ const {
   getNewProductsFail,
   userLoginSuccess,
   userLoginFail,
+  userRegisterSuccess,
+  userRegisterFail,
   getProductByIdSuccess,
   getProductByIdFail,
   postAddToCartSuccess,
@@ -73,6 +76,18 @@ const ProductSagas = {
       yield put(userLoginFail(error));
     }
   },
+
+//USER_REGISTER
+  userRegisterSaga: function* (action) {
+    const params = action?.payload ?? {};
+    try {
+      const articleList = yield call(userRegister, params);
+      yield put(userRegisterSuccess(articleList));
+    } catch (error) {
+      yield put(userRegisterFail(error));
+    }
+  },
+
   addProductsSaga: function* (action) {
     const params = action?.payload ?? {};
     try {
@@ -261,7 +276,7 @@ const ProductSagas = {
     },
 
 
-    //admin_VIEW_ORDERS_BY_ORDERID
+    //ADMIN_VIEW_ORDERS_BY_ORDERID
     adminGetOrderByOrderIdSaga: function* (action) {
       const params = action?.payload ?? {};
       try {
@@ -294,6 +309,7 @@ export default [
   takeLatest("ADMIN_VIEW_ORDERS", ProductSagas.adminGetOrdersSaga),
   takeLatest("USER_VIEW_ORDERS_BY_ORDERID", ProductSagas.adminGetOrderByOrderIdSaga),
   takeLatest("USER_CANCEL_ORDERS", ProductSagas.cancelUserPlaceOrdersSaga),
+  takeLatest("USER_REGISTER", ProductSagas.userRegisterSaga),
 
 
 
