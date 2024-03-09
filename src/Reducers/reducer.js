@@ -4,6 +4,7 @@ const initialState = {
   topShopProducts: {},
   newProducts: {},
   loginData: {},
+  registerData:{},
   productById: {},
   addToCart: {},
   cartDetails:{},
@@ -28,6 +29,22 @@ export default (state = initialState, { type, payload }) => {
       return Object.assign({}, state, {
         loginData: {},
       });
+
+//USER_REGISTER
+      case "USER_REGISTER":
+      return Object.assign({}, state, {
+        registerData: {},
+      });
+    case "USER_REGISTER_SUCCESS":
+      return Object.assign({}, state, {
+        registerData: payload,
+      });
+    case "USER_REGISTER_FAIL":
+      return Object.assign({}, state, {
+        registerData: {},
+      });
+
+
     case "ADD_PRODUCTS":
       return Object.assign({}, state, {});
     case "ADD_PRODUCTS_SUCCESS":

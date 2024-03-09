@@ -19,6 +19,21 @@ export const userLogin = (params) => {
   });
 };
 
+export const userRegister = (params) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const data = await axios.post(
+        "http://localhost:8089/craftbay/auth/save",
+        params
+      );
+      resolve(data);
+      alert("Employee Registation Successfully");
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
 export const getProducts = () => {
   return new Promise(async (resolve, reject) => {
     try {
@@ -116,7 +131,7 @@ export const updateProduct = (params) => {
         "Authorization"
       ] = `Bearer ${localStorage.getItem("token")}`;
 
-      const {data} = await axios.put(
+      const { data } = await axios.put(
         "http://localhost:8089/craftbay/admin/product/update",
         params
       );
@@ -156,12 +171,11 @@ export const postAddToCart = (params) => {
   });
 };
 
-
 //VIEW_CART
 export const viewCart = (params) => {
   return new Promise(async (resolve, reject) => {
     try {
-      const {data} = await axios.get(
+      const { data } = await axios.get(
         `http://localhost:8089/craftbay/user/${params}/cart`,
         params
       );
@@ -172,12 +186,11 @@ export const viewCart = (params) => {
   });
 };
 
-
-//GET_USER_BY_ID  
+//GET_USER_BY_ID
 export const getUserById = (params) => {
   return new Promise(async (resolve, reject) => {
     try {
-      const {data} = await axios.get(
+      const { data } = await axios.get(
         `http://localhost:8089/craftbay/user/${params}`,
         params
       );
@@ -187,7 +200,6 @@ export const getUserById = (params) => {
     }
   });
 };
-
 
 //CART_CHECKOUT
 export const checkoutCart = (params) => {
@@ -220,7 +232,6 @@ export const postUserPlaceOrders = (params) => {
   });
 };
 
-
 //USER_VIEW_ORDERS
 export const getOrderByUserId = (params) => {
   return new Promise(async (resolve, reject) => {
@@ -235,7 +246,6 @@ export const getOrderByUserId = (params) => {
     }
   });
 };
-
 
 //USER_VIEW_ORDERS_BY_ORDERID
 export const userGetOrderByOrderId = (params) => {
@@ -267,7 +277,6 @@ export const cancelUserPlaceOrders = (params) => {
   });
 };
 
-
 //ADMIN_VIEW_ORDERS
 export const adminGetOrders = (params) => {
   return new Promise(async (resolve, reject) => {
@@ -283,7 +292,6 @@ export const adminGetOrders = (params) => {
   });
 };
 
-
 //ADMIN_VIEW_ORDERS_BY_ORDERID
 export const adminGetOrderByOrderId = (params) => {
   return new Promise(async (resolve, reject) => {
@@ -298,6 +306,3 @@ export const adminGetOrderByOrderId = (params) => {
     }
   });
 };
-
-
-

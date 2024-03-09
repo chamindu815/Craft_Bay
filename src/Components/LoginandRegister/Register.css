@@ -60,7 +60,7 @@
     margin-left: 2%;
     margin-right: 10%;
     width: 40%;
-    height: 600px;
+    height: 620px;
     background: #eaeaea;
     border-radius: 30px;
 }
@@ -127,3 +127,15 @@
     cursor: pointer;
 
 }
+
+/* .invalid {
+    border: 1px solid red;
+}
+
+.error {
+    text-align: center;
+    width: 633px;
+    color: red;
+    font-size: 0.8rem;
+    margin-top: 0px;
+} */
