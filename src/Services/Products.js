@@ -116,7 +116,7 @@ export const updateProduct = (params) => {
         "Authorization"
       ] = `Bearer ${localStorage.getItem("token")}`;
 
-      const data = await axios.put(
+      const {data} = await axios.put(
         "http://localhost:8089/craftbay/admin/product/update",
         params
       );

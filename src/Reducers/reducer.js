@@ -38,7 +38,7 @@ export default (state = initialState, { type, payload }) => {
       return Object.assign({}, state, {});
     case "UPDATE_PRODUCT_SUCCESS":
       return Object.assign({}, state, {
-        // update products arra
+        productToBeEdit: payload
       });
     case "UPDATE_PRODUCT_FAIL":
       return Object.assign({}, state, {});

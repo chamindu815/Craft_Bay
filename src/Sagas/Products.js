@@ -59,6 +59,8 @@ const {
   adminGetOrderByOrderIdFail,
   cancelUserPlaceOrdersSuccess,
   cancelUserPlaceOrdersFail,
+  updateProductSuccess,
+  updateProductFail
 } = products;
 const ProductSagas = {
   userLoginSaga: function* (action) {
@@ -84,9 +86,9 @@ const ProductSagas = {
     const params = action?.payload ?? {};
     try {
       const articleList = yield call(updateProduct, params);
-      // yield put(addProductsSuccess(articleList));
+      yield put(updateProductSuccess(articleList));
     } catch (error) {
-      // yield put(addProductsFail(error));
+      yield put(updateProductFail(error));
     }
   },
   getProductsSaga: function* (action) {

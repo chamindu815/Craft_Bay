@@ -2,14 +2,22 @@ import React, { useState, useEffect } from "react";
 import "./adminupdateproduct.css";
 import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs";
 import Modal from "../Popup/Modal/Modal";
-import { useParams } from "react-router-dom";
-import { connect } from "react-redux";
-import { products } from "../../Actions";
+import { useParams } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { products } from '../../Actions';
+import Select from 'react-select';
 
-const { getProductsById } = products;
+const { getProductsById, updateProduct } = products;
+const options = [
+  { value: 'WOODEN', label: 'Wooden Crafts' },
+  { value: 'TEXTILE', label: 'Textile' },
+  { value: 'CLAY', label: 'Clay' },
+  { value: 'METAL', label: 'Metal' },
+  { value: 'LEATHER', label: 'Leather' },
+]
 
-const AdminUpdateProduct = ({ productItem, getProductsById }) => {
-  const [modalOpen, setModalOpen] = useState(false);
+const AdminUpdateProduct = ({ productItem, getProductsById, updateProduct }) => {
+  const [modalOpen, setModalOpen] = useState(null);
   const [rows, setRows] = useState([
     // { date: "01/02/2024", price: "Rs.1500", quantity: "10" },
   ]);
@@ -19,64 +27,94 @@ const AdminUpdateProduct = ({ productItem, getProductsById }) => {
   const [selectedValue, setSelectedValue] = useState({});
 
   useEffect(() => {
-    getProductsById(id);
+    getProductsById(id)
   }, [id]);
 
   useEffect(() => {
     if (productItem) {
-      setSelectedValue(productItem.category);
+      const selectedCategory = options.find(o => o.value == productItem.category)
+      setSelectedValue(selectedCategory)
+      setFormValues(productItem)
     }
   }, [productItem]);
 
-  const handleDeleteRow = (targetIndex) => {
-    setRows(rows.filter((_, idx) => idx !== targetIndex));
+  const handleDeleteRow = (id, type) => {
+    if (type == "BuyingPrice") {
+      setFormValues({ ...formValues, adminProductBuyingPriceDetailsDtos: formValues.adminProductBuyingPriceDetailsDtos.filter((b, idx) => idx != id) })
+    } else {
+      setFormValues({ ...formValues, adminProductSellingPriceDetailsDtos: formValues.adminProductSellingPriceDetailsDtos.filter((b, idx) => idx != id) })
+    }
   };
 
-  const handleEditRow = (idx) => {
-    setRowToEdit(idx);
-    setModalOpen(true);
+  const handleEditRow = (id, type) => {
+    console.log('xxxxx handleEditRow', id);
+
+    setRowToEdit(id);
+    setModalOpen(type);
   };
 
   const handleSubmit = (newRow) => {
-    rowToEdit === null
-      ? setRows([...rows, newRow])
-      : setRows(
-          rows.map((currRow, idx) => {
-            if (idx !== rowToEdit) return currRow;
+    console.log('xxxxx newRow', newRow);
+    if (modalOpen == "BuyingPrice") {
+      setFormValues({
+        ...formValues, adminProductBuyingPriceDetailsDtos: rowToEdit === null ? [...formValues.adminProductBuyingPriceDetailsDtos, newRow] : formValues.adminProductBuyingPriceDetailsDtos.map((currRow, idx) => {
+          if (idx !== rowToEdit) return currRow;
+          return newRow;
+        })
+      })
+    } else {
+      setFormValues({
+        ...formValues, adminProductSellingPriceDetailsDtos: rowToEdit === null ? [...formValues.adminProductSellingPriceDetailsDtos, newRow] : formValues.adminProductSellingPriceDetailsDtos.map((currRow, idx) => {
+          if (idx !== rowToEdit) return currRow;
+          return newRow;
+        })
+      })
+    }
 
-            return newRow;
-          })
-        );
+    // rowToEdit === null
+    //   ? setRows([...rows, newRow])
+    //   : setRows(
+
+    //   );
   };
+  console.log('xxxxx handleSave', formValues);
 
   const getRecentPrice = (productPriceDetailsDtos) => {
-    const priceList = productPriceDetailsDtos?.sort(
-      (a, b) => new Date(b.date) - new Date(a.date)
-    );
-    return priceList && priceList.length != 0 ? priceList[0].price : 0;
+    const priceList = productPriceDetailsDtos?.sort((a, b) => new Date(b.date) - new Date(a.date))
+    return priceList && priceList.length != 0 ? priceList[0].price : 0
+  }
+
+
+  const handleSelectChange = (value) => {
+    setFormValues({ ...formValues, category: value.value })
+    setSelectedValue(value);
   };
 
-  const handleSelectChange = (event) => {
-    setSelectedValue(event.target.value);
-  };
+  const handleSave = (e) => {
+    console.log('xxxxx handleSave', formValues);
+    updateProduct(formValues)
+  }
 
-  const handleSave = (e) => {};
-
+  const getEditToBeItem = () => {
+    return modalOpen == "BuyingPrice" ? formValues.adminProductBuyingPriceDetailsDtos.filter((f, idx) => idx == rowToEdit)[0] : formValues.adminProductSellingPriceDetailsDtos.filter((f, idx) => idx == rowToEdit)[0]
+  }
+  console.log('xxxxx rowToEdit', rowToEdit);
   return (
     <div className="adminupdateproduct-bg">
-      {modalOpen && (
+      {modalOpen != null && (
         <Modal
           closeModal={() => {
-            setModalOpen(false);
+            setModalOpen(null);
             setRowToEdit(null);
           }}
+          modalType={modalOpen}
           onSubmit={handleSubmit}
-          defaultValue={rowToEdit !== null && rows[rowToEdit]}
+          defaultValue={rowToEdit !== null && getEditToBeItem()}
         />
       )}
       <label className="prod-update-form-name">Update Product</label>
 
-      <div className="prod-update-container">
+      {productItem && <div className="prod-update-container">
         <div className="prod-update-label">
           <label className="form-update-name"> Product Name:</label>
           <label className="form-update-img">Image:</label>
@@ -93,7 +131,7 @@ const AdminUpdateProduct = ({ productItem, getProductsById }) => {
               className="input-update-prod-name"
               type="text"
               placeholder="Product Name"
-              value={productItem?.name}
+              value={formValues.name}
               onChange={(event) => {
                 setFormValues({ ...formValues, name: event.target.value });
               }}
@@ -102,10 +140,9 @@ const AdminUpdateProduct = ({ productItem, getProductsById }) => {
 
           <div>
             {/* <input className="input-update-prod-img" type="file" /> */}
-            <img
-              className="input-update-prod-img"
-              src={`data:image/jpeg;base64,${productItem.image}`}
-              alt={productItem?.name}
+            <img className="input-update-prod-img"
+              src={`data:image/jpeg;base64,${formValues.image}`}
+              alt={formValues.name}
             ></img>
           </div>
 
@@ -114,40 +151,28 @@ const AdminUpdateProduct = ({ productItem, getProductsById }) => {
               className="input-update-prod-description"
               type="text"
               placeholder="Description"
-              value={productItem?.description}
+              value={formValues?.description}
+              onChange={(event) => {
+                setFormValues({ ...formValues, description: event.target.value });
+              }}
             />
           </div>
 
           <div>
             <input
               className="input-update-prod-quantity"
-              type="text"
+              type="number"
               placeholder="Quantity"
-              value={productItem?.remainingQuantity}
+              value={formValues?.remainingQuantity}
+              onChange={(event) => {
+                setFormValues({ ...formValues, remainingQuantity: event.target.value });
+              }}
             />
           </div>
 
           <div>
-            <select
-              className="update-dropdown"
-              value={selectedValue}
-              onChange={handleSelectChange}
-              // placeholder="Select"
-            >
-              <option value="" disabled>
-                Select
-              </option>
-              <option value="Wooden">Wooden Crafts</option>
-              <option value="Wall Hanger">Wall Hanger</option>
-              <option value="Textile">Textile</option>
-              <option value="Clay">Clay</option>
-              <option value="Metal">Metal</option>
-            </select>
-            <button
-              type="submit"
-              className="update-prod-btn"
-              onClick={(e) => handleSave(e)}
-            >
+            <Select options={options} isSearchable value={selectedValue} onChange={handleSelectChange} />
+            <button type="submit" className="update-prod-btn" onClick={(e) => handleSave(e)} >
               Submit
             </button>
           </div>
@@ -163,35 +188,30 @@ const AdminUpdateProduct = ({ productItem, getProductsById }) => {
                 </tr>
               </thead>
               <tbody>
-                {productItem &&
-                  productItem.adminProductBuyingPriceDetailsDtos &&
-                  productItem?.adminProductBuyingPriceDetailsDtos.map(
-                    (row, idx) => (
-                      <tr key={idx}>
-                        <td>{row.date}</td>
-                        <td>Rs.{row.price}</td>
-                        <td>{row.quantity}</td>
-                        <td>
-                          <span className="actions">
-                            <BsFillTrashFill
-                              className="delete-btn"
-                              onClick={() => handleDeleteRow(idx)}
-                            />
-                            <BsFillPencilFill
-                              onClick={() => handleEditRow(idx)}
-                            />
-                          </span>
-                        </td>
-                      </tr>
-                    )
-                  )}
+                {formValues && formValues.adminProductBuyingPriceDetailsDtos && formValues?.adminProductBuyingPriceDetailsDtos.map((row, idx) => (
+                  <tr key={idx}>
+                    <td>{row.date}</td>
+                    <td>Rs.{row.price}</td>
+                    <td>{row.quantity}</td>
+                    <td>
+                      <span className="actions">
+                        <BsFillTrashFill
+                          className="delete-btn"
+                          onClick={() => handleDeleteRow(idx, "BuyingPrice")}
+                        />
+                        <BsFillPencilFill onClick={() => handleEditRow(idx, "BuyingPrice")} />
+                      </span>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
 
-            <button className="btn" onClick={() => setModalOpen(true)}>
+            <button className="btn" onClick={() => setModalOpen("BuyingPrice")}>
               Add
             </button>
           </div>
+
 
           <div className="prod-update-tbl">
             <table className="table">
@@ -203,37 +223,32 @@ const AdminUpdateProduct = ({ productItem, getProductsById }) => {
                 </tr>
               </thead>
               <tbody>
-                {productItem &&
-                  productItem.adminProductSellingPriceDetailsDtos &&
-                  productItem.adminProductSellingPriceDetailsDtos.map(
-                    (row, idx) => (
-                      <tr key={idx}>
-                        <td>{row.date}</td>
-                        <td>Rs.{row.price}</td>
+                {formValues && formValues.adminProductSellingPriceDetailsDtos && formValues.adminProductSellingPriceDetailsDtos.map((row, idx) => (
+                  <tr key={idx}>
+                    <td>{row.date}</td>
+                    <td>Rs.{row.price}</td>
 
-                        <td>
-                          <span className="actions">
-                            <BsFillTrashFill
-                              className="delete-btn"
-                              onClick={() => handleDeleteRow(idx)}
-                            />
-                            <BsFillPencilFill
-                              onClick={() => handleEditRow(idx)}
-                            />
-                          </span>
-                        </td>
-                      </tr>
-                    )
-                  )}
+                    <td>
+                      <span className="actions">
+                        <BsFillTrashFill
+                          className="delete-btn"
+                          onClick={() => handleDeleteRow(idx, "SellingPrice")}
+                        />
+                        <BsFillPencilFill onClick={() => handleEditRow(idx, "SellingPrice")} />
+                      </span>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
 
-            <button className="btn" onClick={() => setModalOpen(true)}>
+            <button className="btn" onClick={() => setModalOpen("SellingPrice")}>
               Add
             </button>
           </div>
+
         </div>
-      </div>
+      </div>}
     </div>
   );
 };
@@ -246,6 +261,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   getProductsById,
+  updateProduct
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdminUpdateProduct);
