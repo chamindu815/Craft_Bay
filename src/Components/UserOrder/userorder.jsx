@@ -17,33 +17,34 @@ const UserOrder = ({ getOrderByUserId, orderByUserId }) => {
 
   useEffect(() => {}, [orderByUserId]);
 
-  console.log("userIdord", userId);
-
   return (
     <div className="user-order-bg">
       <div className="user-order-container">
         <h2 className="user-order-title">My Orders</h2>
         {/* {Array.isArray(orderByUserId) && orderByUserId.map((curElm) => {
           return ( */}
+          {Array.isArray(orderByUserId) && orderByUserId.map((curElm) => {
+            return (
+              <>
           <div className="user-order-by-order-container">
-            <h3 className="user-order-by-order-id">Order No : #</h3>
+            <h3 className="user-order-by-order-id">Order No : # {curElm.id}</h3>
             <div className="user-order-by-order-img">
               <img src={defaultImage} alt="Default" />
             </div>
             <h3 className="user-order-by-order-fname">Full Name :</h3>
             <label className="user-order-by-order-fname-lbl">
-            Chamindu Anjana De Alwis
+            {curElm.user.firstName} {curElm.user.lastName}
             </label>
 
             <h3 className="user-order-by-order-address">Address :</h3>
             <label className="user-order-by-order-address-lbl">
-              Chamindu Anjana De Alwis
+            {curElm.user.houseNo}, {curElm.user.streetName}, {curElm.user.city}, {curElm.user.country}
             </label>
 
             <h3 className="user-order-by-order-total">Total :</h3>
-            <label className="user-order-by-order-total-lbl">Rs. 5000.00</label>
+            <label className="user-order-by-order-total-lbl">Rs. {curElm.totalOrderValue}</label>
 
-            <label className="user-order-by-order-status-lbl"> STATUS </label>
+            <label className="user-order-by-order-status-lbl"> {curElm.orderStatus} </label>
 
             <button className="cancel-order"> Cancel Order</button>
 
@@ -52,12 +53,13 @@ const UserOrder = ({ getOrderByUserId, orderByUserId }) => {
                 className="next-img"
                 src={nextimg}
                 alt=""
-                // onClick={() => navigate(`/userordersbyid/${curElm.id}`)}
+                onClick={() => navigate(`/userorders/${curElm.id}`)}
               />
             </button>
           </div>
-        {/* );
-      })} */}
+          </>
+          );
+        })}
       </div>
     </div>
   );

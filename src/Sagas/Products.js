@@ -73,7 +73,6 @@ const ProductSagas = {
     const params = action?.payload ?? {};
     try {
       const articleList = yield call(userLogin, params);
-      console.log("articleList", articleList);
       yield put(userLoginSuccess(articleList));
     } catch (error) {
       yield put(userLoginFail(error));
@@ -168,7 +167,6 @@ const ProductSagas = {
     const params = action?.payload ?? {};
     try {
       const articleList = yield call(postAddToCart, params);
-      console.log("articleList", articleList);
       yield put(postAddToCartSuccess(articleList));
     } catch (error) {
       yield put(postAddToCartFail(error));
@@ -181,7 +179,6 @@ const ProductSagas = {
     const params = action?.payload ?? {};
     try {
       const articleList = yield call(viewCart, params);
-      console.log("articleList", articleList);
       yield put(viewCartSuccess(articleList));
     } catch (error) {
       yield put(viewCartFail(error));
@@ -194,7 +191,6 @@ const ProductSagas = {
     const params = action?.payload ?? {};
     try {
       const articleList = yield call(getUserById, params);
-      console.log("articleList", articleList);
       yield put(getUserByIdSuccess(articleList));
     } catch (error) {
       yield put(getUserByIdFail(error));
@@ -207,7 +203,6 @@ const ProductSagas = {
     const params = action?.payload ?? {};
     try {
       const articleList = yield call(checkoutCart, params);
-      console.log("articleList", articleList);
       yield put(checkoutCartSuccess(articleList));
     } catch (error) {
       yield put(checkoutCartFail(error));
@@ -220,7 +215,6 @@ const ProductSagas = {
       const params = action?.payload ?? {};
       try {
         const articleList = yield call(postUserPlaceOrders, params);
-        console.log("articleList", articleList);
         yield put(postUserPlaceOrdersSuccess(articleList));
       } catch (error) {
         yield put(postUserPlaceOrdersFail(error));
@@ -233,7 +227,6 @@ const ProductSagas = {
       const params = action?.payload ?? {};
       try {
         const articleList = yield call(getOrderByUserId, params);
-        console.log("articleList", articleList);
         yield put(getOrderByUserIdSuccess(articleList));
       } catch (error) {
         yield put(getOrderByUserIdFail(error));
@@ -246,7 +239,6 @@ const ProductSagas = {
       const params = action?.payload ?? {};
       try {
         const articleList = yield call(userGetOrderByOrderId, params);
-        console.log("articleList", articleList);
         yield put(userGetOrderByOrderIdSuccess(articleList));
       } catch (error) {
         yield put(userGetOrderByOrderIdFail(error));
@@ -259,7 +251,6 @@ const ProductSagas = {
       const params = action?.payload ?? {};
       try {
         const articleList = yield call(cancelUserPlaceOrders, params);
-        console.log("articleList", articleList);
         yield put(cancelUserPlaceOrdersSuccess(articleList));
       } catch (error) {
         yield put(cancelUserPlaceOrdersFail(error));
@@ -271,7 +262,6 @@ const ProductSagas = {
       const params = action?.payload ?? {};
       try {
         const articleList = yield call(adminGetOrders, params);
-        console.log("articleList", articleList);
         yield put(adminGetOrdersSuccess(articleList));
       } catch (error) {
         yield put(adminGetOrdersFail(error));
@@ -284,7 +274,6 @@ const ProductSagas = {
       const params = action?.payload ?? {};
       try {
         const articleList = yield call(adminGetOrderByOrderId, params);
-        console.log("articleList", articleList);
         yield put(adminGetOrderByOrderIdSuccess(articleList));
       } catch (error) {
         yield put(adminGetOrderByOrderIdFail(error));
@@ -322,7 +311,7 @@ export default [
   takeLatest("USER_VIEW_ORDERS", ProductSagas.getOrderByUserIdSaga),
   takeLatest("USER_VIEW_ORDERS_BY_ORDERID", ProductSagas.userGetOrderByOrderIdSaga),
   takeLatest("ADMIN_VIEW_ORDERS", ProductSagas.adminGetOrdersSaga),
-  takeLatest("USER_VIEW_ORDERS_BY_ORDERID", ProductSagas.adminGetOrderByOrderIdSaga),
+  takeLatest("ADMIN_VIEW_ORDERS_BY_ORDERID", ProductSagas.adminGetOrderByOrderIdSaga),
   takeLatest("USER_CANCEL_ORDERS", ProductSagas.cancelUserPlaceOrdersSaga),
   takeLatest("USER_REGISTER", ProductSagas.userRegisterSaga),
   takeLatest("ADD_CARD_TO_USER", ProductSagas.addCardToUserSaga),
@@ -330,5 +319,5 @@ export default [
 
 
 
-  
+
 ];

@@ -5,7 +5,6 @@ import 'react-datepicker/dist/react-datepicker.css';
 import Moment from "moment";
 
 const Modal = ({ closeModal, modalType, onSubmit, defaultValue }) => {
-    console.log('xxxxx defaultValue', defaultValue);
     const initialState = modalType == 'BuyingPrice' ? {
         date: Moment().format('YYYY-MM-DD'),
         price: "",
@@ -46,7 +45,6 @@ const Modal = ({ closeModal, modalType, onSubmit, defaultValue }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('xxxxx formState',formState);
         if (!validateForm()) return;
 
         onSubmit(formState)

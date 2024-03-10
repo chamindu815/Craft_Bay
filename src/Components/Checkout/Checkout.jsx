@@ -40,8 +40,6 @@ const Checkout = ({ postUserPlaceOrders, placeOrders }) => {
   //   }
   // };
 
-  console.log("userIdchk", userId);
-  console.log("cartIdchk", id);
 
 
   return (
