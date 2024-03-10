@@ -19,6 +19,7 @@ import {
   adminGetOrders,
   adminGetOrderByOrderId,
   cancelUserPlaceOrders,
+  addCardToUser,
 } from "../Services/Products";
 import { put, call, takeLatest } from "redux-saga/effects";
 import { products } from "../Actions";
@@ -63,7 +64,9 @@ const {
   cancelUserPlaceOrdersSuccess,
   cancelUserPlaceOrdersFail,
   updateProductSuccess,
-  updateProductFail
+  updateProductFail,
+  addCardToUserSuccess,
+  addCardToUserFail,
 } = products;
 const ProductSagas = {
   userLoginSaga: function* (action) {
@@ -287,6 +290,18 @@ const ProductSagas = {
         yield put(adminGetOrderByOrderIdFail(error));
       }
     },
+
+    //ADD_CARD_TO_USER
+    addCardToUserSaga: function* (action) {
+      const params = action?.payload ?? {};
+      try {
+        const articleList = yield call(addCardToUser, params);
+        console.log("articleList", articleList);
+        yield put(addCardToUserSuccess(articleList));
+      } catch (error) {
+        yield put(addCardToUserFail(error));
+      }
+    },
 };
 
 export default [
@@ -310,6 +325,7 @@ export default [
   takeLatest("USER_VIEW_ORDERS_BY_ORDERID", ProductSagas.adminGetOrderByOrderIdSaga),
   takeLatest("USER_CANCEL_ORDERS", ProductSagas.cancelUserPlaceOrdersSaga),
   takeLatest("USER_REGISTER", ProductSagas.userRegisterSaga),
+  takeLatest("ADD_CARD_TO_USER", ProductSagas.addCardToUserSaga),
 
 
 
