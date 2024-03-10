@@ -1,5 +1,7 @@
 import React from "react";
 import "./navigation.css";
+import { useNavigate } from "react-router-dom";
+
 import logo from "../Assets/logo.png";
 import profile from "../Assets/Profile.png";
 import cart from "../Assets/Cart.png";
@@ -7,6 +9,11 @@ import order from "../Assets/Order.png";
 import signout from "../Assets/SignOut.png";
 
 const Navigation = () => {
+
+  const userId = localStorage.getItem("userId");
+  const navigate = useNavigate();
+
+
   return (
     <div>
       <div className="navheader">
@@ -51,9 +58,10 @@ const Navigation = () => {
         </div>
 
         <div className="nav-profile-img">
-        <a href="/profile">
-          <img className="nav-profile-imgs" src={profile} alt="" />
-        </a>
+        
+        {/* <a href="/profile"> */}
+          <img className="nav-profile-imgs" src={profile} alt="" onClick={() => navigate(`/profile/${localStorage.userId}`)} />
+        {/* </a> */}
         </div>
 
         <div className="nav-order-img">

@@ -25,7 +25,7 @@ const Login = ({ userLogin, loginData }) => {
         alert("Unauthorised User Details");
       }
       else if (loginData?.status == 200) {
-        alert("User login successfully!");
+        // alert("User login successfully!");
         localStorage.setItem("token", loginData?.token);
         localStorage.setItem("userId", loginData?.userId);
         navigate('/home');

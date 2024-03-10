@@ -139,6 +139,7 @@ export const products = {
     payload: {},
   }),
 
+
   //VIEW_CART
   viewCart: (data) => ({
     type: "VIEW_CART",
@@ -153,6 +154,7 @@ export const products = {
     payload: {},
   }),
 
+
   //GET_USER_BY_ID
   getUserById: (data) => ({
     type: "GET_USER_BY_ID",
@@ -166,6 +168,7 @@ export const products = {
     type: "GET_USER_BY_ID_FAIL",
     payload: {},
   }),
+
 
   //CART_CHECKOUT
   checkoutCart: (data) => ({
@@ -251,17 +254,32 @@ export const products = {
     payload: {},
   }),
 
-  //ADMIN_VIEW_ORDERS_BY_ORDERID
-  adminGetOrderByOrderId: (data) => ({
-    type: "ADMIN_VIEW_ORDERS_BY_ORDERID",
-    payload: data,
-  }),
-  adminGetOrderByOrderIdSuccess: (data) => ({
-    type: "ADMIN_VIEW_ORDERS_BY_ORDERID_SUCCESS",
-    payload: data,
-  }),
-  adminGetOrderByOrderIdFail: (error) => ({
-    type: "ADMIN_VIEW_ORDERS_BY_ORDERID_FAIL",
-    payload: {},
-  }),
+
+    //ADMIN_VIEW_ORDERS_BY_ORDERID
+    adminGetOrderByOrderId: (data) => ({
+      type: "ADMIN_VIEW_ORDERS_BY_ORDERID",
+      payload: data,
+    }),
+    adminGetOrderByOrderIdSuccess: (data) => ({
+      type: "ADMIN_VIEW_ORDERS_BY_ORDERID_SUCCESS",
+      payload: data,
+    }),
+    adminGetOrderByOrderIdFail: (error) => ({
+      type: "ADMIN_VIEW_ORDERS_BY_ORDERID_FAIL",
+      payload: {},
+    }),
+
+    //ADD_CARD_TO_USER
+    addCardToUser: (data) => ({
+      type: "ADD_CARD_TO_USER",
+      payload: data,
+    }),
+    addCardToUserSuccess: (data) => ({
+      type: "ADD_CARD_TO_USER_SUCCESS",
+      payload: data,
+    }),
+    addCardToUserFail: (error) => ({
+      type: "ADD_CARD_TO_USER_FAIL",
+      payload: {},
+    }),
 };

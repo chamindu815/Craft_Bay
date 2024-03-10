@@ -49,7 +49,7 @@ function App() {
           <Route path="/cart" element={<Cart />}></Route>
           <Route path="/checkout/:id" element={<Checkout />}></Route>
           <Route path="/contactus" element={<ContactUs/>}></Route>
-          <Route path="/profile" element={<Profile/>}></Route>
+          <Route path="/profile/:id" element={<Profile/>}></Route>
           <Route path="/adminprofile" element={<AdminProfile/>}></Route>
           <Route path="/admininventoryreport" element={<AdminInventoryReport/>}></Route>
           <Route path="/adminsalesreport" element={<AdminSalesReport/>}></Route>

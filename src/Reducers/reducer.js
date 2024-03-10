@@ -13,6 +13,7 @@ const initialState = {
   placeOrders:{},
   orderByUserId:{},
   orderByOrderId:{},
+  userCardDetails:{},
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -283,6 +284,21 @@ export default (state = initialState, { type, payload }) => {
     case "ADMIN_VIEW_ORDERS_BY_ORDERID_FAIL":
       return Object.assign({}, state, {
         adminOrderByOrderId: {},
+      });
+
+
+      //ADD_CARD_TO_USER
+    case "ADD_CARD_TO_USER":
+      return Object.assign({}, state, {
+        userCardDetails: {},
+      });
+    case "ADD_CARD_TO_USER_SUCCESS":
+      return Object.assign({}, state, {
+        userCardDetails: payload,
+      });
+    case "ADD_CARD_TO_USER_FAIL":
+      return Object.assign({}, state, {
+        userCardDetails: {},
       });
 
     default:

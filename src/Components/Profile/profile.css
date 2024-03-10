@@ -324,11 +324,28 @@
   display: flex;
   align-items: center;
   margin: auto;
-  width: 90px;
-  height: 40px;
+  width: 60px;
+  height: 30px;
   background: white;
   border: 1px solid black;
   margin-left: 180px;
+}
+.MMYY{
+margin-left: 8px;
+font-weight: lighter;
+}
+
+.card-info-exp-year-input {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  margin: auto;
+  width: 60px;
+  height: 30px;
+  background: white;
+  border: 1px solid black;
+  margin-left: 16em;
+  padding-left: 15px;
 }
 
 .card-info-exp-date-input input {
@@ -339,7 +356,7 @@
   outline: none;
   color: #000000;
   font-size: 15px;
-  margin: 0px 20px;
+  /* margin: 0px 20px; */
 }
 
 /*Form CVV*/

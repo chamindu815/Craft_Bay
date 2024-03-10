@@ -131,7 +131,7 @@ export const updateProduct = (params) => {
         "Authorization"
       ] = `Bearer ${localStorage.getItem("token")}`;
 
-      const { data } = await axios.put(
+      const {data} = await axios.put(
         "http://localhost:8089/craftbay/admin/product/update",
         params
       );
@@ -175,7 +175,7 @@ export const postAddToCart = (params) => {
 export const viewCart = (params) => {
   return new Promise(async (resolve, reject) => {
     try {
-      const { data } = await axios.get(
+      const {data} = await axios.get(
         `http://localhost:8089/craftbay/user/${params}/cart`,
         params
       );
@@ -306,3 +306,22 @@ export const adminGetOrderByOrderId = (params) => {
     }
   });
 };
+
+
+//ADD_CARD_TO_USER
+export const addCardToUser = (params) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const data = await axios.post(
+        `http://localhost:8089/craftbay/user/${params.userId}/add-card`,
+        params.formValues
+      );
+      resolve(data);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
+
+
