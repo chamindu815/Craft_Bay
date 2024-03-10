@@ -47,14 +47,12 @@ const AdminUpdateProduct = ({ productItem, getProductsById, updateProduct }) => 
   };
 
   const handleEditRow = (id, type) => {
-    console.log('xxxxx handleEditRow', id);
 
     setRowToEdit(id);
     setModalOpen(type);
   };
 
   const handleSubmit = (newRow) => {
-    console.log('xxxxx newRow', newRow);
     if (modalOpen == "BuyingPrice") {
       setFormValues({
         ...formValues, adminProductBuyingPriceDetailsDtos: rowToEdit === null ? [...formValues.adminProductBuyingPriceDetailsDtos, newRow] : formValues.adminProductBuyingPriceDetailsDtos.map((currRow, idx) => {
@@ -77,7 +75,6 @@ const AdminUpdateProduct = ({ productItem, getProductsById, updateProduct }) => 
 
     //   );
   };
-  console.log('xxxxx handleSave', formValues);
 
   const getRecentPrice = (productPriceDetailsDtos) => {
     const priceList = productPriceDetailsDtos?.sort((a, b) => new Date(b.date) - new Date(a.date))
@@ -91,14 +88,12 @@ const AdminUpdateProduct = ({ productItem, getProductsById, updateProduct }) => 
   };
 
   const handleSave = (e) => {
-    console.log('xxxxx handleSave', formValues);
     updateProduct(formValues)
   }
 
   const getEditToBeItem = () => {
     return modalOpen == "BuyingPrice" ? formValues.adminProductBuyingPriceDetailsDtos.filter((f, idx) => idx == rowToEdit)[0] : formValues.adminProductSellingPriceDetailsDtos.filter((f, idx) => idx == rowToEdit)[0]
   }
-  console.log('xxxxx rowToEdit', rowToEdit);
   return (
     <div className="adminupdateproduct-bg">
       {modalOpen != null && (

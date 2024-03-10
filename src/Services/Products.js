@@ -236,7 +236,7 @@ export const postUserPlaceOrders = (params) => {
 export const getOrderByUserId = (params) => {
   return new Promise(async (resolve, reject) => {
     try {
-      const data = await axios.get(
+      const {data} = await axios.get(
         `http://localhost:8089/craftbay/user/${params}/my-orders`,
         params
       );
@@ -248,12 +248,11 @@ export const getOrderByUserId = (params) => {
 };
 
 //USER_VIEW_ORDERS_BY_ORDERID
-export const userGetOrderByOrderId = (params) => {
+export const userGetOrderByOrderId = ({userId,id}) => {
   return new Promise(async (resolve, reject) => {
     try {
-      const data = await axios.get(
-        `http://localhost:8089/craftbay/user/${params}/orders/${params}`,
-        params
+      const {data} = await axios.get(
+        `http://localhost:8089/craftbay/user/${userId}/orders/${id}`
       );
       resolve(data);
     } catch (error) {
@@ -281,9 +280,8 @@ export const cancelUserPlaceOrders = (params) => {
 export const adminGetOrders = (params) => {
   return new Promise(async (resolve, reject) => {
     try {
-      const data = await axios.get(
-        `http://localhost:8089/craftbay/admin/orders`,
-        params
+      const {data} = await axios.get(
+        `http://localhost:8089/craftbay/admin/orders`
       );
       resolve(data);
     } catch (error) {
@@ -296,9 +294,8 @@ export const adminGetOrders = (params) => {
 export const adminGetOrderByOrderId = (params) => {
   return new Promise(async (resolve, reject) => {
     try {
-      const data = await axios.get(
-        `http://localhost:8089/craftbay/admin/orders/${params}`,
-        params
+      const {data} = await axios.get(
+        `http://localhost:8089/craftbay/admin/orders/${params}`
       );
       resolve(data);
     } catch (error) {
