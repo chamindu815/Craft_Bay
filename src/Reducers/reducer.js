@@ -4,17 +4,18 @@ const initialState = {
   topShopProducts: {},
   newProducts: {},
   loginData: {},
-  registerData:{},
+  registerData: {},
   productById: {},
   addToCart: {},
   cartDetails: {},
   userById: {},
-  checkoutDetails:{},
-  placeOrders:{},
-  orderByUserId:{},
-  orderByOrderId:{},
-  userCardDetails:{},
-  cardDetails: {}
+  checkoutDetails: {},
+  placeOrders: {},
+  orderByUserId: {},
+  orderByOrderId: {},
+  userCardDetails: {},
+  cardDetails: {},
+  salesReportData: {}
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -32,8 +33,8 @@ export default (state = initialState, { type, payload }) => {
         loginData: {},
       });
 
-//USER_REGISTER
-      case "USER_REGISTER":
+    //USER_REGISTER
+    case "USER_REGISTER":
       return Object.assign({}, state, {
         registerData: {},
       });
@@ -290,7 +291,7 @@ export default (state = initialState, { type, payload }) => {
       });
 
 
-      //ADD_CARD_TO_USER
+    //ADD_CARD_TO_USER
     case "ADD_CARD_TO_USER":
       return Object.assign({}, state, {
         userCardDetails: {},
@@ -354,6 +355,20 @@ export default (state = initialState, { type, payload }) => {
     case "UPDATE_CARD_DETAILS_FAIL":
       return Object.assign({}, state, {
         cardDetails: {},
+      });
+
+    //GET_SALES_REPORT
+    case "GET_SALES_REPORT":
+      return Object.assign({}, state, {
+        salesReportData: {},
+      });
+    case "GET_SALES_REPORT_SUCCESS":
+      return Object.assign({}, state, {
+        salesReportData: payload,
+      });
+    case "GET_SALES_REPORT_FAIL":
+      return Object.assign({}, state, {
+        salesReportData: {},
       });
 
     default:
