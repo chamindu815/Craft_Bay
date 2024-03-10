@@ -376,3 +376,16 @@ export const getCardDetails = (params) => {
     }
   });
 };
+
+export const getSalesReportDetails = (params) => {
+  console.log('xxxxx',params);
+  return new Promise(async (resolve, reject) => {
+    try {
+      const {data} = await axios.get(
+        `http://localhost:8089/craftbay/admin/reports/sales-report?startDate=${params.startDate}&endDate=${params.endDate}`);
+      resolve(data);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};

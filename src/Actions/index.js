@@ -338,4 +338,18 @@ export const products = {
       type: "ADD_CARD_TO_USER_FAIL",
       payload: {},
     }),
+
+    //GET_SALES_REPORT
+    getSalesReportDetails: (data) => ({
+      type: "GET_SALES_REPORT",
+      payload: data,
+    }),
+    getSalesReportDetailsSuccess: (data) => ({
+      type: "GET_SALES_REPORT_SUCCESS",
+      payload: data,
+    }),
+    getSalesReportDetailsFail: (error) => ({
+      type: "GET_SALES_REPORT_FAIL",
+      payload: {},
+    }),
 };
