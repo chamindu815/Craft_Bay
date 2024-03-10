@@ -184,6 +184,7 @@ export const products = {
     payload: {},
   }),
 
+
   //USER_PLACE_ORDERS
   postUserPlaceOrders: (data) => ({
     type: "USER_PLACE_ORDERS",
@@ -198,6 +199,7 @@ export const products = {
     payload: {},
   }),
 
+
   //USER_VIEW_ORDERS
   getOrderByUserId: (data) => ({
     type: "USER_VIEW_ORDERS",
@@ -211,6 +213,7 @@ export const products = {
     type: "USER_VIEW_ORDERS_FAIL",
     payload: {},
   }),
+
 
   //USER_VIEW_ORDERS_BY_ORDERID
   userGetOrderByOrderId: (data) => ({
@@ -240,6 +243,7 @@ export const products = {
     payload: {},
   }),
 
+
   //ADMIN_VIEW_ORDERS
   adminGetOrders: (data) => ({
     type: "ADMIN_VIEW_ORDERS",
@@ -255,19 +259,71 @@ export const products = {
   }),
 
 
-    //ADMIN_VIEW_ORDERS_BY_ORDERID
-    adminGetOrderByOrderId: (data) => ({
-      type: "ADMIN_VIEW_ORDERS_BY_ORDERID",
-      payload: data,
-    }),
-    adminGetOrderByOrderIdSuccess: (data) => ({
-      type: "ADMIN_VIEW_ORDERS_BY_ORDERID_SUCCESS",
-      payload: data,
-    }),
-    adminGetOrderByOrderIdFail: (error) => ({
-      type: "ADMIN_VIEW_ORDERS_BY_ORDERID_FAIL",
-      payload: {},
-    }),
+  //ADMIN_VIEW_ORDERS_BY_ORDERID
+  adminGetOrderByOrderId: (data) => ({
+    type: "ADMIN_VIEW_ORDERS_BY_ORDERID",
+    payload: data,
+  }),
+  adminGetOrderByOrderIdSuccess: (data) => ({
+    type: "ADMIN_VIEW_ORDERS_BY_ORDERID_SUCCESS",
+    payload: data,
+  }),
+  adminGetOrderByOrderIdFail: (error) => ({
+    type: "ADMIN_VIEW_ORDERS_BY_ORDERID_FAIL",
+    payload: {},
+  }),
+
+  updateUserBillingAddress: (data) => ({
+    type: "UPDATE_USER_ADDRESS",
+    payload: data,
+  }),
+  updateUserBillingAddressSuccess: (data) => ({
+    type: "UPDATE_USER_ADDRESS_SUCCESS",
+    payload: data,
+  }),
+  updateUserBillingAddressFail: (error) => ({
+    type: "UPDATE_USER_ADDRESS_FAIL",
+    payload: {},
+  }),
+
+  updateCart: (data) => ({
+    type: "UPDATE_CART_DETAILS",
+    payload: data,
+  }),
+  updateCartSuccess: (data) => ({
+    type: "UPDATE_CART_DETAILS_SUCCESS",
+    payload: data,
+  }),
+  updateCartFail: (error) => ({
+    type: "UPDATE_CART_DETAILS_FAIL",
+    payload: {},
+  }),
+
+  getCardDetails: (data) => ({
+    type: "GET_CARD_DETAILS",
+    payload: data,
+  }),
+  getCardDetailsSuccess: (data) => ({
+    type: "GET_CARD_DETAILS_SUCCESS",
+    payload: data,
+  }),
+  getCardDetailsFail: (error) => ({
+    type: "GET_CARD_DETAILS_FAIL",
+    payload: {},
+  }),
+
+  updateCardDetails: (data) => ({
+    type: "UPDATE_CARD_DETAILS",
+    payload: data,
+  }),
+  updateCardDetailsSuccess: (data) => ({
+    type: "UPDATE_CARD_DETAILS_SUCCESS",
+    payload: data,
+  }),
+  updateCardDetailsFail: (error) => ({
+    type: "UPDATE_CARD_DETAILS_FAIL",
+    payload: {},
+  }),
 
     //ADD_CARD_TO_USER
     addCardToUser: (data) => ({

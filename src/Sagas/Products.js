@@ -20,6 +20,10 @@ import {
   adminGetOrderByOrderId,
   cancelUserPlaceOrders,
   addCardToUser,
+  updateUserBillAddress,
+  updateCartDetails,
+  updateCardDetails,
+  getCardDetails
 } from "../Services/Products";
 import { put, call, takeLatest } from "redux-saga/effects";
 import { products } from "../Actions";
@@ -67,6 +71,14 @@ const {
   updateProductFail,
   addCardToUserSuccess,
   addCardToUserFail,
+  updateUserBillingAddressSuccess,
+  updateUserBillingAddressFail,
+  updateCartSuccess,
+  updateCartFail,
+  updateCardDetailsSuccess,
+  updateCardDetailsFail,
+  getCardDetailsSuccess,
+  getCardDetailsFail
 } = products;
 const ProductSagas = {
   userLoginSaga: function* (action) {
@@ -178,8 +190,10 @@ const ProductSagas = {
   viewCartSaga: function* (action) {
     const params = action?.payload ?? {};
     try {
-      const articleList = yield call(viewCart, params);
-      yield put(viewCartSuccess(articleList));
+      const cart = yield call(viewCart, params);
+      const user = yield call(getUserById, params);
+      const card = yield call(getCardDetails, params);
+      yield put(viewCartSuccess({cart,user,card}));
     } catch (error) {
       yield put(viewCartFail(error));
     }
@@ -280,6 +294,45 @@ const ProductSagas = {
       }
     },
 
+    updateUserSaga: function* (action) {
+      const params = action?.payload ?? {};
+      try {
+        const newUser = yield call(updateUserBillAddress, params);
+        yield put(updateUserBillingAddressSuccess(newUser));
+      } catch (error) {
+        yield put(updateUserBillingAddressFail(error));
+      }
+    },
+
+    updateCartSaga: function* (action) {
+      const params = action?.payload ?? {};
+      try {
+        const newUser = yield call(updateCartDetails, params);
+        yield put(updateCartSuccess(newUser));
+      } catch (error) {
+        yield put(updateCartFail(error));
+      }
+    },
+
+    updateCardSaga: function* (action) {
+      const params = action?.payload ?? {};
+      try {
+        const updatedCard = yield call(updateCardDetails, params);
+        yield put(updateCardDetailsSuccess(updatedCard));
+      } catch (error) {
+        yield put(updateCardDetailsFail(error));
+      }
+    },
+    getCardSaga: function* (action) {
+      const params = action?.payload ?? {};
+      try {
+        const card = yield call(getCardDetails, params);
+        yield put(getCardDetailsSuccess(card));
+      } catch (error) {
+        yield put(getCardDetailsFail(error));
+      }
+    },
+
     //ADD_CARD_TO_USER
     addCardToUserSaga: function* (action) {
       const params = action?.payload ?? {};
@@ -315,9 +368,8 @@ export default [
   takeLatest("USER_CANCEL_ORDERS", ProductSagas.cancelUserPlaceOrdersSaga),
   takeLatest("USER_REGISTER", ProductSagas.userRegisterSaga),
   takeLatest("ADD_CARD_TO_USER", ProductSagas.addCardToUserSaga),
-
-
-
-
-
+  takeLatest("UPDATE_USER_ADDRESS", ProductSagas.updateUserSaga),
+  takeLatest("UPDATE_CART_DETAILS", ProductSagas.updateCartSaga),
+  takeLatest("UPDATE_CARD_DETAILS", ProductSagas.updateCardSaga),
+  takeLatest("GET_CARD_DETAILS", ProductSagas.getCardSaga),
 ];
