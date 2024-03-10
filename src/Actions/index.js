@@ -11,6 +11,21 @@ export const products = {
     type: "USER_LOGIN_FAIL",
     payload: {},
   }),
+
+  //USER_REGISTER
+  userRegister: (data) => ({
+    type: "USER_REGISTER",
+    payload: data,
+  }),
+  userRegisterSuccess: (data) => ({
+    type: "USER_REGISTER_SUCCESS",
+    payload: data,
+  }),
+  userRegisterFail: (error) => ({
+    type: "USER_REGISTER_FAIL",
+    payload: {},
+  }),
+
   addProducts: (data) => ({
     type: "ADD_PRODUCTS",
     payload: data,
@@ -168,4 +183,159 @@ export const products = {
     type: "CART_CHECKOUT_FAIL",
     payload: {},
   }),
+
+
+  //USER_PLACE_ORDERS
+  postUserPlaceOrders: (data) => ({
+    type: "USER_PLACE_ORDERS",
+    payload: data,
+  }),
+  postUserPlaceOrdersSuccess: (data) => ({
+    type: "USER_PLACE_ORDERS_SUCCESS",
+    payload: data,
+  }),
+  postUserPlaceOrdersFail: (error) => ({
+    type: "USER_PLACE_ORDERS_FAIL",
+    payload: {},
+  }),
+
+
+  //USER_VIEW_ORDERS
+  getOrderByUserId: (data) => ({
+    type: "USER_VIEW_ORDERS",
+    payload: data,
+  }),
+  getOrderByUserIdSuccess: (data) => ({
+    type: "USER_VIEW_ORDERS_SUCCESS",
+    payload: data,
+  }),
+  getOrderByUserIdFail: (error) => ({
+    type: "USER_VIEW_ORDERS_FAIL",
+    payload: {},
+  }),
+
+
+  //USER_VIEW_ORDERS_BY_ORDERID
+  userGetOrderByOrderId: (data) => ({
+    type: "USER_VIEW_ORDERS_BY_ORDERID",
+    payload: data,
+  }),
+  userGetOrderByOrderIdSuccess: (data) => ({
+    type: "USER_VIEW_ORDERS_BY_ORDERID_SUCCESS",
+    payload: data,
+  }),
+  userGetOrderByOrderIdFail: (error) => ({
+    type: "USER_VIEW_ORDERS_BY_ORDERID_FAIL",
+    payload: {},
+  }),
+
+  //USER_CANCEL_ORDERS
+  cancelUserPlaceOrders: (data) => ({
+    type: "USER_CANCEL_ORDERS",
+    payload: data,
+  }),
+  cancelUserPlaceOrdersSuccess: (data) => ({
+    type: "USER_CANCEL_ORDERS_SUCCESS",
+    payload: data,
+  }),
+  cancelUserPlaceOrdersFail: (error) => ({
+    type: "USER_CANCEL_ORDERS_FAIL",
+    payload: {},
+  }),
+
+
+  //ADMIN_VIEW_ORDERS
+  adminGetOrders: (data) => ({
+    type: "ADMIN_VIEW_ORDERS",
+    payload: data,
+  }),
+  adminGetOrdersSuccess: (data) => ({
+    type: "ADMIN_VIEW_ORDERS_SUCCESS",
+    payload: data,
+  }),
+  adminGetOrdersFail: (error) => ({
+    type: "ADMIN_VIEW_ORDERS_FAIL",
+    payload: {},
+  }),
+
+
+  //ADMIN_VIEW_ORDERS_BY_ORDERID
+  adminGetOrderByOrderId: (data) => ({
+    type: "ADMIN_VIEW_ORDERS_BY_ORDERID",
+    payload: data,
+  }),
+  adminGetOrderByOrderIdSuccess: (data) => ({
+    type: "ADMIN_VIEW_ORDERS_BY_ORDERID_SUCCESS",
+    payload: data,
+  }),
+  adminGetOrderByOrderIdFail: (error) => ({
+    type: "ADMIN_VIEW_ORDERS_BY_ORDERID_FAIL",
+    payload: {},
+  }),
+
+  updateUserBillingAddress: (data) => ({
+    type: "UPDATE_USER_ADDRESS",
+    payload: data,
+  }),
+  updateUserBillingAddressSuccess: (data) => ({
+    type: "UPDATE_USER_ADDRESS_SUCCESS",
+    payload: data,
+  }),
+  updateUserBillingAddressFail: (error) => ({
+    type: "UPDATE_USER_ADDRESS_FAIL",
+    payload: {},
+  }),
+
+  updateCart: (data) => ({
+    type: "UPDATE_CART_DETAILS",
+    payload: data,
+  }),
+  updateCartSuccess: (data) => ({
+    type: "UPDATE_CART_DETAILS_SUCCESS",
+    payload: data,
+  }),
+  updateCartFail: (error) => ({
+    type: "UPDATE_CART_DETAILS_FAIL",
+    payload: {},
+  }),
+
+  getCardDetails: (data) => ({
+    type: "GET_CARD_DETAILS",
+    payload: data,
+  }),
+  getCardDetailsSuccess: (data) => ({
+    type: "GET_CARD_DETAILS_SUCCESS",
+    payload: data,
+  }),
+  getCardDetailsFail: (error) => ({
+    type: "GET_CARD_DETAILS_FAIL",
+    payload: {},
+  }),
+
+  updateCardDetails: (data) => ({
+    type: "UPDATE_CARD_DETAILS",
+    payload: data,
+  }),
+  updateCardDetailsSuccess: (data) => ({
+    type: "UPDATE_CARD_DETAILS_SUCCESS",
+    payload: data,
+  }),
+  updateCardDetailsFail: (error) => ({
+    type: "UPDATE_CARD_DETAILS_FAIL",
+    payload: {},
+  }),
+
+    //ADD_CARD_TO_USER
+    addCardToUser: (data) => ({
+      type: "ADD_CARD_TO_USER",
+      payload: data,
+    }),
+    addCardToUserSuccess: (data) => ({
+      type: "ADD_CARD_TO_USER_SUCCESS",
+      payload: data,
+    }),
+    addCardToUserFail: (error) => ({
+      type: "ADD_CARD_TO_USER_FAIL",
+      payload: {},
+    }),
 };

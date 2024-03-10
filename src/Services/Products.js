@@ -19,6 +19,21 @@ export const userLogin = (params) => {
   });
 };
 
+export const userRegister = (params) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const data = await axios.post(
+        "http://localhost:8089/craftbay/auth/save",
+        params
+      );
+      resolve(data);
+      alert("Employee Registation Successfully");
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
 export const getProducts = () => {
   return new Promise(async (resolve, reject) => {
     try {
@@ -116,7 +131,7 @@ export const updateProduct = (params) => {
         "Authorization"
       ] = `Bearer ${localStorage.getItem("token")}`;
 
-      const data = await axios.put(
+      const { data } = await axios.put(
         "http://localhost:8089/craftbay/admin/product/update",
         params
       );
@@ -156,12 +171,11 @@ export const postAddToCart = (params) => {
   });
 };
 
-
 //VIEW_CART
 export const viewCart = (params) => {
   return new Promise(async (resolve, reject) => {
     try {
-      const {data} = await axios.get(
+      const { data } = await axios.get(
         `http://localhost:8089/craftbay/user/${params}/cart`,
         params
       );
@@ -172,14 +186,12 @@ export const viewCart = (params) => {
   });
 };
 
-
-//GET_USER_BY_ID  
+//GET_USER_BY_ID
 export const getUserById = (params) => {
   return new Promise(async (resolve, reject) => {
     try {
-      const {data} = await axios.get(
-        `http://localhost:8089/craftbay/user/${params}`,
-        params
+      const { data } = await axios.get(
+        `http://localhost:8089/craftbay/user/${params}`
       );
       resolve(data);
     } catch (error) {
@@ -187,7 +199,6 @@ export const getUserById = (params) => {
     }
   });
 };
-
 
 //CART_CHECKOUT
 export const checkoutCart = (params) => {
@@ -204,5 +215,164 @@ export const checkoutCart = (params) => {
   });
 };
 
+//NEED TO ASK ABOUT UI
+//USER_PLACE_ORDERS
+export const postUserPlaceOrders = ({ userId, cartId }) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const data = await axios.post(
+        `http://localhost:8089/craftbay/user/${userId}/cart/${cartId}/place-order`);
+      resolve(data);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
+//USER_VIEW_ORDERS
+export const getOrderByUserId = (params) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const {data} = await axios.get(
+        `http://localhost:8089/craftbay/user/${params}/my-orders`,
+        params
+      );
+      resolve(data);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
+//USER_VIEW_ORDERS_BY_ORDERID
+export const userGetOrderByOrderId = ({userId,id}) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const {data} = await axios.get(
+        `http://localhost:8089/craftbay/user/${userId}/orders/${id}`
+      );
+      resolve(data);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
+//USER_CANCEL_ORDERS
+export const cancelUserPlaceOrders = (params) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const data = await axios.post(
+        `http://localhost:8089/craftbay/user/${params}/order/${params}/cancel-order`,
+        params
+      );
+      resolve(data);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
+//ADMIN_VIEW_ORDERS
+export const adminGetOrders = (params) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const {data} = await axios.get(
+        `http://localhost:8089/craftbay/admin/orders`
+      );
+      resolve(data);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
+//ADMIN_VIEW_ORDERS_BY_ORDERID
+export const adminGetOrderByOrderId = (params) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const {data} = await axios.get(
+        `http://localhost:8089/craftbay/admin/orders/${params}`
+      );
+      resolve(data);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
 
 
+//ADD_CARD_TO_USER
+export const addCardToUser = (params) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const data = await axios.post(
+        `http://localhost:8089/craftbay/user/${params.userId}/add-card`,
+        params.formValues
+      );
+      resolve(data);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
+export const updateUserBillAddress = ({ userId, address }) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      axios.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer ${localStorage.getItem("token")}`;
+
+      const { data } = await axios.put(
+        `http://localhost:8089/craftbay/user/${userId}`,
+        address
+      );
+      resolve(data);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
+export const updateCartDetails = (params) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      axios.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer ${localStorage.getItem("token")}`;
+
+      const { data } = await axios.put(
+        `http://localhost:8089/craftbay/user/cart/update-cart`,
+        params
+      );
+      resolve(data);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
+export const updateCardDetails = ({ userId, cardDetails }) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const data = await axios.put(
+        `http://localhost:8089/craftbay/user/${userId}/update-card`,cardDetails);
+      resolve(data);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
+export const getCardDetails = (params) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const {data} = await axios.get(
+        `http://localhost:8089/craftbay/user/${params}/get-card`);
+      resolve(data);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};

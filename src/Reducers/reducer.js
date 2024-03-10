@@ -4,11 +4,17 @@ const initialState = {
   topShopProducts: {},
   newProducts: {},
   loginData: {},
+  registerData:{},
   productById: {},
   addToCart: {},
-  cartDetails:{},
+  cartDetails: {},
   userById: {},
   checkoutDetails:{},
+  placeOrders:{},
+  orderByUserId:{},
+  orderByOrderId:{},
+  userCardDetails:{},
+  cardDetails: {}
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -25,6 +31,22 @@ export default (state = initialState, { type, payload }) => {
       return Object.assign({}, state, {
         loginData: {},
       });
+
+//USER_REGISTER
+      case "USER_REGISTER":
+      return Object.assign({}, state, {
+        registerData: {},
+      });
+    case "USER_REGISTER_SUCCESS":
+      return Object.assign({}, state, {
+        registerData: payload,
+      });
+    case "USER_REGISTER_FAIL":
+      return Object.assign({}, state, {
+        registerData: {},
+      });
+
+
     case "ADD_PRODUCTS":
       return Object.assign({}, state, {});
     case "ADD_PRODUCTS_SUCCESS":
@@ -35,7 +57,7 @@ export default (state = initialState, { type, payload }) => {
       return Object.assign({}, state, {});
     case "UPDATE_PRODUCT_SUCCESS":
       return Object.assign({}, state, {
-        // update products arra
+        productToBeEdit: payload
       });
     case "UPDATE_PRODUCT_FAIL":
       return Object.assign({}, state, {});
@@ -129,7 +151,7 @@ export default (state = initialState, { type, payload }) => {
       });
 
 
-      //VIEW_CART
+    //VIEW_CART
     case "VIEW_CART":
       return Object.assign({}, state, {
         cartDetails: {},
@@ -137,7 +159,9 @@ export default (state = initialState, { type, payload }) => {
     case "VIEW_CART_SUCCESS":
       return Object.assign({}, state, {
         ...state,
-        cartDetails: payload,
+        cartDetails: payload.cart,
+        userById: payload.user,
+        cardDetails: payload.card
       });
     case "VIEW_CART_FAIL":
       return Object.assign({}, state, {
@@ -145,8 +169,8 @@ export default (state = initialState, { type, payload }) => {
       });
 
 
-      //GET_USER_BY_ID
-      case "GET_USER_BY_ID":
+    //GET_USER_BY_ID
+    case "GET_USER_BY_ID":
       return Object.assign({}, state, {
         userById: {},
       });
@@ -160,7 +184,7 @@ export default (state = initialState, { type, payload }) => {
       });
 
 
-      //CART_CHECKOUT
+    //CART_CHECKOUT
     case "CART_CHECKOUT":
       return Object.assign({}, state, {
         checkoutDetails: {},
@@ -175,6 +199,162 @@ export default (state = initialState, { type, payload }) => {
         checkoutDetails: {},
       });
 
+
+    //USER_PLACE_ORDERS
+    case "USER_PLACE_ORDERS":
+      return Object.assign({}, state, {
+        placeOrders: {},
+      });
+    case "USER_PLACE_ORDERS_SUCCESS":
+      return Object.assign({}, state, {
+        placeOrders: payload,
+      });
+    case "USER_PLACE_ORDERS_FAIL":
+      return Object.assign({}, state, {
+        placeOrders: {},
+      });
+
+
+    //USER_VIEW_ORDERS
+    case "USER_VIEW_ORDERS":
+      return Object.assign({}, state, {
+        orderByUserId: {},
+      });
+    case "USER_VIEW_ORDERS_SUCCESS":
+      return Object.assign({}, state, {
+        orderByUserId: payload,
+      });
+    case "USER_VIEW_ORDERS_FAIL":
+      return Object.assign({}, state, {
+        orderByUserId: {},
+      });
+
+
+    //USER_VIEW_ORDERS_BY_ORDERID
+    case "USER_VIEW_ORDERS_BY_ORDERID":
+      return Object.assign({}, state, {
+        orderByOrderId: {},
+      });
+    case "USER_VIEW_ORDERS_BY_ORDERID_SUCCESS":
+      return Object.assign({}, state, {
+        orderByOrderId: payload,
+      });
+    case "USER_VIEW_ORDERS_BY_ORDERID_FAIL":
+      return Object.assign({}, state, {
+        orderByOrderId: {},
+      });
+
+
+    //USER_CANCEL_ORDERS
+    case "USER_CANCEL_ORDERS":
+      return Object.assign({}, state, {
+        cancelOrders: {},
+      });
+    case "USER_CANCEL_ORDERS_SUCCESS":
+      return Object.assign({}, state, {
+        cancelOrders: payload,
+      });
+    case "USER_CANCEL_ORDERS_FAIL":
+      return Object.assign({}, state, {
+        cancelOrders: {},
+      });
+
+
+    //ADMIN_VIEW_ORDERS
+    case "ADMIN_VIEW_ORDERS":
+      return Object.assign({}, state, {
+        adminGetOrderDetails: {},
+      });
+    case "ADMIN_VIEW_ORDERS_SUCCESS":
+      return Object.assign({}, state, {
+        adminGetOrderDetails: payload,
+      });
+    case "ADMIN_VIEW_ORDERS_FAIL":
+      return Object.assign({}, state, {
+        adminGetOrderDetails: {},
+      });
+
+
+    //ADMIN_VIEW_ORDERS_BY_ORDERID
+    case "USER_VIEW_ORDERS_BY_ORDERID":
+      return Object.assign({}, state, {
+        adminOrderByOrderId: {},
+      });
+    case "ADMIN_VIEW_ORDERS_BY_ORDERID_SUCCESS":
+      return Object.assign({}, state, {
+        adminOrderByOrderId: payload,
+      });
+    case "ADMIN_VIEW_ORDERS_BY_ORDERID_FAIL":
+      return Object.assign({}, state, {
+        adminOrderByOrderId: {},
+      });
+
+
+      //ADD_CARD_TO_USER
+    case "ADD_CARD_TO_USER":
+      return Object.assign({}, state, {
+        userCardDetails: {},
+      });
+    case "ADD_CARD_TO_USER_SUCCESS":
+      return Object.assign({}, state, {
+        userCardDetails: payload,
+      });
+    case "ADD_CARD_TO_USER_FAIL":
+      return Object.assign({}, state, {
+        userCardDetails: {},
+      });
+
+    //UPDATE_USER_ADDRESS
+    case "UPDATE_USER_ADDRESS":
+      return Object.assign({}, state, {
+      });
+    case "UPDATE_USER_ADDRESS_SUCCESS":
+      return Object.assign({}, state, {
+        userById: payload,
+      });
+    case "UPDATE_USER_ADDRESS_FAIL":
+      return Object.assign({}, state, {
+        userById: {},
+      });
+
+    //UPDATE_CART
+    case "UPDATE_CART_DETAILS":
+      return Object.assign({}, state, {
+      });
+    case "UPDATE_CART_DETAILS_SUCCESS":
+      return Object.assign({}, state, {
+        // cartDetails: payload,
+      });
+    case "UPDATE_CART_DETAILS_FAIL":
+      return Object.assign({}, state, {
+        cartDetails: {},
+      });
+
+    //GET_CARD_DETAILS
+    case "GET_CARD_DETAILS":
+      return Object.assign({}, state, {
+      });
+    case "GET_CARD_DETAILS_SUCCESS":
+      return Object.assign({}, state, {
+        cardDetails: payload,
+      });
+    case "GET_CARD_DETAILSS_FAIL":
+      return Object.assign({}, state, {
+        cardDetails: {},
+      });
+
+    //UPDATE_CART
+    case "UPDATE_CARD_DETAILS":
+      return Object.assign({}, state, {
+      });
+    case "UPDATE_CARD_DETAILS_SUCCESS":
+      return Object.assign({}, state, {
+        cardDetails: payload,
+      });
+    case "UPDATE_CARD_DETAILS_FAIL":
+      return Object.assign({}, state, {
+        cardDetails: {},
+      });
 
     default:
       return state;

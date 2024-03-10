@@ -1,5 +1,6 @@
 import {
   userLogin,
+  userRegister,
   getProducts,
   addProducts,
   deleteProducts,
@@ -12,6 +13,17 @@ import {
   viewCart,
   getUserById,
   checkoutCart,
+  postUserPlaceOrders,
+  getOrderByUserId,
+  userGetOrderByOrderId,
+  adminGetOrders,
+  adminGetOrderByOrderId,
+  cancelUserPlaceOrders,
+  addCardToUser,
+  updateUserBillAddress,
+  updateCartDetails,
+  updateCardDetails,
+  getCardDetails
 } from "../Services/Products";
 import { put, call, takeLatest } from "redux-saga/effects";
 import { products } from "../Actions";
@@ -31,6 +43,8 @@ const {
   getNewProductsFail,
   userLoginSuccess,
   userLoginFail,
+  userRegisterSuccess,
+  userRegisterFail,
   getProductByIdSuccess,
   getProductByIdFail,
   postAddToCartSuccess,
@@ -41,18 +55,53 @@ const {
   getUserByIdFail,
   checkoutCartSuccess,
   checkoutCartFail,
+  postUserPlaceOrdersSuccess,
+  postUserPlaceOrdersFail,
+  getOrderByUserIdSuccess,
+  getOrderByUserIdFail,
+  userGetOrderByOrderIdSuccess,
+  userGetOrderByOrderIdFail,
+  adminGetOrdersSuccess,
+  adminGetOrdersFail,
+  adminGetOrderByOrderIdSuccess,
+  adminGetOrderByOrderIdFail,
+  cancelUserPlaceOrdersSuccess,
+  cancelUserPlaceOrdersFail,
+  updateProductSuccess,
+  updateProductFail,
+  addCardToUserSuccess,
+  addCardToUserFail,
+  updateUserBillingAddressSuccess,
+  updateUserBillingAddressFail,
+  updateCartSuccess,
+  updateCartFail,
+  updateCardDetailsSuccess,
+  updateCardDetailsFail,
+  getCardDetailsSuccess,
+  getCardDetailsFail
 } = products;
 const ProductSagas = {
   userLoginSaga: function* (action) {
     const params = action?.payload ?? {};
     try {
       const articleList = yield call(userLogin, params);
-      console.log("articleList", articleList);
       yield put(userLoginSuccess(articleList));
     } catch (error) {
       yield put(userLoginFail(error));
     }
   },
+
+//USER_REGISTER
+  userRegisterSaga: function* (action) {
+    const params = action?.payload ?? {};
+    try {
+      const articleList = yield call(userRegister, params);
+      yield put(userRegisterSuccess(articleList));
+    } catch (error) {
+      yield put(userRegisterFail(error));
+    }
+  },
+
   addProductsSaga: function* (action) {
     const params = action?.payload ?? {};
     try {
@@ -66,9 +115,9 @@ const ProductSagas = {
     const params = action?.payload ?? {};
     try {
       const articleList = yield call(updateProduct, params);
-      // yield put(addProductsSuccess(articleList));
+      yield put(updateProductSuccess(articleList));
     } catch (error) {
-      // yield put(addProductsFail(error));
+      yield put(updateProductFail(error));
     }
   },
   getProductsSaga: function* (action) {
@@ -130,7 +179,6 @@ const ProductSagas = {
     const params = action?.payload ?? {};
     try {
       const articleList = yield call(postAddToCart, params);
-      console.log("articleList", articleList);
       yield put(postAddToCartSuccess(articleList));
     } catch (error) {
       yield put(postAddToCartFail(error));
@@ -142,9 +190,10 @@ const ProductSagas = {
   viewCartSaga: function* (action) {
     const params = action?.payload ?? {};
     try {
-      const articleList = yield call(viewCart, params);
-      console.log("articleList", articleList);
-      yield put(viewCartSuccess(articleList));
+      const cart = yield call(viewCart, params);
+      const user = yield call(getUserById, params);
+      const card = yield call(getCardDetails, params);
+      yield put(viewCartSuccess({cart,user,card}));
     } catch (error) {
       yield put(viewCartFail(error));
     }
@@ -156,7 +205,6 @@ const ProductSagas = {
     const params = action?.payload ?? {};
     try {
       const articleList = yield call(getUserById, params);
-      console.log("articleList", articleList);
       yield put(getUserByIdSuccess(articleList));
     } catch (error) {
       yield put(getUserByIdFail(error));
@@ -169,12 +217,133 @@ const ProductSagas = {
     const params = action?.payload ?? {};
     try {
       const articleList = yield call(checkoutCart, params);
-      console.log("articleList", articleList);
       yield put(checkoutCartSuccess(articleList));
     } catch (error) {
       yield put(checkoutCartFail(error));
     }
   },
+
+
+    //USER_PLACE_ORDERS
+    postUserPlaceOrdersSaga: function* (action) {
+      const params = action?.payload ?? {};
+      try {
+        const articleList = yield call(postUserPlaceOrders, params);
+        yield put(postUserPlaceOrdersSuccess(articleList));
+      } catch (error) {
+        yield put(postUserPlaceOrdersFail(error));
+      }
+    },
+
+
+    //USER_VIEW_ORDERS
+    getOrderByUserIdSaga: function* (action) {
+      const params = action?.payload ?? {};
+      try {
+        const articleList = yield call(getOrderByUserId, params);
+        yield put(getOrderByUserIdSuccess(articleList));
+      } catch (error) {
+        yield put(getOrderByUserIdFail(error));
+      }
+    },
+
+
+    //USER_VIEW_ORDERS_BY_ORDERID
+    userGetOrderByOrderIdSaga: function* (action) {
+      const params = action?.payload ?? {};
+      try {
+        const articleList = yield call(userGetOrderByOrderId, params);
+        yield put(userGetOrderByOrderIdSuccess(articleList));
+      } catch (error) {
+        yield put(userGetOrderByOrderIdFail(error));
+      }
+    },
+
+
+    //USER_CANCEL_ORDERS
+    cancelUserPlaceOrdersSaga: function* (action) {
+      const params = action?.payload ?? {};
+      try {
+        const articleList = yield call(cancelUserPlaceOrders, params);
+        yield put(cancelUserPlaceOrdersSuccess(articleList));
+      } catch (error) {
+        yield put(cancelUserPlaceOrdersFail(error));
+      }
+    },
+
+    //ADMIN_VIEW_ORDERS
+    adminGetOrdersSaga: function* (action) {
+      const params = action?.payload ?? {};
+      try {
+        const articleList = yield call(adminGetOrders, params);
+        yield put(adminGetOrdersSuccess(articleList));
+      } catch (error) {
+        yield put(adminGetOrdersFail(error));
+      }
+    },
+
+
+    //ADMIN_VIEW_ORDERS_BY_ORDERID
+    adminGetOrderByOrderIdSaga: function* (action) {
+      const params = action?.payload ?? {};
+      try {
+        const articleList = yield call(adminGetOrderByOrderId, params);
+        yield put(adminGetOrderByOrderIdSuccess(articleList));
+      } catch (error) {
+        yield put(adminGetOrderByOrderIdFail(error));
+      }
+    },
+
+    updateUserSaga: function* (action) {
+      const params = action?.payload ?? {};
+      try {
+        const newUser = yield call(updateUserBillAddress, params);
+        yield put(updateUserBillingAddressSuccess(newUser));
+      } catch (error) {
+        yield put(updateUserBillingAddressFail(error));
+      }
+    },
+
+    updateCartSaga: function* (action) {
+      const params = action?.payload ?? {};
+      try {
+        const newUser = yield call(updateCartDetails, params);
+        yield put(updateCartSuccess(newUser));
+      } catch (error) {
+        yield put(updateCartFail(error));
+      }
+    },
+
+    updateCardSaga: function* (action) {
+      const params = action?.payload ?? {};
+      try {
+        const updatedCard = yield call(updateCardDetails, params);
+        yield put(updateCardDetailsSuccess(updatedCard));
+      } catch (error) {
+        yield put(updateCardDetailsFail(error));
+      }
+    },
+    getCardSaga: function* (action) {
+      const params = action?.payload ?? {};
+      try {
+        const card = yield call(getCardDetails, params);
+        yield put(getCardDetailsSuccess(card));
+      } catch (error) {
+        yield put(getCardDetailsFail(error));
+      }
+    },
+
+    //ADD_CARD_TO_USER
+    addCardToUserSaga: function* (action) {
+      const params = action?.payload ?? {};
+      try {
+        const articleList = yield call(addCardToUser, params);
+        console.log("articleList", articleList);
+        yield put(addCardToUserSuccess(articleList));
+      } catch (error) {
+        yield put(addCardToUserFail(error));
+      }
+    },
 };
 
 export default [
@@ -191,7 +360,16 @@ export default [
   takeLatest("VIEW_CART", ProductSagas.viewCartSaga),
   takeLatest("GET_USER_BY_ID", ProductSagas.getUserByIdSaga),
   takeLatest("CART_CHECKOUT", ProductSagas.checkoutCartSaga),
-
-
-  
+  takeLatest("USER_PLACE_ORDERS", ProductSagas.postUserPlaceOrdersSaga),
+  takeLatest("USER_VIEW_ORDERS", ProductSagas.getOrderByUserIdSaga),
+  takeLatest("USER_VIEW_ORDERS_BY_ORDERID", ProductSagas.userGetOrderByOrderIdSaga),
+  takeLatest("ADMIN_VIEW_ORDERS", ProductSagas.adminGetOrdersSaga),
+  takeLatest("ADMIN_VIEW_ORDERS_BY_ORDERID", ProductSagas.adminGetOrderByOrderIdSaga),
+  takeLatest("USER_CANCEL_ORDERS", ProductSagas.cancelUserPlaceOrdersSaga),
+  takeLatest("USER_REGISTER", ProductSagas.userRegisterSaga),
+  takeLatest("ADD_CARD_TO_USER", ProductSagas.addCardToUserSaga),
+  takeLatest("UPDATE_USER_ADDRESS", ProductSagas.updateUserSaga),
+  takeLatest("UPDATE_CART_DETAILS", ProductSagas.updateCartSaga),
+  takeLatest("UPDATE_CARD_DETAILS", ProductSagas.updateCardSaga),
+  takeLatest("GET_CARD_DETAILS", ProductSagas.getCardSaga),
 ];

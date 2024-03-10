@@ -1,31 +1,71 @@
-import React from 'react'
+import React, { useEffect } from "react";
 import "./userorderbyid.css";
+import { connect } from "react-redux";
+import { products } from "../../Actions";
+import { useParams } from 'react-router-dom';
 
-const UserOrderById = () => {
+
+const { userGetOrderByOrderId } = products;
+const UserOrderById = ({userGetOrderByOrderId, orderByOrderId}) => {
+const userId = localStorage.getItem("userId");
+const {id} = useParams();
+
+useEffect(() => {
+  userGetOrderByOrderId({userId,id});
+}, [id, userGetOrderByOrderId, userId]);
+
+
   return (
+
+    <>
+
+    {Object.keys(orderByOrderId).length > 0 && (
+    
     <div className="user-by-id-order-bg">
       <div className="user-by-id-order-container">
-        <h2 className="user-by-id-order-title">Order : #</h2>
+        <h2 className="user-by-id-order-title">Order : # {orderByOrderId.id}</h2>
+        <h2 className="user-by-id-order-title">Order Status : {orderByOrderId.orderStatus}</h2>
+        <h2 className="user-by-id-order-title">Order Total : RS. {orderByOrderId.totalOrderValue}</h2>
 
+        {Array.isArray(orderByOrderId.cart.cartItems) && orderByOrderId.cart.cartItems.map((curElm) => {
+            return (
+              <>
         <div className="user-by-id-order-by-order-container">
-          <div className="user-by-id-order-by-order-img"></div>
+          <div className="user-by-id-order-by-order-img">
+          <img src={`data:image/jpeg;base64,${curElm.product.image}`} alt={curElm.product.name}></img>
+          </div>
           <h3 className="user-by-id-order-by-order-prodname">Product Name :</h3>
           <label className="user-by-id-order-by-order-prodname-lbl">
-            Prod One
+          {curElm.product.name}
           </label>
 
           <h3 className="user-by-id-order-by-order-qty">Quantity :</h3>
-          <label className="user-by-id-order-by-order-qty-lbl">
-            10
-          </label>
+          <label className="user-by-id-order-by-order-qty-lbl"> {curElm.quantity}</label>
 
           <h3 className="user-by-id-order-by-order-price">Price :</h3>
-          <label className="user-by-id-order-by-order-price-lbl">Rs. 2000.00</label>
-
+          <label className="user-by-id-order-by-order-price-lbl">
+          {curElm.product.sellingPrice*curElm.quantity}
+          </label>
         </div>
+        </>
+          );
+        })}
+
       </div>
     </div>
-  )
-}
+)}
+    </>
+  );
+};
 
-export default UserOrderById
+const mapStateToProps = (state) => {
+  return {
+    orderByOrderId: state.craftbay.orderByOrderId,
+  };
+};
+
+const mapDispatchToProps = {
+  userGetOrderByOrderId,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserOrderById);

@@ -18,7 +18,6 @@ const ViewProduct = ({ getProductById, productById, postAddToCart, addToCart  })
   const [count, setCount] = useState(minValue);
   const { id } = useParams();
   const {userId} = localStorage.getItem("userId");
-  console.log("userId:",userId);
 
   const navigate = useNavigate()
 
@@ -35,8 +34,6 @@ const ViewProduct = ({ getProductById, productById, postAddToCart, addToCart  })
   //   if (Object.keys(addToCart).length === 0) {
   //     if (addToCart?.status == 200) {
   //       alert("Successfully!");
-  //       console.log("login data",addToCart);
-  //       console.log("addToCart",addToCart);
   //     }
   //     else {
   //       alert("Unauthorised");
@@ -52,11 +49,6 @@ const ViewProduct = ({ getProductById, productById, postAddToCart, addToCart  })
 
 
   useEffect(() => {
-    console.log("productById", productById);
-    console.log("getProductById", getProductById);
-    console.log("postAddToCart", postAddToCart);
-    console.log("products", products);
-    console.log("addToCart", addToCart);
     // if (productById.length > 0) {
     //   NotificationManager.success('Product Added to Cart Successfully!', 'Success', 3000);
     // }
@@ -71,7 +63,6 @@ const ViewProduct = ({ getProductById, productById, postAddToCart, addToCart  })
     }
   };
 
-  console.log("count", count);
   const handleDecrementCounter = () => {
     if (count > minValue) {
       setCount((prevState) => prevState - 1);

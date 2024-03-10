@@ -1,52 +1,84 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Cart.css";
-import CartData from "./cartData";
 import { connect } from "react-redux";
 import { products } from "../../Actions";
-import { useParams } from "react-router-dom";
 import { BsFillTrashFill } from "react-icons/bs";
 
-const { viewCart } = products;
+const { viewCart, updateUserBillingAddress, updateCart } = products;
 
-const Cart = ({ viewCart, cartDetails }) => {
-  const minValue = 1;
-  const maxValue = 100;
-  const [count, setCount] = useState(minValue);
-  // const { id } = useParams();
-  const { userId } = localStorage.getItem("userId");
+const Cart = ({ viewCart, cartDetails, user, updateUserBillingAddress, updateCart }) => {
+  const [formValues, setFormValues] = useState({});
+  const userId = localStorage.getItem("userId");
   const navigate = useNavigate();
+  const [address, setAddress] = useState({});
 
   useEffect(() => {
-    viewCart(localStorage.getItem("userId"));
+    viewCart(userId);
   }, []);
 
   useEffect(() => {
-    console.log("products", cartDetails);
-    if (cartDetails.length > 0) {
+    if (user) {
+      setAddress(user)
     }
-  }, [cartDetails]);
-  console.log("cartDetails:", cartDetails);
+    if (cartDetails) {
+      setFormValues(cartDetails)
+    }
+  }, [user, cartDetails]);
 
-  const handleIncrementCounter = () => {
-    if (count < maxValue) {
-      setCount((prevState) => prevState + 1);
-    }
+  const handleQuantity = (item) => {
+    setFormValues({
+      ...formValues, cartItems: formValues.cartItems.map((currRow) => {
+        if (currRow.id != item.id) return currRow;
+        return item;
+      })
+    });
   };
 
-  const handleDecrementCounter = () => {
-    if (count > minValue) {
-      setCount((prevState) => prevState - 1);
-    }
+  const handleAddressInputChange = (e) => {
+    setAddress({
+      ...address,
+      [e.target.name]: e.target.value
+    });
   };
+
+  const handleDelete = (id) => {
+    setFormValues({ ...formValues, cartItems: formValues.cartItems.filter((b) => b.id != id) })
+  };
+
+  const handleSubmitAddress = (e) => {
+    e.preventDefault();
+    updateUserBillingAddress({ userId, address })
+  }
+
+  const calculateSubTotal = () => {
+    let total = 0
+    if (Array.isArray(formValues?.cartItems)) {
+      formValues.cartItems.map((i) => {
+        total += i.product.sellingPrice * i.quantity
+      })
+    }
+    return total
+  }
+
+  const handleSubmitCart = (e) => {
+    navigate(`/checkout`)
+    const cartItems = [];
+    formValues.cartItems.map((i) => {
+      cartItems.push({productId:i.product.id,quantity:i.quantity})
+    })
+    updateCart({
+      cartItems,id:formValues.id,userId
+    })
+  }
+
   return (
     <div className="cart-bg">
       <div className="cart-main-container">
         <span className="cart-heading">Added Items</span>
 
-        {Array.isArray(cartDetails?.cartItems) &&
-          cartDetails.cartItems.map((curElm) => {
-            console.log("curElm: ", curElm);
+        {Array.isArray(formValues?.cartItems) &&
+          formValues.cartItems.map((curElm) => {
             return (
               <div className="cart-container">
                 <div className="cart-content">
@@ -71,7 +103,8 @@ const Cart = ({ viewCart, cartDetails }) => {
                       <div className="cart-qunt-btn">
                         <button
                           className="cart-increment-btn"
-                          onClick={handleDecrementCounter}
+                          disabled={curElm.quantity == 0}
+                          onClick={() => handleQuantity({ ...curElm, quantity: curElm.quantity - 1 })}
                         >
                           <span className="cart-min-btn">-</span>
                         </button>
@@ -80,14 +113,16 @@ const Cart = ({ viewCart, cartDetails }) => {
 
                         <button
                           className="cart-increment-btn"
-                          onClick={handleIncrementCounter}
+                          disabled={curElm.quantity == 100}
+                          onClick={() => handleQuantity({ ...curElm, quantity: curElm.quantity + 1 })}
                         >
                           <span className="cart-add-btn">+</span>
                         </button>
                       </div>
                       <div className="cart-item-dlt-btn-container">
                         <button>
-                          <BsFillTrashFill className="delete-cart-item" />
+                          <BsFillTrashFill className="delete-cart-item"
+                            onClick={() => handleDelete(curElm.id)} />
                         </button>
                       </div>
                     </div>
@@ -96,19 +131,38 @@ const Cart = ({ viewCart, cartDetails }) => {
               </div>
             );
           })}
+        <div className="checkout-btn-container">
+          {Array.isArray(formValues?.cartItems) && formValues?.cartItems.length > 0 && <button
+            className="checkoutbtn"
+            onClick={() => handleSubmitCart()}
+          >
+            Checkout
+          </button>}
+          {Array.isArray(formValues?.cartItems) && formValues?.cartItems.length == 0 && <p>Cart is Empty</p>}
+        </div>
       </div>
 
       <div>
         <div className="Subtotal">
           <span className="cart-ordersum-title">Order Summary</span>
 
-          <span className="cart-ordersum-subtotal">Subtotal</span>
-          <span className="cart-ordersum-shipping">Shipping</span>
-          <span className="cart-ordersum-total">Total</span>
+          <div>
+            <span className="cart-ordersum-subtotal">Subtotal</span>
+            <span className="cart-ordersum-subtotal">RS. {calculateSubTotal()}</span>
+          </div>
+          <div>
+            <span className="cart-ordersum-shipping">Shipping</span>
+            <span className="cart-ordersum-shipping">RS. 500</span>
+          </div>
+          <div>
+            <span className="cart-ordersum-total">Total</span>
+            <span className="cart-ordersum-total">RS. {calculateSubTotal() + 500}</span>
+          </div>
+
         </div>
 
         <div className="billing-address-container">
-          <span className="cart-billaddress-title">Billing Address</span>
+          <span className="cart-billaddress-title">Billing Details</span>
 
           <div className="bill-add-container">
             <span className="cart-houseno">House No</span>
@@ -123,6 +177,9 @@ const Cart = ({ viewCart, cartDetails }) => {
               className="cart-txtbox-house"
               type="text"
               placeholder="House No"
+              name="houseNo"
+              value={address.houseNo}
+              onChange={handleAddressInputChange}
             />
           </div>
 
@@ -131,6 +188,9 @@ const Cart = ({ viewCart, cartDetails }) => {
               className="cart-txtbox-street"
               type="text"
               placeholder="Street"
+              name="streetName"
+              value={address.streetName}
+              onChange={handleAddressInputChange}
             />
           </div>
 
@@ -139,6 +199,9 @@ const Cart = ({ viewCart, cartDetails }) => {
               className="cart-txtbox-city"
               type="text"
               placeholder="City"
+              name="city"
+              value={address.city}
+              onChange={handleAddressInputChange}
             />
           </div>
 
@@ -147,14 +210,20 @@ const Cart = ({ viewCart, cartDetails }) => {
               className="cart-txtbox-country"
               type="text"
               placeholder="Country"
+              name="country"
+              value={address.country}
+              onChange={handleAddressInputChange}
             />
           </div>
 
           <div>
             <input
               className="cart-txtbox-country"
-              type="text"
+              type="number"
               placeholder="Phone No"
+              name="phoneNo"
+              value={address.phoneNo}
+              onChange={handleAddressInputChange}
             />
           </div>
 
@@ -163,6 +232,8 @@ const Cart = ({ viewCart, cartDetails }) => {
               className="cart-txtbox-country"
               type="text"
               placeholder="Email"
+              name="username"
+              value={address.username}
             />
           </div>
 
@@ -173,15 +244,8 @@ const Cart = ({ viewCart, cartDetails }) => {
             <div className="bill-checkbox-text">
               <label>Set as Default Address</label>
             </div>
-          </div>
 
-          <div className="checkout-btn-container">
-            <button
-              className="checkoutbtn"
-              onClick={() => navigate(`/checkout`)}
-            >
-              Checkout
-            </button>
+            <button className="save-address-btn" onClick={handleSubmitAddress}>Save Address Details</button>
           </div>
         </div>
       </div>
@@ -192,11 +256,14 @@ const Cart = ({ viewCart, cartDetails }) => {
 const mapStateToProps = (state) => {
   return {
     cartDetails: state.craftbay.cartDetails,
+    user: state.craftbay.userById
   };
 };
 
 const mapDispatchToProps = {
   viewCart,
+  updateUserBillingAddress,
+  updateCart
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);

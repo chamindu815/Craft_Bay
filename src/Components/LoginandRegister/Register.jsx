@@ -2,11 +2,20 @@ import React, { useEffect, useState } from "react";
 import "./Register.css";
 import logo from "../Assets/logo.png";
 import signup from "../Assets/Signup.jpg";
-import axios from "axios";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { connect } from "react-redux";
+import { products } from "../../Actions";
 
-export const Register = () => {
+const { userRegister } = products;
+
+const Register = ({ userRegister, registerData }) => {
   const [action, setAction] = useState("Sign Up");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [username, setUsername] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (action === "Login") {
@@ -14,29 +23,21 @@ export const Register = () => {
     }
   }, [action]);
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [password, setPassword] = useState("");
-  const [cnfirmpassword, setConfirmPassword] = useState("");
-
-  const navigate = useNavigate();
-
-  async function save(event) {
-    event.preventDefault();
-    try {
-      await axios.post("http://localhost:8089/craftbay/user/save", {
-        name,
-        email,
-        phone,
-        password,
-        cnfirmpassword,
-      });
-      alert("Employee Registation Successfully");
-    } catch (err) {
-      alert(err);
+  useEffect(() => {
+    if (registerData) {
     }
-  }
+  }, [registerData]);
+
+  const registerUser = (event) => {
+    event.preventDefault();
+    userRegister({
+      firstName: firstName,
+      lastName: lastName,
+      username: username,
+      phoneNumber: phoneNumber,
+      password: password,
+    });
+  };
 
   return (
     <div className="main-container">
@@ -57,12 +58,24 @@ export const Register = () => {
         <div className="reg-inputs">
           <div className="reg-input">
             <input
-              type="name"
-              placeholder="Name"
-              id="name"
-              value={name}
+              type="firstName"
+              placeholder="First Name"
+              id="firstName"
+              value={firstName}
               onChange={(event) => {
-                setName(event.target.value);
+                setFirstName(event.target.value);
+              }}
+            />
+          </div>
+
+          <div className="reg-input">
+            <input
+              type="lastName"
+              placeholder="Last Name"
+              id="lastName"
+              value={lastName}
+              onChange={(event) => {
+                setLastName(event.target.value);
               }}
             />
           </div>
@@ -72,11 +85,14 @@ export const Register = () => {
               type="email"
               placeholder="Email"
               id="email"
-              value={email}
+              value={username}
               onChange={(event) => {
-                setEmail(event.target.value);
+                setUsername(event.target.value);
               }}
+              // onChange={handleUsernameChange}
+              // className={isValidUsername ? '' : 'invalid'}
             />
+            {/* {!isValidUsername && <p className="error">Please enter a valid email address</p>} */}
           </div>
 
           <div className="reg-input">
@@ -84,9 +100,9 @@ export const Register = () => {
               type="phone"
               placeholder="Phone"
               id="phone"
-              value={phone}
+              value={phoneNumber}
               onChange={(event) => {
-                setPhone(event.target.value);
+                setPhoneNumber(event.target.value);
               }}
             />
           </div>
@@ -117,7 +133,11 @@ export const Register = () => {
         </div>
 
         <div className="reg-submit-container">
-          <button type="submit" className="register-submit" onClick={save}>
+          <button
+            type="submit"
+            className="register-submit"
+            onClick={(e) => registerUser(e)}
+          >
             Register
           </button>
         </div>
@@ -132,3 +152,15 @@ export const Register = () => {
     </div>
   );
 };
+
+const mapStateToProps = (state) => {
+  return {
+    registerData: state.craftbay.registerData,
+  };
+};
+
+const mapDispatchToProps = {
+  userRegister,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Register);

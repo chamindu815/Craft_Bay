@@ -1,74 +1,59 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./Checkout.css";
-import CheckoutData from "./checkoutData";
 import { connect } from "react-redux";
 import { products } from "../../Actions";
+import { useNavigate } from "react-router-dom";
 
-const { checkoutCart } = products;
+const { viewCart, postUserPlaceOrders, updateCardDetails } = products;
 
-const Checkout = ({ checkoutCart, checkoutDetails }) => {
-  const minValue = 1;
-  const maxValue = 100;
-  const [count, setCount] = useState(minValue);
-  const {userId} = localStorage.getItem("userId");
+const Checkout = ({ viewCart, cartDetails, postUserPlaceOrders, cardDetails }) => {
+  const userId = localStorage.getItem("userId");
+  const navigate = useNavigate();
 
   useEffect(() => {
-    checkoutCart(localStorage.getItem("userId"));
+    viewCart(userId);
   }, []);
 
-  useEffect(() => {
-    if (checkoutDetails.length > 0) {
-      
-    }
-  }, [checkoutDetails]);
+  const handleSubmit = (e) => {
+    navigate('/home')
+    postUserPlaceOrders({ userId, cartId: cartDetails.id })
+  }
 
-  const handleIncrementCounter = () => {
-    if (count < maxValue) {
-      setCount((prevState) => prevState + 1);
+  const formatCardNumber = (number) => {
+    if (number) {
+      // Remove spaces if any
+      const cleanNumber = number.replace(/\s+/g, '');
+      // Keep only the last 4 digits visible
+      const maskedNumber = cleanNumber.slice(0, -4).replace(/\d/g, 'x') + cleanNumber.slice(-4);
+      // Reintroduce spaces for display
+      return maskedNumber.replace(/(.{4})/g, '$1 ').trim();
     }
   };
 
-  const handleDecrementCounter = () => {
-    if (count > minValue) {
-      setCount((prevState) => prevState - 1);
-    }
-  };
   return (
     <div className="checkout-bg">
       <div className="checkout-main-container">
         <span className="checkout-heading">Product Details</span>
-        {CheckoutData.map((curElm) => {
+        {Array.isArray(cartDetails?.cartItems) && cartDetails.cartItems.map((curElm) => {
           return (
             <div className="checkout-container">
               <div className="checkout-content">
                 <div className="checkout-img-box">
-                  <img src={curElm.img} alt={curElm.Title}></img>
+                  <img src={`data:image/jpeg;base64,${curElm.product.image}`}
+                    alt={curElm.product.name}></img>
                 </div>
                 <div className="checkout-main">
                   <div>
+                    <h3 className="cart-prod-title">{curElm.product.name}</h3>
                     <span className="checkout-price-title">Price</span>
-                    <h3 className="checkout-prod-title">{curElm.Title}</h3>
-                    <label class="checkout-price">Rs: {curElm.Price}</label>
+                    <h3 className="checkout-prod-title">{curElm.product.Title}</h3>
+                    <label class="checkout-price">Rs: {curElm.product.sellingPrice}</label>
                   </div>
 
                   <div className="checkout-qnt-container">
                     <span className="checkout-qnt-name">Quantity</span>
                     <div className="checkout-qunt-btn">
-                      {/* <button
-                        className="checkout-increment-btn"
-                        onClick={handleDecrementCounter}
-                      >
-                        <span className="checkout-min-btn">-</span>
-                      </button> */}
-
-                      <p className="checkout-p">{count}</p>
-
-                      {/* <button
-                        className="checkout-increment-btn"
-                        onClick={handleIncrementCounter}
-                      >
-                        <span className="checkout-add-btn">+</span>
-                      </button> */}
+                      <p className="checkout-p">{curElm.quantity}</p>
                     </div>
                   </div>
                 </div>
@@ -78,7 +63,7 @@ const Checkout = ({ checkoutCart, checkoutDetails }) => {
         })}
       </div>
 
-      <div className="checkout-card-info-container">
+      {Object.keys(cardDetails).length && <div className="checkout-card-info-container">
         <span className="checkout-card-info-title">Payment Option</span>
 
         {/* Form Card No */}
@@ -86,8 +71,9 @@ const Checkout = ({ checkoutCart, checkoutDetails }) => {
         <div className="checkout-card-info-card-no-inputs">
           <div className="checkout-card-info-card-no-input">
             <input
-              type="checkout-card-info-card-no"
               placeholder="XXXX-XXXX-XXXX-XXXX"
+              value={formatCardNumber(cardDetails?.cardNo)}
+
             />
           </div>
         </div>
@@ -96,7 +82,7 @@ const Checkout = ({ checkoutCart, checkoutDetails }) => {
         <label className="checkout-card-info-exp-date">Exp Date</label>
         <div className="checkout-card-info-exp-date-inputs">
           <div className="checkout-card-info-exp-date-input">
-            <input type="checkout-card-info-exp-date" placeholder="XX/XX" />
+            <input type="checkout-card-info-exp-date" placeholder="XX/XX" value={cardDetails?.month + "/" + cardDetails.year.toString().slice(-2)} />
           </div>
         </div>
 
@@ -104,31 +90,37 @@ const Checkout = ({ checkoutCart, checkoutDetails }) => {
         <label className="checkout-card-info-cvv">CVV</label>
         <div className="checkout-card-info-cvv-inputs">
           <div className="checkout-card-info-cvv-input">
-            <input type="checkout-card-info-cvv" placeholder="XXX" />
+            <input type="checkout-card-info-cvv" placeholder="XXX" value={cardDetails?.cvv} />
           </div>
         </div>
 
-        <div className="checkbox-container">
+        {/* <div className="checkbox-container">
           <input type="checkbox" className="bill-checkbox" />
           Save Card Details
         </div>
 
         <div className="checkout-card-info-save-btn-container">
-          <button className="checkout-card-info-savebtn">Save Details</button>
+          <button className="checkout-card-info-savebtn" onClick={saveCardDetails}>Save Details</button>
+        </div> */}
+        <div className="place-order-btn-container">
+          <button className="place-order-btn" onClick={handleSubmit}>PLACE ORDER</button>
         </div>
-      </div>
+      </div>}
     </div>
   );
 };
 
 const mapStateToProps = (state) => {
   return {
-    checkoutDetails: state.craftbay.checkoutDetails,
+    cartDetails: state.craftbay.cartDetails,
+    cardDetails: state.craftbay.cardDetails
   };
 };
 
 const mapDispatchToProps = {
-  checkoutCart,
+  viewCart,
+  postUserPlaceOrders,
+  updateCardDetails
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Checkout);

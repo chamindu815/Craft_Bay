@@ -22,7 +22,6 @@ const AdminAddProduct = ({ addProducts }) => {
   const fileInputRef = useRef(null);
 
   async function save(event) {
-    console.log("formValues", formValues);
     event.preventDefault();
     const formData = new FormData();
 

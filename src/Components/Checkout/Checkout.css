@@ -7,7 +7,7 @@
 .checkout-main-container{
     background: rgba(255, 255, 255, 0.829);
     width: 800px;
-    height: 700px;
+    height: fit-content;
     margin-top: 30px;
     margin-left: 30px;
     display: flex;
@@ -137,11 +137,12 @@
   /* Card Info */
 .checkout-card-info-container{
   width: 550px;
-  height: 400px;
+  height: fit-content;
   background: rgba(255, 255, 255, 0.726);
   margin-left: 100px;
   margin-top: 30px;
   border-radius: 15px;
+  padding-bottom: 30px;
 }
 
 .checkout-card-info-title{
@@ -279,7 +280,7 @@
 }
 
 .checkout-card-info-savebtn{
-  margin-top: 40px;
+  margin-top: 10px;
   margin-right: 80px;
   font-size: 15px;
   font-weight: bold;
@@ -294,6 +295,29 @@
 }
 
 .checkout-card-info-savebtn:hover{
+  background-color: blue;
+  color: white;
+  box-shadow: 0 10px 16px 0 rgba(0, 0, 255, 0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.place-order-btn-container{
+  text-align: center;
+  margin-top: 60px;
+}
+
+.place-order-btn{
+  font-size: 15px;
+  font-weight: bold;
+  width: 18em;
+  height: 3.2em;
+  border-radius: 5px;
+  background-color: #322b2b;
+  color: white;
+  border-color: transparent;
+  cursor: pointer;
+}
+
+.place-order-btn:hover{
   background-color: blue;
   color: white;
   box-shadow: 0 10px 16px 0 rgba(0, 0, 255, 0.24), 0 17px 50px 0 rgba(0,0,0,0.19);

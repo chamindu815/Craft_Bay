@@ -1,7 +1,7 @@
 import "./App.css";
 import React from 'react';
 import Login from "./Components/LoginandRegister/Login";
-import { Register } from "./Components/LoginandRegister/Register";
+import Register from './Components/LoginandRegister/Register';
 import Product from "./Components/Products/product";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navigation from "./Components/Navigation/navigation";
@@ -49,7 +49,7 @@ function App() {
           <Route path="/cart" element={<Cart />}></Route>
           <Route path="/checkout" element={<Checkout />}></Route>
           <Route path="/contactus" element={<ContactUs/>}></Route>
-          <Route path="/profile" element={<Profile/>}></Route>
+          <Route path="/profile/:id" element={<Profile/>}></Route>
           <Route path="/adminprofile" element={<AdminProfile/>}></Route>
           <Route path="/admininventoryreport" element={<AdminInventoryReport/>}></Route>
           <Route path="/adminsalesreport" element={<AdminSalesReport/>}></Route>
@@ -62,8 +62,8 @@ function App() {
           <Route path="/admindashboard" element={<AdminDashboard />} />
           <Route path="/adminorders" element={<AdminOrder />} />
           <Route path="/userorders" element={<UserOrder />} />
-          <Route path="/adminordersbyid" element={<AdminOrderById />} />
-          <Route path="/userordersbyid" element={<UserOrderById />} />
+          <Route path="/adminorders/:id" element={<AdminOrderById />} />
+          <Route path="/userorders/:id" element={<UserOrderById />} />
         </Route>
       </Routes>
     </BrowserRouter>
