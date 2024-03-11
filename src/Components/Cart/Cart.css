@@ -1,15 +1,16 @@
 .cart-bg {
-  width: 100%;
+  width: auto;
   height: 100%;
   display: flex;
 }
 
 .cart-main-container {
+  position: absolute;
   background: rgba(255, 255, 255, 0.829);
-  width: 830px;
+  width: fit-content;
   height: fit-content;
   margin-top: 30px;
-  margin-left: 30px;
+  margin-left: 60px;
   display: flex;
   flex-direction: column;
   /* border: solid 2px;
@@ -27,7 +28,7 @@
 
 .cart-container {
   background: rgba(255, 255, 255, 0.829);
-  width: 760px;
+  width: 700px;
   height: 125px;
   margin-left: 20px;
   margin-top: 20px;
@@ -58,14 +59,14 @@
   position: absolute;
   margin-top: 50px;
   font-size: 20px;
-  margin-left: 200px;
+  margin-left: 150px;
   /* justify-content: center; */
 }
 
 .cart-price-title {
   position: absolute;
   margin-top: 25px;
-  margin-left: 450px;
+  margin-left: 380px;
   font-weight: bold;
   font-size: 20px;
 }
@@ -73,7 +74,7 @@
 .cart-price {
   position: absolute;
   margin-top: 60px;
-  margin-left: 450px;
+  margin-left: 380px;
   font-weight: bold;
   /* justify-content: center; */
 }
@@ -88,7 +89,7 @@
 
 .cart-qnt-container {
   display: flex;
-  margin-left: 560px;
+  margin-left: 500px;
 }
 
 .cart-qunt-btn {
@@ -137,16 +138,17 @@
 
 .Subtotal {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   width: 550px;
-  height: 300px;
+  height: 240px;
   background: rgba(255, 255, 255, 0.829);
   margin-top: 30px;
-  margin-left: 70px;
+  margin-left: 57em;
   border-radius: 15px;
 }
 
 .cart-ordersum-title {
+  position: absolute;
   font-size: 25px;
   font-weight: bold;
   margin-left: 30px;
@@ -154,55 +156,67 @@
 }
 
 .cart-ordersum-subtotal {
+  position: absolute;
   font-size: 20px;
   font-weight: bold;
-  margin-left: 60px;
-  margin-top: 30px;
+  margin-left: 150px;
+  margin-top: 90px;
 }
 
 .cart-ordersum-subtotal-lbl {
+  position: absolute;
   font-size: 20px;
   font-weight: bold;
-  margin-left: 60px;
-  margin-top: 30px;
+  margin-left: 300px;
+  margin-top: 90px;
 }
 
 .cart-ordersum-shipping {
+  position: absolute;
   font-size: 20px;
   font-weight: bold;
-  margin-left: 60px;
-  margin-top: 30px;
+  margin-left: 150px;
+  margin-top: 130px;
 }
 
 .cart-ordersum-shipping-lbl {
+  position: absolute;
   font-size: 20px;
   font-weight: bold;
-  margin-left: 60px;
-  margin-top: 30px;
+  margin-left: 300px;
+  margin-top: 130px;
 }
 
 .cart-ordersum-total {
+  position: absolute;
   font-size: 20px;
   font-weight: bold;
-  margin-left: 60px;
-  margin-top: 30px;
+  margin-left: 150px;
+  margin-top: 170px;
 }
 
 .cart-ordersum-total-lbl {
+  position: absolute;
   font-size: 20px;
   font-weight: bold;
-  margin-left: 60px;
-  margin-top: 30px;
+  margin-left: 300px;
+  margin-top: 170px;
+}
+
+.space{
+  position: absolute;
+  margin-left: -40px;
 }
 
 .billing-address-container {
+  position: absolute;
   display: flex;
   flex-direction: column;
   width: 550px;
   height: fit-content;
   background: rgba(255, 255, 255, 0.829);
   margin-top: 50px;
-  margin-left: 70px;
+  margin-left: 57em;
   padding-bottom: 30px;
   margin-bottom: 30px;
   border-radius: 15px;
@@ -257,7 +271,7 @@
   color: #000000;
   font-size: 20px;
   font-weight: bold;
-  margin: 0px 11em;
+  margin-left:11em;
   padding-left: 30px;
   margin-top: 25px;
 }
@@ -272,7 +286,7 @@
   color: #000000;
   font-size: 20px;
   font-weight: bold;
-  margin: 0px 11em;
+  margin-left:11em;
   padding-left: 30px;
   margin-top: 25px;
 }
@@ -287,7 +301,7 @@
   color: #000000;
   font-size: 20px;
   font-weight: bold;
-  margin: 0px 11em;
+  margin-left:11em;
   padding-left: 30px;
   margin-top: 25px;
 }
@@ -302,7 +316,37 @@
   color: #000000;
   font-size: 20px;
   font-weight: bold;
-  margin: 0px 11em;
+  margin-left:11em;
+  padding-left: 30px;
+  margin-top: 25px;
+}
+
+.cart-txtbox-Phone-no {
+  height: 40px;
+  width: 300px;
+  background: rgb(255, 255, 255);
+  border: white;
+  border-radius: 10px;
+  outline: auto;
+  color: #000000;
+  font-size: 20px;
+  font-weight: bold;
+  margin-left:11em;
+  padding-left: 30px;
+  margin-top: 25px;
+}
+
+.cart-txtbox-Email {
+  height: 40px;
+  width: 300px;
+  background: rgb(255, 255, 255);
+  border: white;
+  border-radius: 10px;
+  outline: auto;
+  color: #000000;
+  font-size: 20px;
+  font-weight: bold;
+  margin-left:11em;
   padding-left: 30px;
   margin-top: 25px;
 }
@@ -325,7 +369,7 @@
 
 .cart-item-dlt-btn-container {
   text-align: right;
-  margin-left: 30px;
+  margin-left: 40px;
 }
 
 .delete-cart-item {
@@ -341,6 +385,7 @@
 .bill-add-container {
   display: flex;
   flex-direction: row;
+
 }
 
 .bill-address-inputs {
@@ -461,7 +506,7 @@
 }
 
 .checkoutbtn {
-  margin-top: 50px;
+  margin-top: 30px;
   font-size: 18px;
   font-weight: bold;
   width: 130px;
@@ -483,7 +528,7 @@
 
 .save-address-btn{
   margin-left: 28%;
-  margin-top: 30px;
+  margin-top: 50px;
   font-size: 18px;
   font-weight: bold;
   width: 250px;

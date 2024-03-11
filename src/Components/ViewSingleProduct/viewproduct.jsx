@@ -19,7 +19,7 @@ const ViewProduct = ({ getProductById, productById, postAddToCart, addToCart  })
   const { id } = useParams();
   const {userId} = localStorage.getItem("userId");
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     getProductById(id);
@@ -83,6 +83,18 @@ const ViewProduct = ({ getProductById, productById, postAddToCart, addToCart  })
     // navigate("/cart"); 
   };
 
+  const handleBuyNow = async (event) => {
+    event.preventDefault();
+    postAddToCart ({
+      productId: id,
+      quantity: count,
+      userId: localStorage.getItem("userId")
+    })
+    
+    NotificationManager.success('Product Added To Cart Successfully!', 'Success', 3000);
+    navigate("/checkout"); 
+  };
+
   return (
     <>
       <div className="all-bg">
@@ -136,7 +148,7 @@ const ViewProduct = ({ getProductById, productById, postAddToCart, addToCart  })
                 </div>
 
                 <div className="buynow-btn">
-                  <button className="buy">Buy Now</button>
+                  <button className="buy" onClick={handleBuyNow}>Buy Now</button>
                 </div>
               </div>
             </div>

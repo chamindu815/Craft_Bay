@@ -147,16 +147,16 @@ const Cart = ({ viewCart, cartDetails, user, updateUserBillingAddress, updateCar
           <span className="cart-ordersum-title">Order Summary</span>
 
           <div>
-            <span className="cart-ordersum-subtotal">Subtotal</span>
-            <span className="cart-ordersum-subtotal-lbl">RS. {calculateSubTotal()}</span>
+            <span className="cart-ordersum-subtotal">Subtotal  </span>
+            <span className="cart-ordersum-subtotal-lbl"><span className="space">:</span>RS. {calculateSubTotal()}</span>
           </div>
           <div>
-            <span className="cart-ordersum-shipping">Shipping</span>
-            <span className="cart-ordersum-shipping-lbl">RS. 500</span>
+            <span className="cart-ordersum-shipping">Shipping  </span>
+            <span className="cart-ordersum-shipping-lbl"><span className="space">:</span>RS. 500</span>
           </div>
           <div>
-            <span className="cart-ordersum-total">Total</span>
-            <span className="cart-ordersum-total-lbl">RS. {calculateSubTotal() + 500}</span>
+            <span className="cart-ordersum-total">Total  </span>
+            <span className="cart-ordersum-total-lbl"><span className="space">:</span>RS. {calculateSubTotal() + 500}</span>
           </div>
 
         </div>
@@ -218,7 +218,7 @@ const Cart = ({ viewCart, cartDetails, user, updateUserBillingAddress, updateCar
 
           <div>
             <input
-              className="cart-txtbox-country"
+              className="cart-txtbox-Phone-no"
               type="number"
               placeholder="Phone No"
               name="phoneNo"
@@ -229,7 +229,7 @@ const Cart = ({ viewCart, cartDetails, user, updateUserBillingAddress, updateCar
 
           <div>
             <input
-              className="cart-txtbox-country"
+              className="cart-txtbox-Email"
               type="text"
               placeholder="Email"
               name="username"
@@ -238,12 +238,12 @@ const Cart = ({ viewCart, cartDetails, user, updateUserBillingAddress, updateCar
           </div>
 
           <div className="checkbox-container">
-            <div className="bill-checkbox">
+            {/* <div className="bill-checkbox">
               <input type="checkbox" />
             </div>
             <div className="bill-checkbox-text">
               <label>Set as Default Address</label>
-            </div>
+            </div> */}
 
             <button className="save-address-btn" onClick={handleSubmitAddress}>Save Address Details</button>
           </div>

@@ -402,6 +402,7 @@ font-weight: lighter;
 }
 
 .card-info-savebtn {
+  cursor: pointer;
   margin-top: 40px;
   margin-right: 80px;
   font-size: 15px;

@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./Login.css";
 import loginimg from "../Assets/Login.jpg";
+import visible from "../Assets/visible.png";
+import hidden from "../Assets/hidden.png";
 import { useNavigate } from "react-router-dom";
-import { connect } from 'react-redux';
-import { products } from '../../Actions';
+import { connect } from "react-redux";
+import { products } from "../../Actions";
+import { NotificationContainer, NotificationManager } from 'react-notifications';
+import 'react-notifications/lib/notifications.css';
 
 const { userLogin } = products;
 
@@ -11,7 +15,12 @@ const Login = ({ userLogin, loginData }) => {
   const [action, setAction] = useState("Login");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   useEffect(() => {
     if (action === "SignUp") {
@@ -23,33 +32,34 @@ const Login = ({ userLogin, loginData }) => {
     if (loginData) {
       if (loginData?.status == 400 || loginData?.status == 401) {
         alert("Unauthorised User Details");
-      }
-      else if (loginData?.status == 200) {
+      } else if (loginData?.status == 200) {
+        NotificationManager.success('Login Successfully!', 'Success', 3000);
         // alert("User login successfully!");
         localStorage.setItem("token", loginData?.token);
         localStorage.setItem("userId", loginData?.userId);
-        navigate('/home');
+        navigate("/home");
       }
-      // else {
-      //   alert("Incorrect Email or Password");
-      // }
+      else {
+        
+      }
     }
   }, [loginData]);
+  
+  // NotificationManager.error('Error message', 'Error', 5000);
 
   const submitUserDetails = (event) => {
     event.preventDefault();
     userLogin({
       email: email,
-      password: password
-    })
-  }
+      password: password,
+    });
+  };
+  
   return (
     <div className="main-container">
-
       <div className="logo-container">
         {/* <img className="logo-img" src={logo} alt="" /> */}
       </div>
-
 
       <div className="image-container">
         <img className="login-img-bg" src={loginimg} alt="" />
@@ -63,7 +73,10 @@ const Login = ({ userLogin, loginData }) => {
 
         <div className="inputs">
           <div className="input">
-            <input type="email" placeholder="Email" id="email"
+            <input
+              type="email"
+              placeholder="Email"
+              id="email"
               value={email}
               onChange={(event) => {
                 setEmail(event.target.value);
@@ -72,12 +85,26 @@ const Login = ({ userLogin, loginData }) => {
           </div>
 
           <div className="input">
-            <input type="password" placeholder="Password" id="password"
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
+              id="password"
               value={password}
               onChange={(event) => {
                 setPassword(event.target.value);
               }}
             />
+
+            <span
+              className="hide-view-password-container"
+              onClick={togglePasswordVisibility}
+            >
+              {showPassword ? (
+                <img className="hide-view-password" src={visible}></img>
+              ) : (
+                <img className="hide-view-password" src={hidden}></img>
+              )}
+            </span>
           </div>
         </div>
 
@@ -86,10 +113,24 @@ const Login = ({ userLogin, loginData }) => {
         </div>
 
         <div className="submit-container">
-          <button type="submit" className="submit" onClick={(e) => submitUserDetails(e)}>Login</button>
-          <button type="submit" className="submit" onClick={() => setAction("SignUp")}>Register</button>
+          <button
+            type="submit"
+            className="submit"
+            onClick={(e) => submitUserDetails(e)}
+          >
+            Login
+          </button>
+          <button
+            type="submit"
+            className="submit"
+            onClick={() => setAction("SignUp")}
+          >
+            Register
+          </button>
         </div>
       </div>
+      <NotificationContainer />
+
     </div>
   );
 };

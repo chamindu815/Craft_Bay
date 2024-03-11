@@ -6,6 +6,8 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { connect } from "react-redux";
 import { products } from "../../Actions";
+import { NotificationContainer, NotificationManager } from 'react-notifications';
+import 'react-notifications/lib/notifications.css';
 
 const { getUserById, addCardToUser } = products;
 const Profile = ({ getUserById, userById, addCardToUser, userCardDetails }) => {
@@ -23,6 +25,7 @@ const Profile = ({ getUserById, userById, addCardToUser, userCardDetails }) => {
   const addCard = (event) => {
     event.preventDefault();
     addCardToUser({ formValues, userId });
+    NotificationManager.success('Card Added Successfully!', 'Success', 3000);
   };
 
   console.log("userId", userId);
@@ -108,6 +111,7 @@ const Profile = ({ getUserById, userById, addCardToUser, userCardDetails }) => {
                 className="acc-info-txtbox-phone"
                 type="text"
                 placeholder="Phone No"
+                value={userById.phoneNo}
               />
             </div>
 
@@ -194,6 +198,10 @@ const Profile = ({ getUserById, userById, addCardToUser, userCardDetails }) => {
             Save Details
           </button>
         </div>
+
+
+
+        {userById?.role === 'ADMIN' &&
         <div className="admin-dashboard-btn-container">
           <button
             className="admin-dashboard-btn"
@@ -202,8 +210,10 @@ const Profile = ({ getUserById, userById, addCardToUser, userCardDetails }) => {
             Admin Dashboard
           </button>
         </div>
+      }
       </div>
-      {/* )} */}
+      <NotificationContainer />
+
     </div>
   );
 };

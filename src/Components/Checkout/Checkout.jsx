@@ -30,10 +30,20 @@ const Checkout = ({ viewCart, cartDetails, postUserPlaceOrders, cardDetails }) =
     }
   };
 
+  const calculateSubTotal = () => {
+    let total = 0
+    if (Array.isArray(cartDetails?.cartItems)) {
+      cartDetails.cartItems.map((i) => {
+        total += i.product.sellingPrice * i.quantity
+      })
+    }
+    return total
+  }
+
   return (
     <div className="checkout-bg">
       <div className="checkout-main-container">
-        <span className="checkout-heading">Product Details</span>
+                  <span className="checkout-heading">Product Details</span>
         {Array.isArray(cartDetails?.cartItems) && cartDetails.cartItems.map((curElm) => {
           return (
             <div className="checkout-container">
@@ -44,7 +54,7 @@ const Checkout = ({ viewCart, cartDetails, postUserPlaceOrders, cardDetails }) =
                 </div>
                 <div className="checkout-main">
                   <div>
-                    <h3 className="cart-prod-title">{curElm.product.name}</h3>
+                    <h3 className="checkout-prod-title">{curElm.product.name}</h3>
                     <span className="checkout-price-title">Price</span>
                     <h3 className="checkout-prod-title">{curElm.product.Title}</h3>
                     <label class="checkout-price">Rs: {curElm.product.sellingPrice}</label>
@@ -63,7 +73,33 @@ const Checkout = ({ viewCart, cartDetails, postUserPlaceOrders, cardDetails }) =
         })}
       </div>
 
-      {Object.keys(cardDetails).length && <div className="checkout-card-info-container">
+      
+
+      {Object.keys(cardDetails).length && 
+      <div className="checkout-card-info-container">
+
+
+        <div className="checkout-subtotal">
+          <span className="checkout-ordersum-title">Order Summary</span>
+
+          <div>
+            <span className="checkout-ordersum-subtotal">Subtotal</span>
+            <span className="checkout-ordersum-subtotal-lbl"><span className="space">:</span>RS. {calculateSubTotal()}</span>
+          </div>
+          <div>
+            <span className="checkout-ordersum-shipping">Shipping</span>
+            <span className="checkout-ordersum-shipping-lbl"><span className="space">:</span>RS. 500</span>
+          </div>
+          <div>
+            <span className="checkout-ordersum-total">Total</span>
+            <span className="checkout-ordersum-total-lbl"><span className="space">:</span>RS. {calculateSubTotal() + 500}</span>
+          </div>
+
+        </div>
+
+
+
+
         <span className="checkout-card-info-title">Payment Option</span>
 
         {/* Form Card No */}

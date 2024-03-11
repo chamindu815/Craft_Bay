@@ -127,3 +127,15 @@ img{
     color: #464646;
 }
 
+.hide-view-password-container{
+    margin-right: 20px;
+    margin-top: 5px;
+}
+
+.hide-view-password{
+    opacity: 0.5;
+    cursor: pointer;
+    width: 40px;
+    height: auto;
+}
+
