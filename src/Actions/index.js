@@ -352,4 +352,18 @@ export const products = {
       type: "GET_SALES_REPORT_FAIL",
       payload: {},
     }),
+
+    //GET_INVENTORY_REPORT
+    getInventoryReportDetails: (data) => ({
+      type: "GET_INVENTORY_REPORT",
+      payload: data,
+    }),
+    getInventoryReportDetailsSuccess: (data) => ({
+      type: "GET_INVENTORY_REPORT_SUCCESS",
+      payload: data,
+    }),
+    getInventoryReportDetailsFail: (error) => ({
+      type: "GET_INVENTORY_REPORT_FAIL",
+      payload: {},
+    }),
 };

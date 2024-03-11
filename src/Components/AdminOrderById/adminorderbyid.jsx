@@ -72,7 +72,6 @@ const AdminOrderById = ({ adminGetOrderByOrderId, adminOrderByOrderId }) => {
 
                     <h3 className="admin-by-id-order-by-order-price">Price :</h3>
                     <label className="admin-by-id-order-by-order-price-lbl">Rs. {curElm.quantity * curElm.product.sellingPrice}</label>
-                    <label className="admin-by-id-order-by-order-status-lbl"> STATUS </label>
                   </div>
 
                 </>

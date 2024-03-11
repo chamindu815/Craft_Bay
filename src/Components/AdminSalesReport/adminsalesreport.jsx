@@ -155,9 +155,9 @@ const AdminSalesReport = ({getSalesReportDetails,salesReportData}) => {
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
                     <TableCell align="center">{row.productName}</TableCell>
+                    <TableCell align="center">{row.category}</TableCell>
                     <TableCell align="center">{row.sellQuantity}</TableCell>
                     <TableCell align="center">{row.avgSellPrice}</TableCell>
-                    <TableCell align="center">{row.category}</TableCell>
                     <TableCell align="center">{row.totalSales}</TableCell>
                   </TableRow>
                 ))}

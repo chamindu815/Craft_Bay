@@ -82,7 +82,7 @@
   .user-order-by-order-status-lbl{
     position: absolute;
     margin-top: 4.5%;
-    margin-left: 42%;
+    margin-left: 54%;
     border: 2px solid black;
     padding: 10px 20px 8px 20px;
     border-radius: 10px;
@@ -91,7 +91,7 @@
 
   .cancel-order{
     position: absolute;
-    margin-left: 55%;
+    margin-left: 65%;
     margin-top: 4.5%;
     width: 120px;
     height: 40px;
@@ -112,7 +112,7 @@
 
   .user-order-by-order-more-btn{
     position: absolute;
-    margin-left: 72%;
+    margin-left: 75%;
     margin-top: 4.3%;
     width: 50px;
     height: 50px;

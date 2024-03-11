@@ -34,7 +34,7 @@ const Navigation = () => {
           <div class="dropdown">
           <button className="nav-btn-category">CATEGORY</button>
           <div class="dropdown-content">
-            <a href="/products/WOODEN">Wooden</a>
+            <a href="/products/WOODEN" >Wooden</a>
             <a href="/products/METAL">Metal</a>
             <a href="/products/TEXTILE">Textile</a>
             <a href="/products/CLAY">Clay</a>

@@ -148,15 +148,15 @@ const Cart = ({ viewCart, cartDetails, user, updateUserBillingAddress, updateCar
 
           <div>
             <span className="cart-ordersum-subtotal">Subtotal</span>
-            <span className="cart-ordersum-subtotal">RS. {calculateSubTotal()}</span>
+            <span className="cart-ordersum-subtotal-lbl">RS. {calculateSubTotal()}</span>
           </div>
           <div>
             <span className="cart-ordersum-shipping">Shipping</span>
-            <span className="cart-ordersum-shipping">RS. 500</span>
+            <span className="cart-ordersum-shipping-lbl">RS. 500</span>
           </div>
           <div>
             <span className="cart-ordersum-total">Total</span>
-            <span className="cart-ordersum-total">RS. {calculateSubTotal() + 500}</span>
+            <span className="cart-ordersum-total-lbl">RS. {calculateSubTotal() + 500}</span>
           </div>
 
         </div>

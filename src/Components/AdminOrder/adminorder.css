@@ -122,36 +122,36 @@
 }
 
 .admin-order-by-order-fname {
-  margin-left: 3%;
-  margin-top: 3.5%;
+  margin-left: 3.7%;
+  margin-top: 4.8%;
 }
 
 .admin-order-by-order-fname-lbl {
   margin-left: 2%;
-  margin-top: 3.8%;
+  margin-top: 5.1%;
 }
 
 .admin-order-by-order-address {
   position: absolute;
-  margin-top: 5%;
-  margin-left: 11.8%;
+  margin-top: 6%;
+  margin-left: 11.9%;
 }
 
 .admin-order-by-order-address-lbl {
   position: absolute;
-  margin-top: 5.2%;
+  margin-top: 6.2%;
   margin-left: 20%;
 }
 
 .admin-order-by-order-total {
   position: absolute;
-  margin-top: 7%;
-  margin-left: 11.8%;
+  margin-top: 8.5%;
+  margin-left: 11.9%;
 }
 
 .admin-order-by-order-total-lbl {
   position: absolute;
-  margin-top: 7.3%;
+  margin-top: 8.7%;
   margin-left: 20%;
 }
 
@@ -173,7 +173,7 @@
 .admin-order-by-order-status-lbl {
   position: absolute;
   margin-top: 4.5%;
-  margin-left: 60%;
+  margin-left: 50%;
   border: 2px solid black;
   padding: 10px 20px 8px 20px;
   border-radius: 10px;
@@ -181,8 +181,8 @@
 }
 
 .admin-order-by-order-more-btn {
-  margin-left: 50%;
-  margin-top: 5.1%;
+  margin-left: 55%;
+  margin-top: 6.2%;
   width: 50px;
   height: 50px;
   border-radius: 100%;

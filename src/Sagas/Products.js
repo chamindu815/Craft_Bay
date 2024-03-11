@@ -24,7 +24,8 @@ import {
   updateCartDetails,
   updateCardDetails,
   getCardDetails,
-  getSalesReportDetails
+  getSalesReportDetails,
+  getInventoryReportDetails,
 } from "../Services/Products";
 import { put, call, takeLatest } from "redux-saga/effects";
 import { products } from "../Actions";
@@ -81,7 +82,9 @@ const {
   getCardDetailsSuccess,
   getCardDetailsFail,
   getSalesReportDetailsSuccess,
-  getSalesReportDetailsFail
+  getSalesReportDetailsFail,
+  getInventoryReportDetailsSuccess,
+  getInventoryReportDetailsFail,
 } = products;
 const ProductSagas = {
   userLoginSaga: function* (action) {
@@ -358,6 +361,18 @@ const ProductSagas = {
       yield put(getSalesReportDetailsFail(error));
     }
   },
+
+
+  //GET_INVENTORY_REPORT
+  getInventoryReportDetailsSaga: function* (action) {
+    const params = action?.payload ?? {};
+    try {
+      const report = yield call(getInventoryReportDetails,params);
+      yield put(getInventoryReportDetailsSuccess(report));
+    } catch (error) {
+      yield put(getInventoryReportDetailsFail(error));
+    }
+  },
 };
 
 export default [
@@ -387,4 +402,5 @@ export default [
   takeLatest("UPDATE_CARD_DETAILS", ProductSagas.updateCardSaga),
   takeLatest("GET_CARD_DETAILS", ProductSagas.getCardSaga),
   takeLatest("GET_SALES_REPORT", ProductSagas.getSalesReportDetailsSaga),
+  takeLatest("GET_INVENTORY_REPORT", ProductSagas.getInventoryReportDetailsSaga),
 ];

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -7,25 +7,66 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import "./admininventoryreport.css";
+import { connect } from "react-redux";
+import { products } from "../../Actions";
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
 
-const createData = (name, calories, fat, carbs) => {
-  return { name, calories, fat, carbs };
-};
+const { getInventoryReportDetails } = products;
 
-const Admininventoryreport = () => {
-  const rows = [
-    createData("Frozen", 159, 6.0, 24),
-    createData("Ice ", 237, 9.0, 37),
-    createData("Eclair", 262, 16.0, 24),
-    createData("Cupcake", 305, 3.7, 67),
-    createData("Gingerbread", 356, 16.0, 49),
+// const createData = (name, calories, fat, carbs) => {
+//   return { name, calories, fat, carbs };
+// };
+
+const Admininventoryreport = ({
+  getInventoryReportDetails,
+  inventoryReportData,
+}) => {
+  const tableColumns = [
+    { header: "Product Name", dataKey: "productName" },
+    { header: "Category", dataKey: "category" },
+    { header: "Remaining Quantity", dataKey: "remainingQuantity" },
+    { header: "Buying Price (Rs:)", dataKey: "buyingPrice" },
+    { header: "Selling Price (Rs:)", dataKey: "sellingPrice" },
   ];
+
+  useEffect(() => {
+    getInventoryReportDetails();
+  }, []);
+
+
+  const downloadPdfDocument = () => {
+    const doc = new jsPDF();
+    const title = `Inventory Report`;
+    doc.setFontSize(16);
+    doc.setFont("times", "bold");
+
+    const titleWidth = doc.getStringUnitWidth(title) * doc.internal.getFontSize() / doc.internal.scaleFactor;
+    const textOffset = (doc.internal.pageSize.width - titleWidth) / 2; // Calculate text's x offset to center it
+
+    doc.text(title, textOffset, 20);
+    autoTable(doc, {
+      startY: 30,
+      columns: tableColumns,
+      body: inventoryReportData,
+      // Customize as needed
+    });
+
+    doc.save(`Inventory Report`);
+  };
 
   return (
     <div className="admin-inventory-report-bg">
       <div>
-      <h2 className="admin-invent-report-title">Inventory Report</h2>
-        <Paper sx={{ width: "80em", marginLeft: "5%", marginTop: "2%", marginBottom:"3%" }}>
+        <h2 className="admin-invent-report-title">Inventory Report</h2>
+        <Paper
+          sx={{
+            width: "80em",
+            marginLeft: "5%",
+            marginTop: "2%",
+            marginBottom: "3%",
+          }}
+        >
           <TableContainer component={Paper}>
             <Table style={{ border: "solid" }} aria-label="simple table">
               <TableHead>
@@ -43,27 +84,27 @@ const Admininventoryreport = () => {
                     style={{ fontSize: "1.2em", fontWeight: "bold" }}
                     align="center"
                   >
-                    Quantity
+                    Category
                   </TableCell>
                   <TableCell
                     style={{ fontSize: "1.2em", fontWeight: "bold" }}
                     align="center"
                   >
-                    Price
+                    Remaining Quantity
                   </TableCell>
                   <TableCell
                     style={{ fontSize: "1.2em", fontWeight: "bold" }}
                     align="center"
                   >
-                    Date
+                    Latest Buying Price (Rs:)
                   </TableCell>
-                  {/* <TableCell
-                  style={{ fontSize: "1.2em", fontWeight: "bold" }}
-                  align="center"
-                >
-                  Quantity
-                </TableCell>
-                <TableCell
+                  <TableCell
+                    style={{ fontSize: "1.2em", fontWeight: "bold" }}
+                    align="center"
+                  >
+                    Latest Selling Price (Rs:)
+                  </TableCell>
+                  {/*<TableCell
                   style={{ fontSize: "1.2em", fontWeight: "bold" }}
                   align="center"
                 >
@@ -72,28 +113,42 @@ const Admininventoryreport = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {rows.map((row) => (
-                  <TableRow
-                    key={row.name}
-                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                  >
-                    <TableCell align="center">{row.name}</TableCell>
-                    <TableCell align="center">{row.calories}</TableCell>
-                    <TableCell align="center">{row.fat}</TableCell>
-                    <TableCell align="center">{row.carbs}</TableCell>
-                    <TableCell align="center">{row.protein}</TableCell>
-                  </TableRow>
-                ))}
+                {Array.isArray(inventoryReportData) &&
+                  inventoryReportData.map((row) => (
+                    <TableRow
+                      key={row.productName}
+                      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                    >
+                      <TableCell align="center">{row.productName}</TableCell>
+                      <TableCell align="center">{row.category}</TableCell>
+                      <TableCell align="center">{row.remainingQuantity}</TableCell>
+                      <TableCell align="center">{row.buyingPrice}</TableCell>
+                      <TableCell align="center">{row.sellingPrice}</TableCell>
+                    </TableRow>
+                  ))}
               </TableBody>
             </Table>
           </TableContainer>
         </Paper>
       </div>
       <div className="admin-invent-report-download-btn-container">
-        <button className="admin-invent-report-download-btn">Download</button>
+        <button className="admin-invent-report-download-btn" onClick={downloadPdfDocument}>Download</button>
       </div>
     </div>
   );
 };
 
-export default Admininventoryreport;
+const mapStateToProps = (state) => {
+  return {
+    inventoryReportData: state.craftbay.inventoryReportData,
+  };
+};
+
+const mapDispatchToProps = {
+  getInventoryReportDetails,
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Admininventoryreport);
