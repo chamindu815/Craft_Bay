@@ -3,10 +3,11 @@ import PropTypes from "prop-types";
 import Box from "@mui/material/Box";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import AdminAddProduct from "../AdminAddProduct/adminaddproduct"
+import AdminAddProduct from "../AdminAddProduct/adminaddproduct";
 import AdminViewProduct from "../AdminViewProduct/adminviewproduct";
 import AdminInventoryReport from "../AdminInventoryReport/admininventoryreport";
 import AdminSalesReport from "../AdminSalesReport/adminsalesreport";
+import AdminOrder from "../AdminOrder/adminorder";
 
 function samePageLinkNavigation(event) {
   if (
@@ -58,12 +59,14 @@ export default function NavTabs() {
   const renderTabContent = (value) => {
     switch (value) {
       case 0:
-        return <AdminViewProduct/>;
+        return <AdminViewProduct />;
       case 1:
-        return < AdminAddProduct/>;;
+        return <AdminAddProduct />;
       case 2:
-        return <AdminInventoryReport />;
+        return <AdminOrder />;
       case 3:
+        return <AdminInventoryReport />;
+      case 4:
         return <AdminSalesReport />;
       default:
         return null;
@@ -95,6 +98,16 @@ export default function NavTabs() {
             color: "#000000",
           }}
           label="Add Product"
+        />
+
+        <LinkTab
+          style={{
+            fontSize: "20px",
+            margin: "10px",
+            fontWeight: "bold",
+            color: "#000000",
+          }}
+          label="Orders"
         />
         <LinkTab
           style={{

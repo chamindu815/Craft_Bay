@@ -5,17 +5,24 @@ import defaultImage from "../Assets/Order-Sucessfull.jpg";
 import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 import { products } from "../../Actions";
+import { useParams } from 'react-router-dom';
 
-const { getOrderByUserId } = products;
-const UserOrder = ({ getOrderByUserId, orderByUserId }) => {
+const { getOrderByUserId, cancelUserPlaceOrders } = products;
+const UserOrder = ({ getOrderByUserId, orderByUserId, cancelUserPlaceOrders }) => {
   const userId = localStorage.getItem("userId");
   const navigate = useNavigate();
+  const {id} = useParams();
 
   useEffect(() => {
     getOrderByUserId(userId);
   }, []);
 
   useEffect(() => {}, [orderByUserId]);
+
+  const cancelOrder =(orderId) =>{
+    // orderId.preventDefault();
+    cancelUserPlaceOrders({userId, orderId})
+  }
 
   return (
     <div className="user-order-bg">
@@ -46,7 +53,7 @@ const UserOrder = ({ getOrderByUserId, orderByUserId }) => {
 
             <label className="user-order-by-order-status-lbl"> {curElm.orderStatus} </label>
 
-            <button className="cancel-order"> Cancel Order</button>
+            <button className="cancel-order" onClick={() => cancelOrder(curElm.id)}> Cancel Order</button>
 
             <button className="user-order-by-order-more-btn">
               <img
@@ -73,6 +80,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   getOrderByUserId,
+  cancelUserPlaceOrders,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserOrder);

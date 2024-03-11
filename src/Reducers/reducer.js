@@ -15,7 +15,8 @@ const initialState = {
   orderByOrderId: {},
   userCardDetails: {},
   cardDetails: {},
-  salesReportData: {}
+  salesReportData: {},
+  inventoryReportData:{},
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -369,6 +370,20 @@ export default (state = initialState, { type, payload }) => {
     case "GET_SALES_REPORT_FAIL":
       return Object.assign({}, state, {
         salesReportData: {},
+      });
+
+      //GET_INVENTORY_REPORT
+    case "GET_INVENTORY_REPORT":
+      return Object.assign({}, state, {
+        inventoryReportData: {},
+      });
+    case "GET_INVENTORY_REPORT_SUCCESS":
+      return Object.assign({}, state, {
+        inventoryReportData: payload,
+      });
+    case "GET_INVENTORY_REPORT_FAIL":
+      return Object.assign({}, state, {
+        inventoryReportData: {},
       });
 
     default:

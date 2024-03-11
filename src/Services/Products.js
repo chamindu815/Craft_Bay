@@ -259,12 +259,11 @@ export const userGetOrderByOrderId = ({userId,id}) => {
 };
 
 //USER_CANCEL_ORDERS
-export const cancelUserPlaceOrders = (params) => {
+export const cancelUserPlaceOrders = ({userId, orderId}) => {
   return new Promise(async (resolve, reject) => {
     try {
       const data = await axios.post(
-        `http://localhost:8089/craftbay/user/${params}/order/${params}/cancel-order`,
-        params
+        `http://localhost:8089/craftbay/user/${userId}/order/${orderId}/cancel-order`,
       );
       resolve(data);
     } catch (error) {
@@ -274,7 +273,7 @@ export const cancelUserPlaceOrders = (params) => {
 };
 
 //ADMIN_VIEW_ORDERS
-export const adminGetOrders = (params) => {
+export const adminGetOrders = () => {
   return new Promise(async (resolve, reject) => {
     try {
       const {data} = await axios.get(
@@ -383,6 +382,19 @@ export const getSalesReportDetails = (params) => {
     try {
       const {data} = await axios.get(
         `http://localhost:8089/craftbay/admin/reports/sales-report?startDate=${params.startDate}&endDate=${params.endDate}`);
+      resolve(data);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
+//ADMIN_INVENTORY_REPORT
+export const getInventoryReportDetails = () => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const {data} = await axios.get(
+        `http://localhost:8089/craftbay/admin/reports/inventory-report`);
       resolve(data);
     } catch (error) {
       reject(error);

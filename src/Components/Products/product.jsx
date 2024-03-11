@@ -63,7 +63,7 @@ const Product = () => {
                     <div className="prod-button-cont">
                     <button
                       className="prod-button"
-                      onClick={() => navigate("/viewproduct")}
+                      onClick={() => navigate(`/viewproduct/${curElm.id}`)}
                     >
                       View
                     </button>
