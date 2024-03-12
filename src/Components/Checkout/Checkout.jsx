@@ -3,10 +3,11 @@ import "./Checkout.css";
 import { connect } from "react-redux";
 import { products } from "../../Actions";
 import { useNavigate } from "react-router-dom";
+import emailjs from "@emailjs/browser";
 
 const { viewCart, postUserPlaceOrders, updateCardDetails } = products;
 
-const Checkout = ({ viewCart, cartDetails, postUserPlaceOrders, cardDetails }) => {
+const Checkout = ({ viewCart, cartDetails, postUserPlaceOrders, cardDetails, placedOrder }) => {
   const userId = localStorage.getItem("userId");
   const navigate = useNavigate();
 
@@ -14,9 +15,32 @@ const Checkout = ({ viewCart, cartDetails, postUserPlaceOrders, cardDetails }) =
     viewCart(userId);
   }, []);
 
+  useEffect(() => {
+    if (Object.keys(placedOrder).length > 0) {
+      sendEmail(placedOrder)
+      navigate('/home')
+    }
+  }, [placedOrder]);
+
   const handleSubmit = (e) => {
-    navigate('/home')
     postUserPlaceOrders({ userId, cartId: cartDetails.id })
+  }
+
+  const sendEmail = (placedOrder) => {
+    console.log("placedOrder:", placedOrder);
+
+    const emailParams = {
+      subject: "CraftBay Order Confirmation",
+      subtotal: placedOrder.orderValue,
+      orderId: placedOrder.orderId,
+    }
+
+    emailjs.send('service_xw0df67', 'template_6en0hpj', emailParams, 'Bk7s3x0nwjFKKLFGz')
+      .then(function (response) {
+        console.log('Email sent successfully!', response);
+      }, function (error) {
+        console.error('Error sending email:', error);
+      });
   }
 
   const formatCardNumber = (number) => {
@@ -43,7 +67,7 @@ const Checkout = ({ viewCart, cartDetails, postUserPlaceOrders, cardDetails }) =
   return (
     <div className="checkout-bg">
       <div className="checkout-main-container">
-                  <span className="checkout-heading">Product Details</span>
+        <span className="checkout-heading">Product Details</span>
         {Array.isArray(cartDetails?.cartItems) && cartDetails.cartItems.map((curElm) => {
           return (
             <div className="checkout-container">
@@ -73,64 +97,64 @@ const Checkout = ({ viewCart, cartDetails, postUserPlaceOrders, cardDetails }) =
         })}
       </div>
 
-      
-
-      {Object.keys(cardDetails).length && 
-      <div className="checkout-card-info-container">
 
 
-        <div className="checkout-subtotal">
-          <span className="checkout-ordersum-title">Order Summary</span>
+      {Object.keys(cardDetails).length &&
+        <div className="checkout-card-info-container">
 
-          <div>
-            <span className="checkout-ordersum-subtotal">Subtotal</span>
-            <span className="checkout-ordersum-subtotal-lbl"><span className="space">:</span>RS. {calculateSubTotal()}</span>
+
+          <div className="checkout-subtotal">
+            <span className="checkout-ordersum-title">Order Summary</span>
+
+            <div>
+              <span className="checkout-ordersum-subtotal">Subtotal</span>
+              <span className="checkout-ordersum-subtotal-lbl"><span className="space">:</span>RS. {calculateSubTotal()}</span>
+            </div>
+            <div>
+              <span className="checkout-ordersum-shipping">Shipping</span>
+              <span className="checkout-ordersum-shipping-lbl"><span className="space">:</span>RS. 500</span>
+            </div>
+            <div>
+              <span className="checkout-ordersum-total">Total</span>
+              <span className="checkout-ordersum-total-lbl"><span className="space">:</span>RS. {calculateSubTotal() + 500}</span>
+            </div>
+
           </div>
-          <div>
-            <span className="checkout-ordersum-shipping">Shipping</span>
-            <span className="checkout-ordersum-shipping-lbl"><span className="space">:</span>RS. 500</span>
+
+
+
+
+          <span className="checkout-card-info-title">Payment Option</span>
+
+          {/* Form Card No */}
+          <label className="checkout-card-info-card-no">Card No</label>
+          <div className="checkout-card-info-card-no-inputs">
+            <div className="checkout-card-info-card-no-input">
+              <input
+                placeholder="XXXX-XXXX-XXXX-XXXX"
+                value={formatCardNumber(cardDetails?.cardNo)}
+
+              />
+            </div>
           </div>
-          <div>
-            <span className="checkout-ordersum-total">Total</span>
-            <span className="checkout-ordersum-total-lbl"><span className="space">:</span>RS. {calculateSubTotal() + 500}</span>
+
+          {/* Form Expire-Date */}
+          <label className="checkout-card-info-exp-date">Exp Date</label>
+          <div className="checkout-card-info-exp-date-inputs">
+            <div className="checkout-card-info-exp-date-input">
+              <input type="checkout-card-info-exp-date" placeholder="XX/XX" value={cardDetails?.month + "/" + cardDetails.year.toString().slice(-2)} />
+            </div>
           </div>
 
-        </div>
-
-
-
-
-        <span className="checkout-card-info-title">Payment Option</span>
-
-        {/* Form Card No */}
-        <label className="checkout-card-info-card-no">Card No</label>
-        <div className="checkout-card-info-card-no-inputs">
-          <div className="checkout-card-info-card-no-input">
-            <input
-              placeholder="XXXX-XXXX-XXXX-XXXX"
-              value={formatCardNumber(cardDetails?.cardNo)}
-
-            />
+          {/* Form CVV */}
+          <label className="checkout-card-info-cvv">CVV</label>
+          <div className="checkout-card-info-cvv-inputs">
+            <div className="checkout-card-info-cvv-input">
+              <input type="checkout-card-info-cvv" placeholder="XXX" value={cardDetails?.cvv} />
+            </div>
           </div>
-        </div>
 
-        {/* Form Expire-Date */}
-        <label className="checkout-card-info-exp-date">Exp Date</label>
-        <div className="checkout-card-info-exp-date-inputs">
-          <div className="checkout-card-info-exp-date-input">
-            <input type="checkout-card-info-exp-date" placeholder="XX/XX" value={cardDetails?.month + "/" + cardDetails.year.toString().slice(-2)} />
-          </div>
-        </div>
-
-        {/* Form CVV */}
-        <label className="checkout-card-info-cvv">CVV</label>
-        <div className="checkout-card-info-cvv-inputs">
-          <div className="checkout-card-info-cvv-input">
-            <input type="checkout-card-info-cvv" placeholder="XXX" value={cardDetails?.cvv} />
-          </div>
-        </div>
-
-        {/* <div className="checkbox-container">
+          {/* <div className="checkbox-container">
           <input type="checkbox" className="bill-checkbox" />
           Save Card Details
         </div>
@@ -138,10 +162,10 @@ const Checkout = ({ viewCart, cartDetails, postUserPlaceOrders, cardDetails }) =
         <div className="checkout-card-info-save-btn-container">
           <button className="checkout-card-info-savebtn" onClick={saveCardDetails}>Save Details</button>
         </div> */}
-        <div className="place-order-btn-container">
-          <button className="place-order-btn" onClick={handleSubmit}>PLACE ORDER</button>
-        </div>
-      </div>}
+          <div className="place-order-btn-container">
+            <button className="place-order-btn" onClick={handleSubmit}>PLACE ORDER</button>
+          </div>
+        </div>}
     </div>
   );
 };
@@ -149,7 +173,8 @@ const Checkout = ({ viewCart, cartDetails, postUserPlaceOrders, cardDetails }) =
 const mapStateToProps = (state) => {
   return {
     cartDetails: state.craftbay.cartDetails,
-    cardDetails: state.craftbay.cardDetails
+    cardDetails: state.craftbay.cardDetails,
+    placedOrder: state.craftbay.placeOrders
   };
 };
 

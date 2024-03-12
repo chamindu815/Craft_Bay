@@ -220,7 +220,7 @@ export const checkoutCart = (params) => {
 export const postUserPlaceOrders = ({ userId, cartId }) => {
   return new Promise(async (resolve, reject) => {
     try {
-      const data = await axios.post(
+      const {data} = await axios.post(
         `http://localhost:8089/craftbay/user/${userId}/cart/${cartId}/place-order`);
       resolve(data);
     } catch (error) {
