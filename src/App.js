@@ -28,6 +28,8 @@ import UserOrderById from "./Components/UserOrderById/userorderbyid";
 import store from './store';
 import { Provider } from 'react-redux';
 import AdminSalesReport from "./Components/AdminSalesReport/adminsalesreport";
+import ForgotPassword from "./Components/ForgotPassword/forgotpassword";
+import ForgotPasswordConfirm from "./Components/ForgotPasswordConfirm/forgotpasswordconfirm";
 
 
 
@@ -64,6 +66,8 @@ function App() {
           <Route path="/userorders" element={<UserOrder />} />
           <Route path="/adminorders/:id" element={<AdminOrderById />} />
           <Route path="/userorders/:id" element={<UserOrderById />} />
+          <Route path="/forgotpassword" element={<ForgotPassword />} />
+          <Route path="/forgotpasswordconfirm" element={<ForgotPasswordConfirm />} />
         </Route>
       </Routes>
     </BrowserRouter>
