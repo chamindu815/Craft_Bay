@@ -11,11 +11,9 @@ const AdminOrderById = ({ adminGetOrderByOrderId, adminOrderByOrderId }) => {
 
 
   useEffect(() => {
-    console.log("adminOrderByOrderId xxxxxx");
     adminGetOrderByOrderId(id);
   }, []);
 
-  console.log("adminOrderByOrderId", adminOrderByOrderId);
 
   return (
     <>

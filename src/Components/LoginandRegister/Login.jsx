@@ -31,7 +31,8 @@ const Login = ({ userLogin, loginData }) => {
   useEffect(() => {
     if (loginData) {
       if (loginData?.status == 400 || loginData?.status == 401) {
-        alert("Unauthorised User Details");
+        NotificationManager.error('Invalid Username or Password', 'Error', 3000, () => {
+        });
       } else if (loginData?.status == 200) {
         NotificationManager.success('Login Successfully!', 'Success', 3000);
         // alert("User login successfully!");
@@ -109,7 +110,7 @@ const Login = ({ userLogin, loginData }) => {
         </div>
 
         <div className="forgot-password">
-          <span>Forgot Password? </span>
+          <span onClick={(e) => navigate("/forgotpasswordconfirm")}>Forgot Password? </span>
         </div>
 
         <div className="submit-container">

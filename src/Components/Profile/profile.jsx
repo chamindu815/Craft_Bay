@@ -28,8 +28,6 @@ const Profile = ({ getUserById, userById, addCardToUser, userCardDetails }) => {
     NotificationManager.success('Card Added Successfully!', 'Success', 3000);
   };
 
-  console.log("userId", userId);
-
   return (
     <div className="prof-add-pay-bg">
       <span className="acc-info-title">Account Information</span>

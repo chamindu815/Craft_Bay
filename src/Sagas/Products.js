@@ -26,6 +26,7 @@ import {
   getCardDetails,
   getSalesReportDetails,
   getInventoryReportDetails,
+  forgotPassword
 } from "../Services/Products";
 import { put, call, takeLatest } from "redux-saga/effects";
 import { products } from "../Actions";
@@ -85,6 +86,8 @@ const {
   getSalesReportDetailsFail,
   getInventoryReportDetailsSuccess,
   getInventoryReportDetailsFail,
+  userForgotPasswordSuccess,
+  userForgotPasswordFail
 } = products;
 const ProductSagas = {
   userLoginSaga: function* (action) {
@@ -344,7 +347,6 @@ const ProductSagas = {
     const params = action?.payload ?? {};
     try {
       const articleList = yield call(addCardToUser, params);
-      console.log("articleList", articleList);
       yield put(addCardToUserSuccess(articleList));
     } catch (error) {
       yield put(addCardToUserFail(error));
@@ -371,6 +373,17 @@ const ProductSagas = {
       yield put(getInventoryReportDetailsSuccess(report));
     } catch (error) {
       yield put(getInventoryReportDetailsFail(error));
+    }
+  },
+
+   //FORGOT_PASSWORD
+   forgotPasswordSaga: function* (action) {
+    const params = action?.payload ?? {};
+    try {
+      const password = yield call(forgotPassword,params);
+      yield put(userForgotPasswordSuccess(password));
+    } catch (error) {
+      yield put(userForgotPasswordFail(error));
     }
   },
 };
@@ -403,4 +416,5 @@ export default [
   takeLatest("GET_CARD_DETAILS", ProductSagas.getCardSaga),
   takeLatest("GET_SALES_REPORT", ProductSagas.getSalesReportDetailsSaga),
   takeLatest("GET_INVENTORY_REPORT", ProductSagas.getInventoryReportDetailsSaga),
+  takeLatest("FORGOT_PASSWORD", ProductSagas.forgotPasswordSaga),
 ];
