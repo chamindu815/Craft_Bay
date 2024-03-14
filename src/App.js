@@ -66,7 +66,7 @@ function App() {
           <Route path="/userorders" element={<UserOrder />} />
           <Route path="/adminorders/:id" element={<AdminOrderById />} />
           <Route path="/userorders/:id" element={<UserOrderById />} />
-          <Route path="/forgotpassword" element={<ForgotPassword />} />
+          <Route path="/forgotpassword/:email" element={<ForgotPassword />} />
           <Route path="/forgotpasswordconfirm" element={<ForgotPasswordConfirm />} />
         </Route>
       </Routes>

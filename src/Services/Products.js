@@ -14,7 +14,7 @@ export const userLogin = (params) => {
         userId: data.data.userId,
       });
     } catch (error) {
-      reject(error);
+      reject({status:error.response.status, data:error.response.data});
     }
   });
 };
@@ -377,7 +377,6 @@ export const getCardDetails = (params) => {
 };
 
 export const getSalesReportDetails = (params) => {
-  console.log('xxxxx',params);
   return new Promise(async (resolve, reject) => {
     try {
       const {data} = await axios.get(
@@ -395,6 +394,19 @@ export const getInventoryReportDetails = () => {
     try {
       const {data} = await axios.get(
         `http://localhost:8089/craftbay/admin/reports/inventory-report`);
+      resolve(data);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
+//FORGOT_PASSWORD
+export const forgotPassword = (params) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const {data} = await axios.post(
+        `http://localhost:8089/craftbay/auth/forgot-password`,params);
       resolve(data);
     } catch (error) {
       reject(error);

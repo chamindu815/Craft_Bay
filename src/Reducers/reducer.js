@@ -17,6 +17,7 @@ const initialState = {
   cardDetails: {},
   salesReportData: {},
   inventoryReportData:{},
+  forgotPassword:{}
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -31,7 +32,7 @@ export default (state = initialState, { type, payload }) => {
       });
     case "USER_LOGIN_FAIL":
       return Object.assign({}, state, {
-        loginData: {},
+        loginData: payload,
       });
 
     //USER_REGISTER
@@ -385,6 +386,21 @@ export default (state = initialState, { type, payload }) => {
       return Object.assign({}, state, {
         inventoryReportData: {},
       });
+
+      //FORGOT_PASSWORD
+    case "FORGOT_PASSWORD":
+      return Object.assign({}, state, {
+        forgotPassword: {},
+      });
+    case "FORGOT_PASSWORD_SUCCESS":
+      return Object.assign({}, state, {
+        forgotPassword: payload,
+      });
+    case "FORGOT_PASSWORD_FAIL":
+      return Object.assign({}, state, {
+        forgotPassword: {},
+      });
+
 
     default:
       return state;

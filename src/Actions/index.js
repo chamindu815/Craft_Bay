@@ -9,7 +9,7 @@ export const products = {
   }),
   userLoginFail: (error) => ({
     type: "USER_LOGIN_FAIL",
-    payload: {},
+    payload: error,
   }),
 
   //USER_REGISTER
@@ -364,6 +364,20 @@ export const products = {
     }),
     getInventoryReportDetailsFail: (error) => ({
       type: "GET_INVENTORY_REPORT_FAIL",
+      payload: {},
+    }),
+
+    //FORGOT_PASSWORD
+    userForgotPassword: (data) => ({
+      type: "FORGOT_PASSWORD",
+      payload: data,
+    }),
+    userForgotPasswordSuccess: (data) => ({
+      type: "FORGOT_PASSWORD_SUCCESS",
+      payload: data,
+    }),
+    userForgotPasswordFail: (error) => ({
+      type: "FORGOT_PASSWORD_FAIL",
       payload: {},
     }),
 };

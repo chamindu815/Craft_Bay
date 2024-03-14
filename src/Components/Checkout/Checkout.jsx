@@ -27,7 +27,6 @@ const Checkout = ({ viewCart, cartDetails, postUserPlaceOrders, cardDetails, pla
   }
 
   const sendEmail = (placedOrder) => {
-    console.log("placedOrder:", placedOrder);
 
     const emailParams = {
       subject: "CraftBay Order Confirmation",
