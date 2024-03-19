@@ -9,10 +9,8 @@ import order from "../Assets/Order.png";
 import signout from "../Assets/SignOut.png";
 
 const Navigation = () => {
-
   const userId = localStorage.getItem("userId");
   const navigate = useNavigate();
-
 
   return (
     <div>
@@ -32,16 +30,15 @@ const Navigation = () => {
           </button>
 
           <div class="dropdown">
-          <button className="nav-btn-category">CATEGORY</button>
-          <div class="dropdown-content">
-            <a href="/products/WOODEN" >Wooden</a>
-            <a href="/products/METAL">Metal</a>
-            <a href="/products/TEXTILE">Textile</a>
-            <a href="/products/CLAY">Clay</a>
-            <a href="/products/LEATHER">Leather</a>
+            <button className="nav-btn-category">CATEGORY</button>
+            <div class="dropdown-content">
+              <a href="/products/WOODEN">Wooden</a>
+              <a href="/products/METAL">Metal</a>
+              <a href="/products/TEXTILE">Textile</a>
+              <a href="/products/CLAY">Clay</a>
+              <a href="/products/LEATHER">Leather</a>
+            </div>
           </div>
-          </div>
-
 
           <button className="nav-btn-aboutus">
             <a href="/aboutus">ABOUT US</a>
@@ -52,22 +49,26 @@ const Navigation = () => {
         </div>
 
         <div className="nav-cart-img">
-        <a href="/cart">
-          <img className="nav-cart-imgs" src={cart} alt="" />
-        </a>
+          <a href="/cart">
+            <img className="nav-cart-imgs" src={cart} alt="" />
+          </a>
         </div>
 
         <div className="nav-profile-img">
-        
-        {/* <a href="/profile"> */}
-          <img className="nav-profile-imgs" src={profile} alt="" onClick={() => navigate(`/profile/${localStorage.userId}`)} />
-        {/* </a> */}
+          {/* <a href="/profile"> */}
+          <img
+            className="nav-profile-imgs"
+            src={profile}
+            alt=""
+            onClick={() => navigate(`/profile/${localStorage.userId}`)}
+          />
+          {/* </a> */}
         </div>
 
         <div className="nav-order-img">
-        <a href="/userorders">
-          <img className="nav-order-imgs" src={order} alt="" />
-        </a>
+          <a href="/userorders">
+            <img className="nav-order-imgs" src={order} alt="" />
+          </a>
         </div>
 
         <div className="search-bar-container">
@@ -78,9 +79,9 @@ const Navigation = () => {
         </div>
 
         <div className="nav-signout-img">
-        <a href="/login">
-          <img className="nav-signout-imgs" src={signout} alt="" />
-        </a>
+          <a href="/logout">
+            <img className="nav-signout-imgs" src={signout} alt="" />
+          </a>
         </div>
       </div>
     </div>

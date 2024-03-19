@@ -1,6 +1,7 @@
 import "./App.css";
 import React from 'react';
 import Login from "./Components/LoginandRegister/Login";
+import Logout from "./Components/Logout/logout";
 import Register from './Components/LoginandRegister/Register';
 import Product from "./Components/Products/product";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -43,6 +44,7 @@ function App() {
         <Route>
           <Route index element={<Login />}></Route>
           <Route path="/login" element={<Login />}></Route>
+          <Route path="/logout" element={<Logout />} />
           <Route path="/register" element={<Register />}></Route>
           <Route path="/products/:type" element={<Product />}></Route>
           <Route path="/viewproduct/:id" element={<ViewProduct />}></Route>

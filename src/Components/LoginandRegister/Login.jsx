@@ -6,8 +6,11 @@ import hidden from "../Assets/hidden.png";
 import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 import { products } from "../../Actions";
-import { NotificationContainer, NotificationManager } from 'react-notifications';
-import 'react-notifications/lib/notifications.css';
+import {
+  NotificationContainer,
+  NotificationManager,
+} from "react-notifications";
+import "react-notifications/lib/notifications.css";
 
 const { userLogin } = products;
 
@@ -17,6 +20,7 @@ const Login = ({ userLogin, loginData }) => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+  const [emailError, setEmailError] = useState("");
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -30,32 +34,43 @@ const Login = ({ userLogin, loginData }) => {
 
   useEffect(() => {
     if (loginData) {
-      if (loginData?.status == 400 || loginData?.status == 401) {
-        NotificationManager.error('Invalid Username or Password', 'Error', 3000, () => {
-        });
-      } else if (loginData?.status == 200) {
-        NotificationManager.success('Login Successfully!', 'Success', 3000);
-        // alert("User login successfully!");
+      if (loginData?.status === 400 || loginData?.status === 401) {
+        NotificationManager.error(
+          "Invalid Username or Password",
+          "Error",
+          3000
+        );
+      } else if (loginData?.status === 200) {
+        NotificationManager.success("Login Successfully!", "Success", 3000);
         localStorage.setItem("token", loginData?.token);
         localStorage.setItem("userId", loginData?.userId);
         navigate("/home");
       }
-      else {
-        
-      }
     }
   }, [loginData]);
-  
-  // NotificationManager.error('Error message', 'Error', 5000);
+
+  const validateEmail = (value) => {
+    const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+    if (!value) {
+      setEmailError("Email is required");
+    } else if (!emailRegex.test(value)) {
+      setEmailError("Invalid email address");
+    } else {
+      setEmailError("");
+    }
+  };
 
   const submitUserDetails = (event) => {
     event.preventDefault();
-    userLogin({
-      email: email,
-      password: password,
-    });
+    validateEmail(email);
+    if (!emailError) {
+      userLogin({
+        email: email,
+        password: password,
+      });
+    }
   };
-  
+
   return (
     <div className="main-container">
       <div className="logo-container">
@@ -81,8 +96,10 @@ const Login = ({ userLogin, loginData }) => {
               value={email}
               onChange={(event) => {
                 setEmail(event.target.value);
+                validateEmail(event.target.value);
               }}
             />
+            {emailError && <div className="error-message">{emailError}</div>}
           </div>
 
           <div className="input">
@@ -95,22 +112,27 @@ const Login = ({ userLogin, loginData }) => {
                 setPassword(event.target.value);
               }}
             />
-
             <span
               className="hide-view-password-container"
               onClick={togglePasswordVisibility}
             >
               {showPassword ? (
-                <img className="hide-view-password" src={visible}></img>
+                <img
+                  className="hide-view-password"
+                  src={visible}
+                  alt="visible"
+                />
               ) : (
-                <img className="hide-view-password" src={hidden}></img>
+                <img className="hide-view-password" src={hidden} alt="hidden" />
               )}
             </span>
           </div>
         </div>
 
         <div className="forgot-password">
-          <span onClick={(e) => navigate("/forgotpasswordconfirm")}>Forgot Password? </span>
+          <span onClick={(e) => navigate("/forgotpasswordconfirm")}>
+            Forgot Password?{" "}
+          </span>
         </div>
 
         <div className="submit-container">
@@ -131,7 +153,6 @@ const Login = ({ userLogin, loginData }) => {
         </div>
       </div>
       <NotificationContainer />
-
     </div>
   );
 };

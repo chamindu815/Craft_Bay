@@ -139,3 +139,10 @@ img{
     height: auto;
 }
 
+.error-message {
+    position: absolute;
+    color: red;
+    font-size: 12px;
+    margin-top: 8em;
+    margin-left: 1%;
+  }

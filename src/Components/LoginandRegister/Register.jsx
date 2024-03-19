@@ -15,6 +15,8 @@ const Register = ({ userRegister, registerData }) => {
   const [username, setUsername] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
+  const [isValidUsername, setIsValidUsername] = useState(true);
+  const [usernameError, setUsernameError] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -30,13 +32,23 @@ const Register = ({ userRegister, registerData }) => {
 
   const registerUser = (event) => {
     event.preventDefault();
-    userRegister({
-      firstName: firstName,
-      lastName: lastName,
-      username: username,
-      phoneNumber: phoneNumber,
-      password: password,
-    });
+    if (isValidUsername) {
+      userRegister({
+        firstName: firstName,
+        lastName: lastName,
+        username: username,
+        phoneNumber: phoneNumber,
+        password: password,
+      });
+    } else {
+      setUsernameError("Please enter a valid email address");
+    }
+  };
+
+  const validateUsername = (email) => {
+    const isValid = /\S+@\S+\.\S+/.test(email); // Regular expression for email validation
+    setIsValidUsername(isValid);
+    setUsernameError(isValid ? "" : "Please enter a valid email address");
   };
 
   return (
