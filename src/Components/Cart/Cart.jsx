@@ -138,7 +138,7 @@ const Cart = ({ viewCart, cartDetails, user, updateUserBillingAddress, updateCar
           >
             Checkout
           </button>}
-          {Array.isArray(formValues?.cartItems) && formValues?.cartItems.length == 0 && <p>Cart is Empty</p>}
+          {Array.isArray(formValues?.cartItems) && formValues?.cartItems.length == 0 && <p className="cart-empty-txt">Cart is Empty</p>}
         </div>
       </div>
 
