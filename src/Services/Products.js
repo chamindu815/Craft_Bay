@@ -413,3 +413,16 @@ export const forgotPassword = (params) => {
     }
   });
 };
+
+//ADD_RATINGS
+export const addRatings = (params) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const {data} = await axios.post(
+        `http://localhost:8089/craftbay/user/cart/cart-item/rate`,params);
+      resolve(data);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
