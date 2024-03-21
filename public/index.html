@@ -31,8 +31,28 @@
     <title>Craftbay</title>
   </head>
   <body>
+    <style>
+      df-messenger {
+       --df-messenger-bot-message: #878fac;
+       --df-messenger-button-titlebar-color: #df9b56;
+       --df-messenger-button-titlebar-font-color: white;
+       --df-messenger-chat-background-color: #fafafa;
+       --df-messenger-font-color: white;
+       --df-messenger-input-placeholder-font-color:rgb(44, 44, 44);
+       --df-messenger-send-icon: #878fac;
+       --df-messenger-user-message: #479b3d;
+      }
+    </style>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+          <df-messenger
+            intent="WELCOME"
+            chat-title="CraftBay-Agent-New"
+            agent-id="e915b773-9f24-432c-b7c6-71097e72c0ba"
+            language-code="en"
+            chat-icon="https://cdn-icons-png.freepik.com/256/6819/6819653.png?ga=GA1.1.841473479.1693848740&"
+          ></df-messenger>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
