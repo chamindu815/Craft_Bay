@@ -7,17 +7,20 @@ import { products } from "../../Actions";
 import { useParams } from "react-router-dom";
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
+import Box from '@mui/material/Box';
+import Rating from '@mui/material/Rating';
+import Typography from '@mui/material/Typography';
 
 
 
 const { getProductById } = products;
 const { postAddToCart } = products;
-const ViewProduct = ({ getProductById, productById, postAddToCart, addToCart  }) => {
+const ViewProduct = ({ getProductById, productById, postAddToCart, addToCart }) => {
   const minValue = 1;
   const maxValue = productById.remainingQuantity;
   const [count, setCount] = useState(minValue);
   const { id } = useParams();
-  const {userId} = localStorage.getItem("userId");
+  const { userId } = localStorage.getItem("userId");
 
   const navigate = useNavigate();
 
@@ -25,37 +28,6 @@ const ViewProduct = ({ getProductById, productById, postAddToCart, addToCart  })
     getProductById(id);
   }, []);
 
-
-
-
-  
-  // Need to ask from akka!
-  // useEffect(() => {
-  //   if (Object.keys(addToCart).length === 0) {
-  //     if (addToCart?.status == 200) {
-  //       alert("Successfully!");
-  //     }
-  //     else {
-  //       alert("Unauthorised");
-  //     }
-  //   }
-  // }, [addToCart]);
-
-
-
-
-
-
-
-
-  useEffect(() => {
-    // if (productById.length > 0) {
-    //   NotificationManager.success('Product Added to Cart Successfully!', 'Success', 3000);
-    // }
-    // else {
-      // NotificationManager.error('Error message', 'Error', 5000);
-    // }
-  }, [productById]);
 
   const handleIncrementCounter = () => {
     if (count < maxValue) {
@@ -73,26 +45,26 @@ const ViewProduct = ({ getProductById, productById, postAddToCart, addToCart  })
 
   const handleAddToCart = async (event) => {
     event.preventDefault();
-    postAddToCart ({
+    postAddToCart({
       productId: id,
       quantity: count,
       userId: localStorage.getItem("userId")
     })
-    
+
     NotificationManager.success('Product Added To Cart Successfully!', 'Success', 3000);
     // navigate("/cart"); 
   };
 
   const handleBuyNow = async (event) => {
     event.preventDefault();
-    postAddToCart ({
+    postAddToCart({
       productId: id,
       quantity: count,
       userId: localStorage.getItem("userId")
     })
-    
+
     NotificationManager.success('Product Added To Cart Successfully!', 'Success', 3000);
-    navigate("/checkout"); 
+    navigate("/checkout");
   };
 
   return (
@@ -123,7 +95,7 @@ const ViewProduct = ({ getProductById, productById, postAddToCart, addToCart  })
               <div className="qnt-container">
                 <h2 className="prod-qnt-name">Quantity:</h2>
                 <div className="qunt-btn">
-                  
+
                   <button
                     className="increment-btn"
                     onClick={handleDecrementCounter}
@@ -150,6 +122,19 @@ const ViewProduct = ({ getProductById, productById, postAddToCart, addToCart  })
                 <div className="buynow-btn">
                   <button className="buy" onClick={handleBuyNow}>Buy Now</button>
                 </div>
+              </div>
+              <div>
+
+                <Box
+                  sx={{
+                    '& > legend': { mt: 2 },
+                  }}
+                >
+                  <Typography component="legend">Rating: </Typography>
+                  <Rating name="read-only" value={productById.rate/productById.noOfRatings} precision={0.1} readOnly />
+                  <div>({productById.noOfRatings})</div>
+                </Box>
+
               </div>
             </div>
           </div>

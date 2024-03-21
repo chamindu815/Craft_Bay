@@ -380,4 +380,18 @@ export const products = {
       type: "FORGOT_PASSWORD_FAIL",
       payload: {},
     }),
+
+    //ADD_RATINGS
+    addRatings: (data) => ({
+      type: "ADD_RATINGS",
+      payload: data,
+    }),
+    addRatingsSuccess: (data) => ({
+      type: "ADD_RATINGS_SUCCESS",
+      payload: data,
+    }),
+    addRatingsFail: (error) => ({
+      type: "ADD_RATINGS_FAIL",
+      payload: {},
+    }),
 };
