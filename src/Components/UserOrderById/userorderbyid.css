@@ -42,34 +42,51 @@
 
   .user-by-id-order-by-order-prodname {
     margin-left: 3%;
-    margin-top: 3.5%;
+    margin-top: 3%;
   }
   
   .user-by-id-order-by-order-prodname-lbl {
     margin-left: 2%;
-    margin-top: 3.8%;
+    margin-top: 3.2%;
   }
   
   .user-by-id-order-by-order-qty {
     position: absolute;
-    margin-top: 4.6%;
+    margin-top: 4%;
     margin-left: 12.3%;
   }
   
   .user-by-id-order-by-order-qty-lbl {
     position: absolute;
-    margin-top: 4.9%;
-    margin-left: 22.5%;
+    margin-top: 4.2%;
+    margin-left: 22.8%;
   }
   
   .user-by-id-order-by-order-price {
     position: absolute;
-    margin-top: 7%;
+    margin-top: 6.4%;
     margin-left: 12.3%;
   }
   
   .user-by-id-order-by-order-price-lbl {
     position: absolute;
-    margin-top: 7.2%;
-    margin-left: 22.5%;
+    margin-top: 6.5%;
+    margin-left: 22.7%;
+  }
+
+  .raing-comp{
+    position: absolute;
+    
+  }
+
+  .rating-title{
+    position: absolute;
+    margin-top: 6em;
+    margin-left: 10em;
+  }
+
+  .rating-stars{
+    position: absolute;
+    margin-top: 4.8em;
+    margin-left: 14.3em;
   }
