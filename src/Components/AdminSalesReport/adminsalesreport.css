@@ -1,21 +1,21 @@
-.admin-sales-report-bg{
-    width: 98%;
-    margin-left: 1%;
-    margin-top: 3%;
-    height: fit-content;
-    margin-bottom: 30px;
-    display: flex;
-    background: rgba(255, 255, 255, 0.829);
-    border-radius: 15px;
+.admin-sales-report-bg {
+  width: 98%;
+  margin-left: 1%;
+  margin-top: 3%;
+  height: fit-content;
+  margin-bottom: 30px;
+  display: flex;
+  background: rgba(255, 255, 255, 0.829);
+  border-radius: 15px;
 }
 
-.admin-sales-report-title{
-    text-align: center;
-    margin-left: 200px;
+.admin-sales-report-title {
+  text-align: center;
+  margin-left: 200px;
 }
 
-.admin-sales-report-download-btn-container{
-    text-align: right;
+.admin-sales-report-download-btn-container {
+  text-align: right;
 }
 
 .admin-sales-report-download-btn {
@@ -24,7 +24,7 @@
   font-size: 15px;
   font-weight: bold;
   cursor: pointer;
-  margin-top: 74px;
+  margin-top: 10em;
   background: #3d3028;
   color: white;
   border-radius: 5px;
@@ -37,4 +37,67 @@
   color: white;
   box-shadow: 0 10px 16px 0 rgba(0, 0, 255, 0.24),
     0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+.admin-sales-report-search-btn {
+  position: absolute;
+  height: 40px;
+  width: 120px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 44px;
+  background: #3d3028;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  margin-left: 27em;
+}
+
+.admin-sales-report-search-btn:hover {
+  background-color: blue;
+  color: white;
+  box-shadow: 0 10px 16px 0 rgba(0, 0, 255, 0.24),
+    0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+.calender {
+  margin-left: 40px;
+  margin-top: 30px;
+}
+
+.calender-start {
+  position: absolute;
+  border: 2px solid black;
+  width: 150px;
+  margin-top: 40px;
+}
+
+.calender-end {
+  position: absolute;
+  border: 2px solid black;
+  width: 150px;
+  left: 15em;
+  margin-top: 40px;
+}
+
+.date{
+  font-weight: bold;
+  margin-left: 23%;
+}
+
+.calender-title-start{
+  position: absolute;
+  width: fit-content;
+  margin-left: 2.1em;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.calender-title-end{
+  position: absolute;
+  width: fit-content;
+  margin-left: 14em;
+  font-weight: bold;
+  text-decoration: underline;
 }
