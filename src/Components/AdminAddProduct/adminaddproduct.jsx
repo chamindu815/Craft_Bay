@@ -5,6 +5,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import Moment from "moment";
 import { connect } from 'react-redux';
 import { products } from '../../Actions';
+import { NotificationContainer, NotificationManager } from 'react-notifications';
+import 'react-notifications/lib/notifications.css';
 
 const { addProducts } = products;
 const initialValues = {
@@ -24,6 +26,7 @@ const AdminAddProduct = ({ addProducts }) => {
   async function save(event) {
     event.preventDefault();
     const formData = new FormData();
+    NotificationManager.success('Product Added Successfully!', 'Success', 3000);
 
     for (const key in formValues) {
       if (key === 'date') {
@@ -162,6 +165,7 @@ const AdminAddProduct = ({ addProducts }) => {
             </button>
           </div>
         </div>
+        <NotificationContainer />
       </div>
     </>
   );
