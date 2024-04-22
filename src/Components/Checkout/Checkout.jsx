@@ -13,7 +13,7 @@ const Checkout = ({ viewCart, cartDetails, postUserPlaceOrders, cardDetails, pla
 
   useEffect(() => {
     viewCart(userId);
-  }, []);
+  }, [userId]);
 
   useEffect(() => {
     if (Object.keys(placedOrder).length > 0) {
@@ -96,15 +96,10 @@ const Checkout = ({ viewCart, cartDetails, postUserPlaceOrders, cardDetails, pla
         })}
       </div>
 
-
-
-      {Object.keys(cardDetails).length &&
+      {Object.keys(cardDetails).length != 0 &&
         <div className="checkout-card-info-container">
-
-
           <div className="checkout-subtotal">
             <span className="checkout-ordersum-title">Order Summary</span>
-
             <div>
               <span className="checkout-ordersum-subtotal">Subtotal</span>
               <span className="checkout-ordersum-subtotal-lbl"><span className="space">:</span>RS. {calculateSubTotal()}</span>
@@ -117,12 +112,7 @@ const Checkout = ({ viewCart, cartDetails, postUserPlaceOrders, cardDetails, pla
               <span className="checkout-ordersum-total">Total</span>
               <span className="checkout-ordersum-total-lbl"><span className="space">:</span>RS. {calculateSubTotal() + 500}</span>
             </div>
-
           </div>
-
-
-
-
           <span className="checkout-card-info-title">Payment Option</span>
 
           {/* Form Card No */}
@@ -132,7 +122,6 @@ const Checkout = ({ viewCart, cartDetails, postUserPlaceOrders, cardDetails, pla
               <input
                 placeholder="XXXX-XXXX-XXXX-XXXX"
                 value={formatCardNumber(cardDetails?.cardNo)}
-
               />
             </div>
           </div>
@@ -162,7 +151,7 @@ const Checkout = ({ viewCart, cartDetails, postUserPlaceOrders, cardDetails, pla
           <button className="checkout-card-info-savebtn" onClick={saveCardDetails}>Save Details</button>
         </div> */}
           <div className="place-order-btn-container">
-            <button className="place-order-btn" onClick={handleSubmit}>PLACE ORDER</button>
+            <button className={Object.keys(cardDetails).length ? "place-order-btn" : "place-order-btn-disabled"} disabled={!Object.keys(cardDetails).length} onClick={handleSubmit}>PLACE ORDER</button>
           </div>
         </div>}
     </div>

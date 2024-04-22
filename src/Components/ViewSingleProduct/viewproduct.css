@@ -132,6 +132,7 @@
     background: #332a2b;
     color: white;
     font-weight: bold;
+    cursor: pointer;
   }
 
   .cart:hover{
@@ -148,6 +149,7 @@
     background: #332a2b;
     color: white;
     font-weight: bold;
+    cursor: pointer;
   }
 
   .buy:hover{

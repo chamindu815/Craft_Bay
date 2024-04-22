@@ -53,7 +53,7 @@ const UserOrder = ({ getOrderByUserId, orderByUserId, cancelUserPlaceOrders }) =
 
             <label className="user-order-by-order-status-lbl"> {curElm.orderStatus} </label>
 
-            <button className="cancel-order" onClick={() => cancelOrder(curElm.id)}> Cancel Order</button>
+            <button className={curElm.orderStatus == 'COMPLETED' || curElm.orderStatus == 'CANCELLED' ? "cancel-order-disable" : "cancel-order"} disabled={curElm.orderStatus == 'COMPLETED' || curElm.orderStatus == 'CANCELLED'} onClick={() => cancelOrder(curElm.id)}> Cancel Order</button>
 
             <button className="user-order-by-order-more-btn">
               <img

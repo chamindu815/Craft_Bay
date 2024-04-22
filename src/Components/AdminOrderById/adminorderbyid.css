@@ -74,6 +74,18 @@
     margin-left: 22.5%;
   }
 
+  .admin-by-id-order-status-selector-id {
+    font-size: 20px;
+    margin-top: 20px;
+    margin-left: 50px;
+    margin-right: 30px;
+    width: 200px;
+    border-radius: 5px;
+    color: #444444;
+    font-weight: bold;
+    border: 1px solid #444444;
+  }
+
   .admin-by-id-order-by-order-status-lbl{
     position: absolute;
     margin-top: 4.5%;
@@ -85,7 +97,7 @@
   }
 
   .admin-by-id-order-status-selector-container {
-    text-align: right;
+    text-align: left;
     margin-right: 7em;
   }
   

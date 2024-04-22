@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import prod1 from "../Assets/products/Product_01.jpg";
 import "./viewproduct.css";
 import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
@@ -20,14 +19,18 @@ const ViewProduct = ({ getProductById, productById, postAddToCart, addToCart }) 
   const maxValue = productById.remainingQuantity;
   const [count, setCount] = useState(minValue);
   const { id } = useParams();
-  const { userId } = localStorage.getItem("userId");
-
+  const [cartStatus, setCartStatus] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
     getProductById(id);
   }, []);
 
+  useEffect(() => {
+    if(addToCart.status == 200 && !cartStatus){
+      navigate('/checkout')
+    }
+  }, [addToCart]);
 
   const handleIncrementCounter = () => {
     if (count < maxValue) {
@@ -41,30 +44,25 @@ const ViewProduct = ({ getProductById, productById, postAddToCart, addToCart }) 
     }
   };
 
-  // localStorage.setItem("userId", productById?.userId);
-
   const handleAddToCart = async (event) => {
     event.preventDefault();
+    setCartStatus(true)
     postAddToCart({
       productId: id,
       quantity: count,
       userId: localStorage.getItem("userId")
     })
-
     NotificationManager.success('Product Added To Cart Successfully!', 'Success', 3000);
-    // navigate("/cart"); 
   };
 
   const handleBuyNow = async (event) => {
     event.preventDefault();
+    setCartStatus(false)
     postAddToCart({
       productId: id,
       quantity: count,
       userId: localStorage.getItem("userId")
     })
-
-    NotificationManager.success('Product Added To Cart Successfully!', 'Success', 3000);
-    navigate("/checkout");
   };
 
   return (
@@ -132,7 +130,7 @@ const ViewProduct = ({ getProductById, productById, postAddToCart, addToCart }) 
                 >
                   <Typography component="legend">Rating: </Typography>
                   <Rating name="read-only" value={productById.rate/productById.noOfRatings} precision={0.1} readOnly />
-                  <div>({productById.noOfRatings})</div>
+                  {productById.noOfRatings && <div>({productById.noOfRatings})</div>}
                 </Box>
 
               </div>

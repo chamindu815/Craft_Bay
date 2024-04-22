@@ -9,24 +9,49 @@ import { products } from "../../Actions";
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
 
-const { getUserById, addCardToUser } = products;
-const Profile = ({ getUserById, userById, addCardToUser, userCardDetails }) => {
-  const [startDate, setStartDate] = useState(new Date());
+const { getUserById, addCardToUser, updateUserBillingAddress, getCardDetails } = products;
+const Profile = ({ getUserById, userById, addCardToUser, updateUserBillingAddress, cardDetails, getCardDetails }) => {
+  const [startDate, setStartDate] = useState('');
   const userId = localStorage.getItem("userId");
   const navigate = useNavigate();
   const [formValues, setFormValues] = useState({});
+  const [userValues, setUserValues] = useState({});
 
   useEffect(() => {
     getUserById(userId);
+    getCardDetails(userId)
   }, []);
 
-  useEffect(() => {}, [userById]);
+  useEffect(() => {
+    if (userById) {
+      setStartDate(userById.dateOfBirth)
+      setUserValues(userById)
+    }
+  }, [userById]);
+
+  useEffect(() => {
+    if (cardDetails) {
+      setFormValues(cardDetails)
+    }
+  }, [cardDetails]);
 
   const addCard = (event) => {
     event.preventDefault();
     addCardToUser({ formValues, userId });
     NotificationManager.success('Card Added Successfully!', 'Success', 3000);
   };
+
+  const handleUserUpdate = (e) => {
+    setUserValues({
+      ...userValues,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmitUser = (e) => {
+    e.preventDefault();
+    updateUserBillingAddress({ userId, userValues })
+  }
 
   return (
     <div className="prof-add-pay-bg">
@@ -44,54 +69,70 @@ const Profile = ({ getUserById, userById, addCardToUser, userCardDetails }) => {
           <label className="acc-info-birth">Date of Birth</label>
         </div>
 
-        {Object.keys(userById).length > 0 && (
+        {Object.keys(userValues).length > 0 && (
           <div className="acc-info-txtbox">
             <div>
               <input
                 className="acc-info-txtbox-fname"
+                name='firstName'
                 type="text"
-                value={userById.firstName}
+                value={userValues.firstName}
+                onChange={handleUserUpdate}
               />
             </div>
 
             <div>
               <input
                 className="acc-info-txtbox-lname"
+                name='lastName'
                 type="text"
                 placeholder="Last Name"
-                value={userById.lastName}
+                value={userValues.lastName}
+                onChange={handleUserUpdate}
               />
             </div>
 
             <div>
               <input
                 className="acc-info-txtbox-house"
+                name='houseNo'
                 type="text"
                 placeholder="House No"
+                value={userValues.houseNo}
+                onChange={handleUserUpdate}
               />
             </div>
 
             <div>
               <input
                 className="acc-info-txtbox-street"
+                name='streetName'
                 type="text"
                 placeholder="Street"
+                value={userValues.streetName}
+                onChange={handleUserUpdate}
               />
             </div>
 
             <div>
               <input
                 className="acc-info-txtbox-city"
+                name='city'
                 type="text"
                 placeholder="City"
+                value={userValues.city}
+                onChange={handleUserUpdate}
               />
             </div>
 
             <div>
               <input
                 className="acc-info-txtbox-country"
+                name='country'
                 type="text"
                 placeholder="Country"
+                value={userValues.country}
+                onChange={handleUserUpdate}
               />
             </div>
 
@@ -100,22 +141,25 @@ const Profile = ({ getUserById, userById, addCardToUser, userCardDetails }) => {
                 className="acc-info-txtbox-email"
                 type="text"
                 placeholder="Email"
-                value={userById.username}
+                value={userValues.username}
               />
             </div>
 
             <div>
               <input
                 className="acc-info-txtbox-phone"
-                type="text"
+                name='phoneNo'
+                type="number"
                 placeholder="Phone No"
-                value={userById.phoneNo}
+                value={userValues.phoneNo}
+                onChange={handleUserUpdate}
               />
             </div>
 
             <div>
               <DatePicker
                 className="acc-info-txtbox-dob"
+                name='dateOfBirth'
                 selected={startDate}
                 onChange={(date) => setStartDate(date)}
                 dateFormat="yyyy.MM.dd"
@@ -123,7 +167,7 @@ const Profile = ({ getUserById, userById, addCardToUser, userCardDetails }) => {
             </div>
 
             <div>
-              <button className="acc-info-savebtn"> Submit </button>
+              <button className="acc-info-savebtn" onClick={handleSubmitUser}> Submit </button>
             </div>
           </div>
         )}
@@ -162,7 +206,7 @@ const Profile = ({ getUserById, userById, addCardToUser, userCardDetails }) => {
             />
             <h1 className="MMYY">/</h1>
           </div>
-          
+
           <div className="card-info-exp-year-input">
             <input
               type="card-info-exp-date"
@@ -200,15 +244,15 @@ const Profile = ({ getUserById, userById, addCardToUser, userCardDetails }) => {
 
 
         {userById?.role === 'ADMIN' &&
-        <div className="admin-dashboard-btn-container">
-          <button
-            className="admin-dashboard-btn"
-            onClick={() => navigate(`/admindashboard`)}
-          >
-            Admin Dashboard
-          </button>
-        </div>
-      }
+          <div className="admin-dashboard-btn-container">
+            <button
+              className="admin-dashboard-btn"
+              onClick={() => navigate(`/admindashboard`)}
+            >
+              Admin Dashboard
+            </button>
+          </div>
+        }
       </div>
       <NotificationContainer />
 
@@ -220,12 +264,15 @@ const mapStateToProps = (state) => {
   return {
     userById: state.craftbay.userById,
     userCardDetails: state.craftbay.userCardDetails,
+    cardDetails: state.craftbay.cardDetails,
   };
 };
 
 const mapDispatchToProps = {
   getUserById,
   addCardToUser,
+  updateUserBillingAddress,
+  getCardDetails
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);

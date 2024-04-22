@@ -426,3 +426,16 @@ export const addRatings = (params) => {
     }
   });
 };
+
+export const updateOrderStatus = ({id,status}) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const { data } = await axios.post(
+        `http://localhost:8089/craftbay/admin/orders/${id}/update-order?status=${status}`
+      );
+      resolve(data);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};

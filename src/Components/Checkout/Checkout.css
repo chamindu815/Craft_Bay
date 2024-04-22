@@ -317,6 +317,18 @@
   cursor: pointer;
 }
 
+.place-order-btn-disabled{
+  font-size: 15px;
+  font-weight: bold;
+  width: 18em;
+  height: 3.2em;
+  border-radius: 5px;
+  background-color: #322b2b;
+  color: white;
+  border-color: transparent;
+  cursor: pointer;
+}
+
 .place-order-btn:hover{
   background-color: blue;
   color: white;
