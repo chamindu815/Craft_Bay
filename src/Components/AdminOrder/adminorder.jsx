@@ -7,18 +7,36 @@ import { useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { products } from '../../Actions';
 import defaultImage from "../Assets/Order-Sucessfull.jpg";
+import Select from 'react-select';
 
 const { adminGetOrders } = products;
+const options = [
+  { value: 'ALL', label: 'All' },
+  { value: 'ORDERED', label: 'Ordered' },
+  { value: 'INPROGRESS', label: 'In Progress' },
+  { value: 'COMPLETED', label: 'Completed' },
+  { value: 'CANCELLED', label: 'Cancelled' },
+]
 const AdminOrder = ({ adminGetOrders, adminGetOrderDetails }) => {
   const [startDate, setStartDate] = useState(new Date());
   const navigate = useNavigate();
+  const [selectedStatus, setSelectedStatus] = useState(options[0]);
+  const [orderDetails, setOrderDetails] = useState();
 
   useEffect(() => {
     adminGetOrders();
   }, [adminGetOrders]);
 
+  useEffect(() => {
+    setOrderDetails(adminGetOrderDetails);
+  }, [adminGetOrderDetails]);
 
-  useEffect(() => {}, [adminGetOrderDetails]);
+  const handleSelectChange = (selectedStatus) => {
+    setSelectedStatus(selectedStatus);
+    const orders = adminGetOrderDetails.filter((o) => o.orderStatus == selectedStatus.value)
+    setOrderDetails(selectedStatus.value == 'ALL' ? adminGetOrderDetails : orders)
+  };
+
 
   return (
     <div className="admin-order-bg">
@@ -26,54 +44,39 @@ const AdminOrder = ({ adminGetOrders, adminGetOrderDetails }) => {
         <h2 className="admin-order-title">Admin Orders</h2>
         <div className="admin-order-status-selector-container">
           <div>
-            <div className="admin-order-apply-btn-container">
+            {/* <div className="admin-order-apply-btn-container">
               <button className="admin-order-apply-btn">Apply</button>
-            </div>
-            <div className="admin-order-status-date-container">
+            </div> */}
+            {/* <div className="admin-order-status-date-container">
               <DatePicker
                 className="admin-order-status-date"
                 selected={startDate}
                 onChange={(date) => setStartDate(date)}
                 dateFormat="yyyy.MM.dd"
               />
-            </div>
-
+            </div> */}
             <div className="admin-order-status-selector-container">
-              <select className="admin-order-status-selector">
-                <option value="Select">Status</option>
-                <option
-                  value="Select"
-                  className="admin-order-status-inprogress"
-                >
-                  In Progress
-                </option>
-                <option value="Select" className="admin-order-status-cancelled">
-                  Cancelled
-                </option>
-                <option value="Select" className="admin-order-status-completed">
-                  Completed
-                </option>
-              </select>
+              <Select className="admin-order-status-selector" options={options} isSearchable value={selectedStatus} onChange={handleSelectChange} />
             </div>
           </div>
 
-          {Array.isArray(adminGetOrderDetails) &&
-            adminGetOrderDetails.map((curElm) => {
+          {Array.isArray(orderDetails) &&
+            orderDetails.map((curElm) => {
               return (
                 <>
                   <div className="admin-order-by-order-container">
                     <h3 className="admin-order-by-order-id">Order No : # {curElm.id}</h3>
                     <div className="admin-order-by-order-img">
-              <img src={defaultImage} alt="Default" />
+                      <img src={defaultImage} alt="Default" />
                     </div>
                     <h3 className="admin-order-by-order-fname">Full Name :</h3>
                     <label className="admin-order-by-order-fname-lbl">
-                    {curElm.user.firstName} {curElm.user.lastName}
+                      {curElm.user.firstName} {curElm.user.lastName}
                     </label>
 
                     <h3 className="admin-order-by-order-address">Address :</h3>
                     <label className="admin-order-by-order-address-lbl">
-                    {curElm.user.houseNo}, {curElm.user.streetName}, {curElm.user.city}, {curElm.user.country}
+                      {curElm.user.houseNo}, {curElm.user.streetName}, {curElm.user.city}, {curElm.user.country}
                     </label>
 
                     <h3 className="admin-order-by-order-total">Total :</h3>
@@ -82,7 +85,7 @@ const AdminOrder = ({ adminGetOrders, adminGetOrderDetails }) => {
                     </label>
 
                     <label className="admin-order-by-order-status-lbl">
-                    {curElm.orderStatus}
+                      {curElm.orderStatus}
                     </label>
 
                     {/* <select className="admin-order-by-order-status-selector">
@@ -110,6 +113,8 @@ const AdminOrder = ({ adminGetOrders, adminGetOrderDetails }) => {
                 </>
               );
             })}
+
+          {Array.isArray(orderDetails) && orderDetails.length == 0 ? <p className='order-empty-text'>{selectedStatus.label} orders not available</p> : ""}
         </div>
       </div>
     </div>

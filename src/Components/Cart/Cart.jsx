@@ -15,7 +15,7 @@ const Cart = ({ viewCart, cartDetails, user, updateUserBillingAddress, updateCar
 
   useEffect(() => {
     viewCart(userId);
-  }, []);
+  }, [userId]);
 
   useEffect(() => {
     if (user) {
@@ -27,12 +27,27 @@ const Cart = ({ viewCart, cartDetails, user, updateUserBillingAddress, updateCar
   }, [user, cartDetails]);
 
   const handleQuantity = (item) => {
-    setFormValues({
-      ...formValues, cartItems: formValues.cartItems.map((currRow) => {
-        if (currRow.id != item.id) return currRow;
-        return item;
-      })
-    });
+    let formData = []
+    if(item.quantity != 0){
+      formData = {
+        ...formValues, cartItems: formValues.cartItems.map((currRow) => {
+          if (currRow.id != item.id) return currRow;
+          return item;
+        })
+      }
+    } else {
+      formData = {
+        ...formValues, cartItems: formValues.cartItems.filter((e) => e.id != item.id)
+      };
+    }
+    setFormValues(formData)
+    const cartItems = [];
+    formData.cartItems.map((i) => {
+      cartItems.push({ productId: i.product.id, quantity: i.quantity })
+    })
+    updateCart({
+      cartItems, id: formValues.id, userId
+    })
   };
 
   const handleAddressInputChange = (e) => {
@@ -43,7 +58,15 @@ const Cart = ({ viewCart, cartDetails, user, updateUserBillingAddress, updateCar
   };
 
   const handleDelete = (id) => {
-    setFormValues({ ...formValues, cartItems: formValues.cartItems.filter((b) => b.id != id) })
+    const updatedCart = { ...formValues, cartItems: formValues.cartItems.filter((b) => b.id != id) }
+    setFormValues(updatedCart)
+    const cartItems = [];
+    updatedCart.cartItems.map((i) => {
+      cartItems.push({ productId: i.product.id, quantity: i.quantity })
+    })
+    updateCart({
+      cartItems, id: formValues.id, userId
+    })
   };
 
   const handleSubmitAddress = (e) => {
@@ -65,19 +88,23 @@ const Cart = ({ viewCart, cartDetails, user, updateUserBillingAddress, updateCar
     navigate(`/checkout`)
     const cartItems = [];
     formValues.cartItems.map((i) => {
-      cartItems.push({productId:i.product.id,quantity:i.quantity})
+      cartItems.push({ productId: i.product.id, quantity: i.quantity })
     })
     updateCart({
-      cartItems,id:formValues.id,userId
+      cartItems, id: formValues.id, userId
     })
   }
 
+  const isCartEmpty = () => {
+    return !Array.isArray(formValues?.cartItems) || (Array.isArray(formValues?.cartItems) && formValues?.cartItems.length == 0) || (formValues.cartItems && formValues.cartItems.filter((c) => c.quantity != 0).length == 0)
+  }
+  console.log('xxxxx',isCartEmpty(),formValues?.cartItems);
   return (
     <div className="cart-bg">
       <div className="cart-main-container">
         <span className="cart-heading">Added Items</span>
 
-        {Array.isArray(formValues?.cartItems) &&
+        {!isCartEmpty() &&
           formValues.cartItems.map((curElm) => {
             return (
               <div className="cart-container">
@@ -133,13 +160,15 @@ const Cart = ({ viewCart, cartDetails, user, updateUserBillingAddress, updateCar
           })}
         <div className="checkout-btn-container">
           {Array.isArray(formValues?.cartItems) && formValues?.cartItems.length > 0 && <button
-            className="checkoutbtn"
+            className={Object.keys(user).length ? "checkoutbtn" : "checkoutbtn-disabled"}
             onClick={() => handleSubmitCart()}
+            disabled={!Object.keys(user).length}
           >
             Checkout
           </button>}
           {Array.isArray(formValues?.cartItems) && formValues?.cartItems.length == 0 && <p className="cart-empty-txt">Cart is Empty</p>}
         </div>
+        {isCartEmpty() ? <p className="cart-empty-txt">Cart is Empty</p> : ""}
       </div>
 
       <div>
@@ -152,11 +181,11 @@ const Cart = ({ viewCart, cartDetails, user, updateUserBillingAddress, updateCar
           </div>
           <div>
             <span className="cart-ordersum-shipping">Shipping  </span>
-            <span className="cart-ordersum-shipping-lbl"><span className="space">:</span>RS. 500</span>
+            <span className="cart-ordersum-shipping-lbl"><span className="space">:</span>{isCartEmpty() ? "RS. 0" : "RS. 500"}</span>
           </div>
           <div>
             <span className="cart-ordersum-total">Total  </span>
-            <span className="cart-ordersum-total-lbl"><span className="space">:</span>RS. {calculateSubTotal() + 500}</span>
+            <span className="cart-ordersum-total-lbl"><span className="space">:</span>{isCartEmpty() ? 'RS. 0' : `RS. ${calculateSubTotal() + 500}`}</span>
           </div>
 
         </div>

@@ -119,6 +119,10 @@ export default (state = initialState, { type, payload }) => {
     case 'GET_NEW_PRODUCTS_SUCCESS':
       return Object.assign({}, state, {
         newProducts: payload,
+        placeOrders: {},
+        addToCart: {},
+        cartDetails: {},
+        productById: {}
       });
     case 'GET_NEW_PRODUCTS_FAIL':
       return Object.assign({}, state, {
@@ -147,6 +151,7 @@ export default (state = initialState, { type, payload }) => {
     case 'POST_ADD_TO_CART_SUCCESS':
       return Object.assign({}, state, {
         addToCart: payload,
+        placeOrders: {}
       });
     case 'POST_ADD_TO_CART_FAIL':
       return Object.assign({}, state, {
@@ -247,8 +252,17 @@ export default (state = initialState, { type, payload }) => {
         cancelOrders: {},
       });
     case 'USER_CANCEL_ORDERS_SUCCESS':
+      const data = state.orderByUserId.map((i) => {
+        if(i.id == payload) {
+          console.log('xxxxx',i);
+          i.orderStatus = "CANCELLED"
+          return i
+        }
+        return i
+      })
       return Object.assign({}, state, {
-        cancelOrders: payload,
+        cancelOrders: {},
+        orderByUserId: data
       });
     case 'USER_CANCEL_ORDERS_FAIL':
       return Object.assign({}, state, {
@@ -400,13 +414,25 @@ export default (state = initialState, { type, payload }) => {
         }
         return i;
       });
-      console.log('items',items);
+      console.log('items', items);
       return Object.assign({}, state, {
-        orderByOrderId: {...state.orderByOrderId,cart:{...state.orderByOrderId.cart,cartItems:items}},
+        orderByOrderId: { ...state.orderByOrderId, cart: { ...state.orderByOrderId.cart, cartItems: items } },
       });
     case 'ADD_RATINGS_FAIL':
       return Object.assign({}, state, {
         ratings: {},
+      });
+
+    //UPDATE_ORDER_STATUS
+    case 'UPDATE_ORDER_STATUS':
+      return Object.assign({}, state, {
+      });
+    case 'UPDATE_ORDER_STATUS_SUCCESS':
+      return Object.assign({}, state, {
+        adminOrderByOrderId: {...state.adminOrderByOrderId, orderStatus:payload}
+      });
+    case 'UPDATE_ORDER_STATUS_FAIL':
+      return Object.assign({}, state, {
       });
 
     default:

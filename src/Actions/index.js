@@ -394,4 +394,18 @@ export const products = {
       type: "ADD_RATINGS_FAIL",
       payload: {},
     }),
+
+    //UPDATE_ORDER_STATUS
+    updateOrderStatus: (data) => ({
+      type: "UPDATE_ORDER_STATUS",
+      payload: data,
+    }),
+    updateOrderStatusSuccess: (data) => ({
+      type: "UPDATE_ORDER_STATUS_SUCCESS",
+      payload: data,
+    }),
+    updateOrderStatusFail: (error) => ({
+      type: "UPDATE_ORDER_STATUS_FAIL",
+      payload: {},
+    }),
 };

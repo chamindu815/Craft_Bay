@@ -67,7 +67,7 @@ const UserOrderById = ({
                       <label className="user-by-id-order-by-order-price-lbl">
                         {curElm.product.sellingPrice * curElm.quantity}
                       </label>
-                      <div className="raing-comp">
+                      {orderByOrderId.orderStatus == 'COMPLETED' && <div className="raing-comp">
                         <Box
                           sx={{
                             "& > legend": { mt: 2 },
@@ -86,7 +86,7 @@ const UserOrderById = ({
                             }}
                           />
                         </Box>
-                      </div>
+                      </div>}
                     </div>
                   </>
                 );

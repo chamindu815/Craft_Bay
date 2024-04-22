@@ -27,11 +27,11 @@ const AdminSalesReport = ({ getSalesReportDetails, salesReportData }) => {
   ];
   const today = new Date();
 
-  const defaultEndDate = new Date(today);
-  defaultEndDate.setMonth(defaultEndDate.getMonth() + 1);
+  const defaultStartDate = new Date(today);
+  defaultStartDate.setMonth(defaultStartDate.getMonth() - 1);
 
-  const [startDate, setStartDate] = useState(today);
-  const [endDate, setEndDate] = useState(defaultEndDate);
+  const [startDate, setStartDate] = useState(defaultStartDate);
+  const [endDate, setEndDate] = useState(today);
 
   useEffect(() => {
     getSalesReportDetails({
@@ -73,7 +73,6 @@ const AdminSalesReport = ({ getSalesReportDetails, salesReportData }) => {
       startY: 30,
       columns: tableColumns,
       body: salesReportData,
-      // Customize as needed
     });
 
     doc.save(

@@ -527,6 +527,20 @@
   cursor: pointer;
 }
 
+.checkoutbtn-disabled {
+  margin-top: 30px;
+  font-size: 18px;
+  font-weight: bold;
+  width: 130px;
+  height: 50px;
+  border-radius: 5px;
+  background-color: #322b2b;
+  color: white;
+  border-color: transparent;
+  text-align: center;
+  cursor: pointer;
+}
+
 .checkoutbtn:hover {
   background-color: blue;
   color: white;
