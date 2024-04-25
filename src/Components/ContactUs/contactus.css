@@ -82,14 +82,14 @@
 
 .contactus-email{
     position: absolute;
-    margin-top: 45px;
+    margin-top: 10px;
     margin-left: 100px;
     font-weight: bold;
 }
 
 
 .contactus-email-inputs{
-    margin-top: 35px;
+    margin-top: 22%;
     display: flex;
     flex-direction: column;
     gap: 10px;
