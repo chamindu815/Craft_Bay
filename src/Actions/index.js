@@ -408,4 +408,9 @@ export const products = {
       type: "UPDATE_ORDER_STATUS_FAIL",
       payload: {},
     }),
+
+    //CLEAR_STATE
+        clearState: () => ({
+          type: "CLEAR_STATE"
+        }),
 };

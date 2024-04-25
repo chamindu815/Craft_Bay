@@ -17,6 +17,7 @@ const Home = ({ getNewProducts, newProducts }) => {
   }, []);
 
   useEffect(() => {
+    console.log("xxxxx new arrivals", newProducts);
     if (newProducts.length > 0) {
       NotificationManager.success('New Arrivals Load Successfully!', 'Success', 3000);
     }

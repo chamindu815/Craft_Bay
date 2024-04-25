@@ -29,6 +29,7 @@ const Login = ({ userLogin, loginData }) => {
   }, [action]);
 
   useEffect(() => {
+    console.log("xxxxx login");
     if (loginData) {
       if (loginData?.status == 400 || loginData?.status == 401) {
         NotificationManager.error('Invalid Username or Password', 'Error', 3000, () => {
@@ -44,7 +45,7 @@ const Login = ({ userLogin, loginData }) => {
         
       }
     }
-  }, [loginData]);
+  }, [loginData.token]);
   
   // NotificationManager.error('Error message', 'Error', 5000);
 
