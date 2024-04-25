@@ -22,6 +22,7 @@ const AdminViewProduct = ({ getProducts, products }) => {
   const [deleteOpen, setDeleteOpen] = useState(0);
 
   useEffect(() => {
+    console.log('xxxxx admin view products');
     getProducts()
   }, []);
 

@@ -434,6 +434,8 @@ export default (state = initialState, { type, payload }) => {
     case 'UPDATE_ORDER_STATUS_FAIL':
       return Object.assign({}, state, {
       });
+    case 'CLEAR_STATE':
+      return initialState;
 
     default:
       return state;

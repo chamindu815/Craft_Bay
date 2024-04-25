@@ -4,6 +4,8 @@ import "./Cart.css";
 import { connect } from "react-redux";
 import { products } from "../../Actions";
 import { BsFillTrashFill } from "react-icons/bs";
+import { NotificationManager, NotificationContainer } from 'react-notifications';
+import 'react-notifications/lib/notifications.css';
 
 const { viewCart, updateUserBillingAddress, updateCart } = products;
 
@@ -14,7 +16,7 @@ const Cart = ({ viewCart, cartDetails, user, updateUserBillingAddress, updateCar
   const [address, setAddress] = useState({});
 
   useEffect(() => {
-    viewCart(userId);
+      viewCart(userId);
   }, [userId]);
 
   useEffect(() => {
@@ -278,6 +280,7 @@ const Cart = ({ viewCart, cartDetails, user, updateUserBillingAddress, updateCar
           </div>
         </div>
       </div>
+      <NotificationContainer />
     </div>
   );
 };

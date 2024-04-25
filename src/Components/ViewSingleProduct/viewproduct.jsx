@@ -15,6 +15,7 @@ import Typography from '@mui/material/Typography';
 const { getProductById } = products;
 const { postAddToCart } = products;
 const ViewProduct = ({ getProductById, productById, postAddToCart, addToCart }) => {
+  const userId = localStorage.getItem("userId")
   const minValue = 1;
   const maxValue = productById.remainingQuantity;
   const [count, setCount] = useState(minValue);
@@ -46,23 +47,33 @@ const ViewProduct = ({ getProductById, productById, postAddToCart, addToCart }) 
 
   const handleAddToCart = async (event) => {
     event.preventDefault();
-    setCartStatus(true)
-    postAddToCart({
-      productId: id,
-      quantity: count,
-      userId: localStorage.getItem("userId")
-    })
-    NotificationManager.success('Product Added To Cart Successfully!', 'Success', 3000);
+    if(userId){
+      setCartStatus(true)
+      postAddToCart({
+        productId: id,
+        quantity: count,
+        userId
+      })
+      NotificationManager.success('Product Added To Cart Successfully!', 'Success', 3000);
+    } else {
+      NotificationManager.error('Please Login before add products to cart!', 'Error', 1000);
+      navigate('/login')
+    }
   };
 
   const handleBuyNow = async (event) => {
     event.preventDefault();
-    setCartStatus(false)
+    if(userId){
+      setCartStatus(false)
     postAddToCart({
       productId: id,
       quantity: count,
-      userId: localStorage.getItem("userId")
+      userId
     })
+    } else {
+      NotificationManager.error('Please Login before buy products!', 'Error', 1000);
+      navigate('/login')
+    }
   };
 
   return (
