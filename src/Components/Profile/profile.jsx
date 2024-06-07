@@ -49,6 +49,7 @@ const Profile = ({ getUserById, userById, addCardToUser, updateUserBillingAddres
   };
 
   const handleSubmitUser = (e) => {
+    console.log("xxxxx user ",userValues);
     e.preventDefault();
     updateUserBillingAddress({ userId, userValues })
   }

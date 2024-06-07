@@ -41,7 +41,7 @@ function App() {
       <Navigation />
       <Routes>
         <Route>
-          <Route index element={<Login />}></Route>
+          <Route index element={<Home />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
           <Route path="/products/:type" element={<Product />}></Route>

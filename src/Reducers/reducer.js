@@ -320,7 +320,7 @@ export default (state = initialState, { type, payload }) => {
       });
     case 'UPDATE_USER_ADDRESS_FAIL':
       return Object.assign({}, state, {
-        userById: {},
+        // userById: {},
       });
 
     //UPDATE_CART

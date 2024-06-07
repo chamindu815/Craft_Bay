@@ -311,6 +311,7 @@ const ProductSagas = {
 
   updateUserSaga: function* (action) {
     const params = action?.payload ?? {};
+    console.log("xxxx params",params);
     try {
       const newUser = yield call(updateUserBillAddress, params);
       yield put(updateUserBillingAddressSuccess(newUser));

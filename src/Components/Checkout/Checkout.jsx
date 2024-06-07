@@ -32,6 +32,7 @@ const Checkout = ({ viewCart, cartDetails, postUserPlaceOrders, cardDetails, pla
       subject: "CraftBay Order Confirmation",
       subtotal: placedOrder.orderValue,
       orderId: placedOrder.orderId,
+      email: placedOrder.email,
     }
 
     emailjs.send('service_xw0df67', 'template_6en0hpj', emailParams, 'Bk7s3x0nwjFKKLFGz')
@@ -44,11 +45,11 @@ const Checkout = ({ viewCart, cartDetails, postUserPlaceOrders, cardDetails, pla
 
   const formatCardNumber = (number) => {
     if (number) {
-      // Remove spaces if any
+      
       const cleanNumber = number.replace(/\s+/g, '');
-      // Keep only the last 4 digits visible
+      
       const maskedNumber = cleanNumber.slice(0, -4).replace(/\d/g, 'x') + cleanNumber.slice(-4);
-      // Reintroduce spaces for display
+      
       return maskedNumber.replace(/(.{4})/g, '$1 ').trim();
     }
   };

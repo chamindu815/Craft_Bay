@@ -5,6 +5,8 @@ import signup from "../Assets/Signup.jpg";
 import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 import { products } from "../../Actions";
+import { NotificationContainer, NotificationManager } from 'react-notifications';
+import 'react-notifications/lib/notifications.css';
 
 const { userRegister } = products;
 
@@ -37,6 +39,7 @@ const Register = ({ userRegister, registerData }) => {
       phoneNumber: phoneNumber,
       password: password,
     });
+    NotificationManager.success('User Registered Successfully!', 'Success', 3000);
   };
 
   return (
@@ -149,6 +152,7 @@ const Register = ({ userRegister, registerData }) => {
           </span>
         </div>
       </div>
+      <NotificationContainer />
     </div>
   );
 };

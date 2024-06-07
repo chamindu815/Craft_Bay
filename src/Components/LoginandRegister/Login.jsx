@@ -32,6 +32,7 @@ const Login = ({ userLogin, loginData }) => {
     console.log("xxxxx login");
     if (loginData) {
       if (loginData?.status == 400 || loginData?.status == 401) {
+          console.log('xxxxx login',loginData);
         NotificationManager.error('Invalid Username or Password', 'Error', 3000, () => {
         });
       } else if (loginData?.status == 200) {
@@ -45,7 +46,7 @@ const Login = ({ userLogin, loginData }) => {
         
       }
     }
-  }, [loginData.token]);
+  }, [loginData]);
   
   // NotificationManager.error('Error message', 'Error', 5000);
 

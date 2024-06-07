@@ -27,7 +27,7 @@ export const userRegister = (params) => {
         params
       );
       resolve(data);
-      alert("Employee Registation Successfully");
+      // alert("Employee Registation Successfully");
     } catch (error) {
       reject(error);
     }
@@ -162,7 +162,12 @@ export const postAddToCart = (params) => {
     try {
       const data = await axios.post(
         "http://localhost:8089/craftbay/user/cart/addtocart",
-        params
+        params,
+        {
+          headers: {
+              "Authorization": "Bearer "+localStorage.getItem("token"), 
+          }
+      }
       );
       resolve(data);
     } catch (error) {
@@ -316,7 +321,7 @@ export const addCardToUser = (params) => {
   });
 };
 
-export const updateUserBillAddress = ({ userId, address }) => {
+export const updateUserBillAddress = ({ userId, userValues }) => {
   return new Promise(async (resolve, reject) => {
     try {
       axios.defaults.headers.common[
@@ -325,7 +330,7 @@ export const updateUserBillAddress = ({ userId, address }) => {
 
       const { data } = await axios.put(
         `http://localhost:8089/craftbay/user/${userId}`,
-        address
+        userValues
       );
       resolve(data);
     } catch (error) {
